@@ -9,15 +9,23 @@ import java.util.*;
 //get by id works
 //insert works if item doesn't exist
 
-public class SQLInventoryItemRepo implements InventoryItemRepoComponent{
+public class SQLInventoryItemRepo {
   
-  SQLInventoryItemRepo() throws SQLException {
+  public SQLInventoryItemRepo() throws SQLException {
     create();
   }
   
   public List<InventoryItem> getAll() throws SQLException {
     String query = "select * from inventory";
     ResultSet rs= connect().prepareStatement(query).executeQuery();
+    return makeInventoryList(rs);
+  }
+
+  public List<InventoryItem> getByCurrentState(String state) throws SQLException {
+    String query = "select * from inventory where inventory.current_state = ?";
+    PreparedStatement stmt = connect().prepareStatement(query);
+    stmt.setString(1, state);
+    ResultSet rs = stmt.executeQuery();
     return makeInventoryList(rs);
   }
 
@@ -36,11 +44,12 @@ public class SQLInventoryItemRepo implements InventoryItemRepoComponent{
     PreparedStatement stmt = dbCon.prepareStatement(query);
     stmt.setString(1,item.getId());
     if (!stmt.executeQuery().next()) {
-      query = "insert into inventory values(?,?,?)";
+      query = "insert into inventory values(?,?,?,?)";
       stmt = dbCon.prepareStatement(query);
       stmt.setString(1,item.getId());
       stmt.setString(2,item.getDiscription());
       stmt.setString(3,item.getState());
+      stmt.setString(4,item.getReminder());
       stmt.executeUpdate();
     }
     else throw new ItemException("item id already exists");
@@ -78,14 +87,15 @@ public class SQLInventoryItemRepo implements InventoryItemRepoComponent{
   }
   
   private InventoryItem toItem(ResultSet rs) throws SQLException {
-    return new InventoryItem(rs.getString("id"), rs.getString("item"), rs.getString("current_state"));
+    return new InventoryItem(rs.getString("id"), rs.getString("item"), rs.getString("current_state"), rs.getString("reminder_message"));
   }
   
   private void create() throws SQLException {
     Connection dbCon = connect();
     String table = "create table inventory(id varchar(20) not null primary key," +
                    " item varchar(40) not null, " + 
-                   "current_state varchar(15) not null default 'in')";
+                   "current_state varchar(15) not null default 'in'," +
+                   "reminder_message varchar(120) not null default '')";
     if (!dbCon.getMetaData().getTables(null, null, "inventory", null).next()) 
       dbCon.createStatement().executeUpdate(table);
   }

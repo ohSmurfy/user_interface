@@ -4,16 +4,12 @@ public class InventoryItem {
   String id;
   String discription;
   String state;
-  
-  InventoryItem(String itemId, String itemDiscription, String currentState) {
+  String reminder;
+  InventoryItem(String itemId, String itemDiscription, String currentState, String itemReminder) {
     id = itemId;
     discription = itemDiscription;
     state = currentState;
-  }
-  InventoryItem(String itemId, String itemDiscription) {
-    id = itemId;
-    discription = itemDiscription;
-    state = "in";
+    reminder = itemReminder;
   }
   
   public String getId() {
@@ -25,5 +21,8 @@ public class InventoryItem {
   }
   public String getState(){
     return state;
+  }
+  public String getReminder() {
+    return reminder;
   }
 }
