@@ -4,28 +4,28 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-
 import javax.swing.*;
 
-public class NewItem extends JPanel{
-  public NewItem() {
-    super(new FlowLayout());
-    final NewItem item = this;
-    final JFrame frame = new JFrame("New Item");
-    JPanel panel = new JPanel(false);
-    JLabel idLabel = new JLabel("Item ID");
-    final JTextField id = new JTextField(10);
-    JLabel discriptionLabel = new JLabel ("Discription");
-    final JTextField discription = new JTextField(10);
-    JLabel reminderLabel = new JLabel("Reminder");
-    final JTextField reminder = new JTextField(20);
+public class InventoryNewItemPanel extends JFrame{
+  JTextField id = new JTextField(10);
+  JTextField discription = new JTextField(10);
+  JTextField reminder = new JTextField(10);
+  JLabel idLabel = new JLabel("Item ID");
+  JLabel discriptionLabel = new JLabel("Discription");
+  JLabel reminderLabel = new JLabel("Reminder");
+  JPanel panel = new JPanel(false);
+  JButton add = new JButton("Add Item");
+  InventoryNewItemPanel frame;
+  
+  public InventoryNewItemPanel() {
+    frame = this;
+    panel = new JPanel(false);
+    panel.setLayout(new GridLayout(4,2));
     
-    JButton add = new JButton("Add Item");
-    add.addActionListener(new ActionListener()    {
+    add.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e)
       {
         try {
-
           SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
           inventory.insertNewItem(new InventoryItem(id.getText(), discription.getText(),"in",reminder.getText()));
           frame.dispose();

@@ -7,8 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
  
-public class InventorySystem extends JPanel {
-    public InventorySystem() {
+public class System extends JPanel {
+    public System() {
         super(new GridLayout(1, 1));
          
         JTabbedPane tabbedPane = new JTabbedPane();
@@ -16,8 +16,8 @@ public class InventorySystem extends JPanel {
         JComponent panel1 = makePanel();
         JComponent panel2 = makePanel();
         JComponent panel3 = makePanel();
-        JComponent inventory = new MakeInventoryPanel();
-        panel1.setPreferredSize(new Dimension(600, 600));
+        JComponent inventory = new InventoryTabPanel();
+        panel1.setPreferredSize(new Dimension(600, 100));
 
         tabbedPane.addTab("Overview", panel1);
         tabbedPane.addTab("Check out", panel2);
@@ -35,7 +35,7 @@ public class InventorySystem extends JPanel {
     public static void main(String[] args) {
       JFrame frame = new JFrame("Inventory System");
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      frame.add(new InventorySystem());
+      frame.add(new System());
       frame.pack();
       frame.setVisible(true);
     }

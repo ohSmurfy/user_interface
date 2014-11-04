@@ -8,16 +8,17 @@ import java.sql.SQLException;
 import javax.swing.*;
 
 public class InventroyItemPanel extends JPanel{
+  String[] options = {"in","out","overdue","missing","delete"}; 
+  JComboBox combo = new JComboBox(options);
   JLabel itemDiscription;
   JLabel itemId;
-  JComboBox combo;
-  String[] options = {"in","out","overdue","missing","delete"}; 
+  InventroyItemPanel panel;
+  
   public InventroyItemPanel(InventoryItem item) {
-    final InventroyItemPanel panel = this;
-    panel.setLayout(new FlowLayout());
+    panel = this;
+    panel.setLayout(new GridLayout(1, 3));
     itemDiscription = new JLabel(item.getDiscription());
     itemId = new JLabel(item.getId());
-    combo = new JComboBox(options);
     combo.setSelectedItem(item.getState());
     combo.addActionListener(new ActionListener()    {
       public void actionPerformed(ActionEvent e)
@@ -39,7 +40,9 @@ public class InventroyItemPanel extends JPanel{
       }
     });
     panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-    panel.setPreferredSize(new Dimension(300,50));
+    panel.setPreferredSize(new Dimension(400,25));
+    panel.setMaximumSize(new Dimension(400,25));
+    
     panel.add(itemId);
     panel.add(itemDiscription);
     panel.add(combo);
