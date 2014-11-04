@@ -1,1 +1,1 @@
-[[{"location":"/usr/lib/jvm/java-7-openjdk-amd64","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"JavaSE-1.7"}},"jre:jre:1.7.0"],[{"location":"/home/mike/Dropbox/school/user_interface/UI","type":"PROJECT","hints":{"PROJECT_NAME":"UI"}},"ABSENT"]]
+[[{"location":"/home/mike/Dropbox/school/user_interface/UI","type":"PROJECT","hints":{"PROJECT_NAME":"UI"}},"ABSENT"],[{"location":"/usr/lib/jvm/java-7-openjdk-amd64","type":"JRE","hints":{"EXECUTION_ENVIRONMENT":"JavaSE-1.7"}},"jre:jre:1.7.0"]]

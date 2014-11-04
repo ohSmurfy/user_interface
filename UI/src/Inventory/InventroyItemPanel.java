@@ -29,7 +29,14 @@ public class InventroyItemPanel extends JPanel{
           if (combo.getSelectedItem().toString() == "delete") {
             JOptionPane.showMessageDialog(panel,"Deleted!");
             Container parent = panel.getParent();
-            parent.remove(panel);
+            parent.removeAll();
+            parent.add(new InventoryHeaderPanel());
+            java.util.List<InventoryItem> items = inventory.getAll();
+            for (InventoryItem item : items) {
+              parent.add(new InventroyItemPanel(item));
+              parent.add(Box.createVerticalStrut(5));
+            }
+            parent.revalidate();
             parent.repaint();
           } else JOptionPane.showMessageDialog(panel,"Updated!");
         } catch (SQLException ex) {

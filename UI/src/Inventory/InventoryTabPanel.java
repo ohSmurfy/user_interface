@@ -1,6 +1,8 @@
 package Inventory;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -21,48 +23,21 @@ import javax.swing.ScrollPaneConstants;
 
 public class InventoryTabPanel extends JPanel{
   InventoryTabPanel panel;
+  JPanel inventoryListPanel;
   public InventoryTabPanel() {
     panel = this;
-    panel.setLayout(new FlowLayout(FlowLayout.TRAILING));
-    JButton newItem = new JButton("Add Item +");
-    newItem.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {new InventoryNewItemPanel();};
-    });
-    
-    JPanel headers = new JPanel();
-    headers.setLayout(new GridLayout(1, 3));
+    inventoryListPanel = new InventoryListItemsPanel();
+    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-    JLabel headerId = new JLabel("Item ID");
-    JLabel headerDiscription = new JLabel("Discription");
-    JLabel hearderCurrentState = new JLabel("Current State");
-    headers.add(headerId);
-    headers.add(headerDiscription);
-    headers.add(hearderCurrentState);
-    headers.setVisible(true);
-    headers.setMaximumSize(new Dimension(400,25));
-    
-    JPanel inventoryListPane = new JPanel();
-    inventoryListPane.setLayout(new BoxLayout(inventoryListPane, BoxLayout.Y_AXIS));
-    inventoryListPane.add(headers);
-    inventoryListPane.add(Box.createVerticalStrut(5));
-    inventoryListPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-    
-    try {
-      SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
-      java.util.List<InventoryItem> items = inventory.getAll();
-      for (InventoryItem item : items) {
-        inventoryListPane.add(new InventroyItemPanel(item));
-        inventoryListPane.add(Box.createVerticalStrut(5));
-      }
-    } catch (SQLException ex) {
-      JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);
-    } catch (ItemException ex){
-      JOptionPane.showMessageDialog(panel,ex);
-    }
-    
-    JScrollPane scroll = new JScrollPane(inventoryListPane);
-    panel.add(scroll);
+    JScrollPane scroll = new JScrollPane(inventoryListPanel);
+    JButton newItem = new JButton("Add Item +");
+    JButton other = new JButton("Add Item +");
+    newItem.setAlignmentX(Component.CENTER_ALIGNMENT);
+    newItem.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {new InventoryNewItemPanel(inventoryListPanel);};
+    });
     panel.add(newItem);
+    panel.add(scroll);
     panel.setVisible(true);
   }
 }

@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+
 import javax.swing.*;
 
 public class InventoryNewItemPanel extends JFrame{
@@ -16,9 +17,12 @@ public class InventoryNewItemPanel extends JFrame{
   JPanel panel = new JPanel(false);
   JButton add = new JButton("Add Item");
   InventoryNewItemPanel frame;
-  
-  public InventoryNewItemPanel() {
+  JPanel itemListPanel;
+  Container outer;
+  public InventoryNewItemPanel(JPanel listPanel) {
+    itemListPanel = listPanel;
     frame = this;
+    frame.setLocationRelativeTo(itemListPanel);
     panel = new JPanel(false);
     panel.setLayout(new GridLayout(4,2));
     
@@ -29,6 +33,16 @@ public class InventoryNewItemPanel extends JFrame{
           SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
           inventory.insertNewItem(new InventoryItem(id.getText(), discription.getText(),"in",reminder.getText()));
           frame.dispose();
+          itemListPanel.removeAll();
+          SQLInventoryItemRepo newInventory = new SQLInventoryItemRepo();
+          java.util.List<InventoryItem> items = newInventory.getAll();
+          itemListPanel.add(new InventoryHeaderPanel());
+          for (InventoryItem item : items) {
+            itemListPanel.add(new InventroyItemPanel(item));
+            itemListPanel.add(Box.createVerticalStrut(5));
+          }
+          itemListPanel.revalidate();
+          itemListPanel.repaint();
         } catch (SQLException ex) {
           JOptionPane.showMessageDialog(frame, "SQL ERROR!" + ex);
         } catch (ItemException ex){
