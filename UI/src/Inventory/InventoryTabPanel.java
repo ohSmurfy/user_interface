@@ -30,7 +30,6 @@ public class InventoryTabPanel extends JPanel{
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
     JButton newItem = new JButton("Add Item +");
-    JButton other = new JButton("Add Item +");
     newItem.setAlignmentX(Component.CENTER_ALIGNMENT);
     newItem.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {new InventoryNewItemPanel(inventoryListPanel);};
