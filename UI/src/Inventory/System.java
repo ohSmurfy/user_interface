@@ -23,7 +23,9 @@ public class System extends JPanel {
         tabbedPane.addTab("Check out", panel2);
         tabbedPane.addTab("Check in", panel3);
         tabbedPane.addTab("Inventory", inventory);
-        add(tabbedPane);
+//        add(tabbedPane);
+        JScrollPane scroll = new JScrollPane(tabbedPane);
+        add(scroll);
     }
     
 //    this will change to 4 different functions creating inventory/in/out/overview

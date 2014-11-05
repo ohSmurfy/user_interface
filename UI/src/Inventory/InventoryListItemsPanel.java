@@ -20,7 +20,6 @@ public class InventoryListItemsPanel extends JPanel{
     panel.add(new InventoryHeaderPanel());
     panel.add(Box.createVerticalStrut(5));
     panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-    panel.setMaximumSize(new Dimension(425,400));
     try {
       SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
       java.util.List<InventoryItem> items = inventory.getAll();

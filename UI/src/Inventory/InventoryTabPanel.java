@@ -29,7 +29,6 @@ public class InventoryTabPanel extends JPanel{
     inventoryListPanel = new InventoryListItemsPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-    JScrollPane scroll = new JScrollPane(inventoryListPanel);
     JButton newItem = new JButton("Add Item +");
     JButton other = new JButton("Add Item +");
     newItem.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -37,7 +36,7 @@ public class InventoryTabPanel extends JPanel{
       public void actionPerformed(ActionEvent e) {new InventoryNewItemPanel(inventoryListPanel);};
     });
     panel.add(newItem);
-    panel.add(scroll);
+    panel.add(inventoryListPanel);
     panel.setVisible(true);
   }
 }

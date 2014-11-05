@@ -19,6 +19,6 @@ public class InventoryHeaderPanel extends JPanel{
     headers.add(headerDiscription);
     headers.add(hearderCurrentState);
     headers.setVisible(true);
-    headers.setMaximumSize(new Dimension(400,25));
+    headers.setMaximumSize(new Dimension(2000,25));
   }
 }
