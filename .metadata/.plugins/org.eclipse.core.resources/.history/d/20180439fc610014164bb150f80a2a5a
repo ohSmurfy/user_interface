@@ -1,7 +1,0 @@
-package Inventory;
-
-public class NewItem {
-  public NewItem() {
-    
-  }
-}
