@@ -3,6 +3,15 @@ package ItemCheckout;
 import java.sql.*;
 import java.util.*;
 
+/*
+ * create table dun
+ * insert dun
+ * getbydate dun
+ * getAll dun
+ * getByStudentId dun 
+ * getByItemId dun 
+ * delete dun
+ */
 public class SQLItemCheckinRepo {
   
   public SQLItemCheckinRepo() throws SQLException {
@@ -12,13 +21,14 @@ public class SQLItemCheckinRepo {
   public void insertNewItem(CheckoutItem item) throws SQLException {
     String query = "insert into checkout(" +
         "studentId, studentEmail, employeeId, itemId, dueDate)" +
-        "values(?,?,?,?,?)";
+        "values(?,?,?,?,?,?)";
     PreparedStatement stmt = connect().prepareStatement(query);
     stmt.setString(1, item.getStudentId());
     stmt.setString(2, item.getStudentEmail());
     stmt.setString(3, item.getEmployeeId());
     stmt.setString(4, item.getItemId());
-    stmt.setTimestamp(5, item.getDueDate());
+    stmt.setString(5, item.getItemDiscription());
+    stmt.setTimestamp(6, item.getDueDate());
     stmt.executeUpdate();
     }
   
@@ -76,17 +86,19 @@ public class SQLItemCheckinRepo {
         rs.getString("studentEmail"), 
         rs.getString("employeeId"), 
         rs.getString("itemId"), 
+        rs.getString("itemDiscription"), 
         rs.getTimestamp("time"), 
         rs.getTimestamp("dueDate"));  
     }
   
   private void create() throws SQLException {
     Connection dbCon = connect();
-    String table = "create table checkin(" +
+    String table = "create table checkout(" +
                    "studentId varchar(20) not null," +
                    "studentEmail varchar(50) not null," +
                    "employeeId varchar(50) not null," +
                    "itemId varchar(20) not null," +
+                   "itemDiscription varchar(40) not null," +
                    "time TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
                    "dueDate TIMESTAMP not null)";
     if (!dbCon.getMetaData().getTables(null, null, "checkout", null).next()) 
