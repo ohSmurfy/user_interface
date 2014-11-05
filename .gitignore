@@ -4,7 +4,8 @@
 .mtj.tmp/
 .metadata/
 .recommenders/
-UI/.classpath
+*UI/.classpath
+
 # Package Files #
 *.jar
 *.war
