@@ -1,0 +1,26 @@
+package testing;
+
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class main {
+  
+
+  public static void main(String args[]) {
+    JFrame frame = new JFrame("Test");
+    frame.setVisible(true);
+    frame.setSize(600,600);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+    JPanel panel = new JPanel();
+    JLabel itemDiscription = new JLabel("tbd");
+    JLabel itemId = new JLabel("tbd");
+    JComboBox state = new JComboBox();
+    panel.add(itemId);
+    panel.add(itemDiscription);
+//    panel.add(state);
+    frame.add(panel);
+  }
+}

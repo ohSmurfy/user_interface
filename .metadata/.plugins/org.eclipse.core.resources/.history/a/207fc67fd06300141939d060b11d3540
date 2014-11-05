@@ -1,0 +1,18 @@
+package Inventory;
+
+import java.awt.Color;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+
+public class InventoryListItemsPanel extends JPanel{
+  public InventoryListItemsPanel(){
+  inventoryListPane = new JPanel();
+  inventoryListPane.setLayout(new BoxLayout(inventoryListPane, BoxLayout.Y_AXIS));
+  inventoryListPane.add(headers);
+  inventoryListPane.add(Box.createVerticalStrut(5));
+  inventoryListPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+  } 
+}

@@ -1,0 +1,10 @@
+package Inventory;
+
+import java.awt.GridLayout;
+
+public class NewItem extends JPanel{
+  public NewItem() {
+    super(new GridLayout(1, 1));
+
+  }
+}

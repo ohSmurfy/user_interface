@@ -1,0 +1,7 @@
+package Inventory;
+
+import javax.swing.JPanel;
+
+public class InventoryListItemsPanel extends JPanel{
+
+}

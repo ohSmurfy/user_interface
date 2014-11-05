@@ -1,0 +1,35 @@
+package Inventory;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class InventoryListItemsPanel extends JPanel{
+  JPanel headers = new JPanel();
+  JLabel headerId = new JLabel("Item ID");
+  JLabel headerDiscription = new JLabel("Discription");
+  JLabel hearderCurrentState = new JLabel("Current State");
+  
+  InventoryListItemsPanel panel;
+  public InventoryListItemsPanel(){
+    JPanel headers = new JPanel();
+    headers.setLayout(new GridLayout(1, 3));
+    headers.add(headerId);
+    headers.add(headerDiscription);
+    headers.add(hearderCurrentState);
+    headers.setVisible(true);
+    headers.setMaximumSize(new Dimension(400,25));
+    
+    panel = this;
+    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+    panel.add(headers);
+    panel.add(Box.createVerticalStrut(5));
+    panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+  } 
+}

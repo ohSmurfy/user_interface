@@ -1,0 +1,21 @@
+package Inventory;
+
+import java.awt.*;
+
+import javax.swing.*;
+
+public class NewItem extends JPanel{
+  public NewItem() {
+    super(new GridLayout(1, 1));
+    JFrame frame = new JFrame("New Item");
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
+    JLabel idLabel = new JLabel("Item ID");
+    JTextField id = new JTextField();
+    JLabel discriptionLabel = new JLabel ("Discription");
+    JTextField discription = new JTextField();
+    
+    frame.pack();
+    frame.setVisible(true);
+  }
+}

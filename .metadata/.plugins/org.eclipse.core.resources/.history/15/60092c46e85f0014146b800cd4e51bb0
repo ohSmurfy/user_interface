@@ -1,0 +1,63 @@
+package asdf;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
+import javax.swing.JList;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
+
+public class dasf {
+
+  private JFrame frame;
+
+  /**
+   * Launch the application.
+   */
+  public static void main(String[] args) {
+    EventQueue.invokeLater(new Runnable() {
+      public void run() {
+        try {
+          dasf window = new dasf();
+          window.frame.setVisible(true);
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+    });
+  }
+
+  /**
+   * Create the application.
+   */
+  public dasf() {
+    initialize();
+  }
+
+  /**
+   * Initialize the contents of the frame.
+   */
+  private void initialize() {
+    frame = new JFrame();
+    frame.setSize(500, 500);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.getContentPane().setLayout(null);
+    
+    JComboBox comboBox = new JComboBox();
+    comboBox.setModel(new DefaultComboBoxModel(new String[] {"in", "out", "missing", "overdue", "delete"}));
+    comboBox.setBounds(281, 162, 169, 24);
+    frame.getContentPane().add(comboBox);
+    
+    JLabel lblNewLabel = new JLabel("discription");
+    lblNewLabel.setBounds(145, 194, 124, 15);
+    frame.getContentPane().add(lblNewLabel);
+    
+    JLabel lblNewLabel_1 = new JLabel("id");
+    lblNewLabel_1.setBounds(22, 167, 70, 15);
+    frame.getContentPane().add(lblNewLabel_1);
+  }
+}
