@@ -1,4 +1,4 @@
-package ItemCheckout;
+package Inventory;
 
 import java.sql.*;
 import java.util.*;
