@@ -7,6 +7,11 @@ import java.sql.SQLException;
 
 import javax.swing.*;
 
+import Inventory.InventoryHeaderPanel;
+import Inventory.InventoryItem;
+import Inventory.ItemException;
+import Inventory.SQLInventoryItemRepo;
+
 public class InventoryNewItemPanel extends JFrame{
   JTextField id = new JTextField(10);
   JTextField discription = new JTextField(10);

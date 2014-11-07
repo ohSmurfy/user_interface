@@ -12,6 +12,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import Inventory.InventoryHeaderPanel;
+import Inventory.InventoryItem;
+import Inventory.ItemException;
+import Inventory.SQLInventoryItemRepo;
+
 public class InventoryListItemsPanel extends JPanel{ 
   InventoryListItemsPanel panel;
   public InventoryListItemsPanel(){  

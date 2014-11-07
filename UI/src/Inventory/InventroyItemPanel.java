@@ -7,6 +7,11 @@ import java.sql.SQLException;
 
 import javax.swing.*;
 
+import Inventory.InventoryHeaderPanel;
+import Inventory.InventoryItem;
+import Inventory.ItemException;
+import Inventory.SQLInventoryItemRepo;
+
 public class InventroyItemPanel extends JPanel{
   String[] options = {"in","out","overdue","missing","delete"}; 
   JComboBox combo = new JComboBox(options);
