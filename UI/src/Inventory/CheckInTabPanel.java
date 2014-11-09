@@ -44,4 +44,8 @@ public class CheckInTabPanel extends JPanel{
 	  public String getEmployeeId() {
 		  return employeeId.getText();
 	  }
+	  public void overviewPanelClicked(String sId) {
+		  studentId.setText(sId);
+		  checkInListPanel.refresh(sId);
+	  }
 	}
