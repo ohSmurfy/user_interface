@@ -20,7 +20,7 @@ public class SQLCheckoutItemRepo {
   
   public void insertNewItem(CheckoutItem item) throws SQLException {
     String query = "insert into checkout(" +
-        "studentId, studentEmail, employeeId, itemId, dueDate)" +
+        "studentId, studentEmail, employeeId, itemId, itemDiscription, dueDate)" +
         "values(?,?,?,?,?,?)";
     PreparedStatement stmt = connect().prepareStatement(query);
     stmt.setString(1, item.getStudentId());

@@ -20,6 +20,11 @@ public class CheckoutItem {
     time = currentTime;
     dueDate = due;
   }
+  
+  public void updateEmployeeId(String id) {
+	  employeeId = id;
+  }
+  
   public String getStudentId() {
     return studentId;
   }

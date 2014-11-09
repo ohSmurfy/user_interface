@@ -33,16 +33,8 @@ public class InventroyItemPanel extends JPanel{
           inventory.updateState(itemId.getText(), combo.getSelectedItem().toString());
           if (combo.getSelectedItem().toString() == "delete") {
             JOptionPane.showMessageDialog(panel,"Deleted!");
-            Container parent = panel.getParent();
-            parent.removeAll();
-            parent.add(new InventoryHeaderPanel());
-            java.util.List<InventoryItem> items = inventory.getAll();
-            for (InventoryItem item : items) {
-              parent.add(new InventroyItemPanel(item));
-              parent.add(Box.createVerticalStrut(5));
-            }
-            parent.revalidate();
-            parent.repaint();
+            InventoryListItemsPanel parent = (InventoryListItemsPanel) panel.getParent();
+            parent.refresh();
           } else JOptionPane.showMessageDialog(panel,"Updated!");
         } catch (SQLException ex) {
           JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);
@@ -52,7 +44,6 @@ public class InventroyItemPanel extends JPanel{
       }
     });
     panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-//    panel.setPreferredSize(new Dimension(400,25));
     panel.setMaximumSize(new Dimension(2000,25));
     
     panel.add(itemId);

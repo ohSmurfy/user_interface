@@ -22,9 +22,9 @@ public class InventoryNewItemPanel extends JFrame{
   JPanel panel = new JPanel(false);
   JButton add = new JButton("Add Item");
   InventoryNewItemPanel frame;
-  JPanel itemListPanel;
+  InventoryListItemsPanel itemListPanel;
   Container outer;
-  public InventoryNewItemPanel(JPanel listPanel) {
+  public InventoryNewItemPanel(InventoryListItemsPanel listPanel) {
     itemListPanel = listPanel;
     frame = this;
     frame.setLocationRelativeTo(itemListPanel);
@@ -38,16 +38,7 @@ public class InventoryNewItemPanel extends JFrame{
           SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
           inventory.insertNewItem(new InventoryItem(id.getText(), discription.getText(),"in",reminder.getText()));
           frame.dispose();
-          itemListPanel.removeAll();
-          SQLInventoryItemRepo newInventory = new SQLInventoryItemRepo();
-          java.util.List<InventoryItem> items = newInventory.getAll();
-          itemListPanel.add(new InventoryHeaderPanel());
-          for (InventoryItem item : items) {
-            itemListPanel.add(new InventroyItemPanel(item));
-            itemListPanel.add(Box.createVerticalStrut(5));
-          }
-          itemListPanel.revalidate();
-          itemListPanel.repaint();
+          itemListPanel.refresh();
         } catch (SQLException ex) {
           JOptionPane.showMessageDialog(frame, "SQL ERROR!" + ex);
         } catch (ItemException ex){

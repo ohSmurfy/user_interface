@@ -19,8 +19,8 @@ public class SQLItemCheckinRepo {
   }
   
   public void insertNewItem(CheckoutItem item) throws SQLException {
-    String query = "insert into checkout(" +
-        "studentId, studentEmail, employeeId, itemId, dueDate)" +
+    String query = "insert into checkIn(" +
+        "studentId, studentEmail, employeeId, itemId, itemDiscription, dueDate)" +
         "values(?,?,?,?,?,?)";
     PreparedStatement stmt = connect().prepareStatement(query);
     stmt.setString(1, item.getStudentId());
@@ -93,7 +93,7 @@ public class SQLItemCheckinRepo {
   
   private void create() throws SQLException {
     Connection dbCon = connect();
-    String table = "create table checkout(" +
+    String table = "create table checkIn(" +
                    "studentId varchar(20) not null," +
                    "studentEmail varchar(50) not null," +
                    "employeeId varchar(50) not null," +
@@ -101,7 +101,7 @@ public class SQLItemCheckinRepo {
                    "itemDiscription varchar(40) not null," +
                    "time TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
                    "dueDate TIMESTAMP not null)";
-    if (!dbCon.getMetaData().getTables(null, null, "checkout", null).next()) 
+    if (!dbCon.getMetaData().getTables(null, null, "checkIn", null).next()) 
       dbCon.createStatement().executeUpdate(table);
   }
 }

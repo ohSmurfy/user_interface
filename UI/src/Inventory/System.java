@@ -15,13 +15,13 @@ public class System extends JPanel {
          
         JComponent panel1 = makePanel();
         JComponent panel2 = makePanel();
-        JComponent panel3 = makePanel();
+        JComponent checkIn = new CheckInTabPanel();
         JComponent inventory = new InventoryTabPanel();
         panel1.setPreferredSize(new Dimension(600, 100));
 
         tabbedPane.addTab("Overview", panel1);
         tabbedPane.addTab("Check out", panel2);
-        tabbedPane.addTab("Check in", panel3);
+        tabbedPane.addTab("Check in", checkIn);
         tabbedPane.addTab("Inventory", inventory);
         JScrollPane scroll = new JScrollPane(tabbedPane);
         add(scroll);
