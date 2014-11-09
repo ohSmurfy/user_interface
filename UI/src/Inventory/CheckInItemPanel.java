@@ -33,12 +33,17 @@ public class CheckInItemPanel extends JPanel {
 	checkIn.addActionListener(new ActionListener() {
 	  public void actionPerformed(ActionEvent e) {
 	    try {
-     	  SQLCheckoutItemRepo outItems = new SQLCheckoutItemRepo();
-          outItems.deleteCheckoutItemByItemId(current.getItemId());
-          SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
-          inventory.updateState(current.getItemId(), "in");
-          SQLItemCheckinRepo checkIn = new SQLItemCheckinRepo();
-          checkIn.insertNewItem(current);
+          String eId = ((CheckInTabPanel) panel.getParent().getParent()).getEmployeeId();
+          if (eId.equals(null) || eId.equals("")) JOptionPane.showMessageDialog(panel,"please enter employee id before continuing");
+          else {
+            SQLCheckoutItemRepo outItems = new SQLCheckoutItemRepo();
+            outItems.deleteCheckoutItemByItemId(current.getItemId());
+            SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
+            inventory.updateState(current.getItemId(), "in");
+            current.updateEmployeeId(eId);
+            SQLItemCheckinRepo checkIn = new SQLItemCheckinRepo();
+            checkIn.insertNewItem(current);
+          }
         } catch (SQLException ex) {
           JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);
         } catch (ItemException ex){
