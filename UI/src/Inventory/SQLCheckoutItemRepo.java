@@ -3,15 +3,6 @@ package Inventory;
 import java.sql.*;
 import java.util.*;
 
-/*
- * create table dun
- * insert dun
- * getbydate dun
- * getAll dun
- * getByStudentId dun 
- * getByItemId dun 
- * delete dun
- */
 public class SQLCheckoutItemRepo {
   
   public SQLCheckoutItemRepo() throws SQLException {
@@ -32,6 +23,16 @@ public class SQLCheckoutItemRepo {
     stmt.executeUpdate();
     }
   
+  public List<String> getStudentIds(java.sql.Date date) throws SQLException {
+	  String query = "select studentId from checkout where Date(dueDate) = ?";
+	  PreparedStatement stmt = connect().prepareStatement(query);
+	  stmt.setDate(1, date);
+	  ResultSet rs = stmt.executeQuery();
+	  List<String> ids = new ArrayList<String>();   
+	  while (rs.next()) ids.add(rs.getString("studentId"));
+	  return ids;
+	  
+  }
   public List<CheckoutItem> getByDueDate(java.sql.Date date) throws SQLException {
     String query = "select * from checkout where DATE(dueDate) = ?";
     PreparedStatement stmt = connect().prepareStatement(query);
