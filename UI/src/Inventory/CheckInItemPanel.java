@@ -31,24 +31,24 @@ public class CheckInItemPanel extends JPanel {
 	due = new JLabel(item.dueDate.toGMTString());
 	
 	checkIn.addActionListener(new ActionListener() {
-	      public void actionPerformed(ActionEvent e) {
-	          try {
-	        	  SQLCheckoutItemRepo outItems = new SQLCheckoutItemRepo();
-	              outItems.deleteCheckoutItemByItemId(current.getItemId());
-	              SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
-	              inventory.updateState(current.getItemId(), "in");
-	              SQLItemCheckinRepo checkIn = new SQLItemCheckinRepo();
-	              checkIn.insertNewItem(current);
-	            } catch (SQLException ex) {
-	              JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);
-	            } catch (ItemException ex){
-	              JOptionPane.showMessageDialog(panel,ex);
-	            }
-	    	  parent.refresh(current.getStudentId());
-	    	  parent.revalidate();
-	    	  parent.repaint();
-	      };
-	    });
+	  public void actionPerformed(ActionEvent e) {
+	    try {
+     	  SQLCheckoutItemRepo outItems = new SQLCheckoutItemRepo();
+          outItems.deleteCheckoutItemByItemId(current.getItemId());
+          SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
+          inventory.updateState(current.getItemId(), "in");
+          SQLItemCheckinRepo checkIn = new SQLItemCheckinRepo();
+          checkIn.insertNewItem(current);
+        } catch (SQLException ex) {
+          JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);
+        } catch (ItemException ex){
+          JOptionPane.showMessageDialog(panel,ex);
+        }
+        parent.refresh(current.getStudentId());
+        parent.revalidate();
+	  parent.repaint();
+      };
+    });
 	
 	panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 	panel.setMaximumSize(new Dimension(2000,25));

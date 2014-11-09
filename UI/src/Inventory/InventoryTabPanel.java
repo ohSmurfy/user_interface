@@ -37,4 +37,7 @@ public class InventoryTabPanel extends JPanel{
     panel.add(inventoryListPanel);
     panel.setVisible(true);
   }
+  public InventoryListItemsPanel getListPanel() {
+	  return inventoryListPanel;
+  }
 }

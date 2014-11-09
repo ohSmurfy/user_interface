@@ -1,6 +1,8 @@
 package Inventory;
  
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
  
 public class System extends JPanel {
+	CheckInTabPanel checkIn = new CheckInTabPanel();
+    InventoryTabPanel inventory = new InventoryTabPanel();
     public System() {
         super(new GridLayout(1, 1));
          
@@ -15,16 +19,19 @@ public class System extends JPanel {
          
         JComponent panel1 = makePanel();
         JComponent panel2 = makePanel();
-        JComponent checkIn = new CheckInTabPanel();
-        JComponent inventory = new InventoryTabPanel();
         panel1.setPreferredSize(new Dimension(600, 100));
 
         tabbedPane.addTab("Overview", panel1);
         tabbedPane.addTab("Check out", panel2);
         tabbedPane.addTab("Check in", checkIn);
         tabbedPane.addTab("Inventory", inventory);
+        tabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				 (inventory.getListPanel()).refresh();
+			}
+        });
         JScrollPane scroll = new JScrollPane(tabbedPane);
-        add(scroll);
+        add(scroll);     
     }
     
 //    this will change to 4 different functions creating inventory/in/out/overview
