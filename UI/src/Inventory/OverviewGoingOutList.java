@@ -40,35 +40,35 @@ public class OverviewGoingOutList extends JPanel{
 		description.setMaximumSize(new Dimension(2000,25));
 		
 		
-		//Items
-		JPanel outItems = new JPanel();
-		outItems.setLayout(new GridLayout(1,1));
-		
-		Date todaysDate = new Date();
-		
-	    try {
-    	  SQLCheckoutItemRepo goingOutList = new SQLCheckoutItemRepo();
-    	  java.util.List<CheckoutItem> items = goingOutList.getAll();
-          for(CheckoutItem item : items){
-        	  if(item.getDueDate().getDay() == todaysDate.getDay()){
-        	  	outItems.add(new OverviewGoingOutItem(item));
-        	  	//outItems.add(item.getTime());
-        	  }
-          }
-
-		}
-		catch (SQLException ex) {
-		  JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);
-		} catch (ItemException ex){
-		  JOptionPane.showMessageDialog(panel,ex);
-		}
+//		//Items
+//		JPanel outItems = new JPanel();
+//		outItems.setLayout(new GridLayout(1,1));
+//		
+//		Date todaysDate = new Date();
+//		
+//	    try {
+//    	  SQLCheckoutItemRepo goingOutList = new SQLCheckoutItemRepo();
+//    	  java.util.List<CheckoutItem> items = goingOutList.getAll();
+//          for(CheckoutItem item : items){
+//        	  if(item.getDueDate().getDay() == todaysDate.getDay()){
+//        	  	outItems.add(new OverviewGoingOutItem(item));
+//        	  	//outItems.add(item.getTime());
+//        	  }
+//          }
+//
+//		}
+//		catch (SQLException ex) {
+//		  JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);
+//		} catch (ItemException ex){
+//		  JOptionPane.showMessageDialog(panel,ex);
+//		}
 		
 	    
 	    panel.add(Box.createVerticalStrut(5));
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		panel.add(header);
 		panel.add(description);
-		panel.add(outItems);
+//		panel.add(outItems);
 		
 	}
 	
