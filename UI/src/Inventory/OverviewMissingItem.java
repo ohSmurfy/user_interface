@@ -15,24 +15,18 @@ public class OverviewMissingItem extends JPanel {
   OverviewMissingItem panel;
   JLabel itemDiscription;
   JLabel itemIdLabel;
-  String itemId;
-  JLabel due;
-  CheckoutItem current;
-  public OverviewMissingItem(CheckoutItem item) {
+  InventoryItem current;
+  
+  public OverviewMissingItem(InventoryItem item) {
 	panel = this;
 	current = item;
-	panel.setLayout(new GridLayout(1, 3));
-	itemDiscription = new JLabel(item.getItemDiscription());
-	itemIdLabel = new JLabel(item.getItemId());
-	itemId = item.getItemId();
-	due = new JLabel(item.dueDate.toGMTString());
+	panel.setLayout(new GridLayout(1, 2));
 	
 	panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 	panel.setMaximumSize(new Dimension(2000,25));
 	
-	panel.add(itemIdLabel);
-	panel.add(itemDiscription);
-	panel.add(due);
+	panel.add(new JLabel(current.getId()));
+	panel.add(new JLabel(current.getDiscription()));
 	panel.setVisible(true);
   }
 }
