@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.*;
@@ -28,8 +30,10 @@ public class CheckInItemPanel extends JPanel {
 	itemDiscription = new JLabel(item.getItemDiscription());
 	itemIdLabel = new JLabel(item.getItemId());
 	itemId = item.getItemId();
-	due = new JLabel(item.dueDate.toGMTString());
-	
+    DateFormat format = new SimpleDateFormat( "yyyy/MM/dd h:mm a" );
+
+	due = new JLabel(format.format(item.dueDate));
+
 	checkIn.addActionListener(new ActionListener() {
 	  public void actionPerformed(ActionEvent e) {
 	    try {
