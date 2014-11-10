@@ -23,15 +23,14 @@ public class OverviewComingInItem extends JPanel {
 	panel = this;
 	current = items.get(0);
 	allItems = items;
-	panel.setLayout(new GridLayout(1, 3));
+	panel.setLayout(new GridLayout(1, 2));
 	
-    DateFormat format = new SimpleDateFormat( "yyyy/MM/dd h:mm a" );
+    DateFormat format = new SimpleDateFormat( "h:mm a" );
 	due = new JLabel(format.format(current.dueDate));
 	
 	panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 	panel.setMaximumSize(new Dimension(2000,50));
 	
-	panel.add(new JLabel(current.getStudentId()));
 	panel.add(new JLabel(current.getStudentEmail()));
 	panel.add(due);
 	panel.setVisible(true);

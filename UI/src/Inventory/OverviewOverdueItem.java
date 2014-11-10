@@ -13,26 +13,17 @@ import javax.swing.*;
 
 public class OverviewOverdueItem extends JPanel {
   OverviewOverdueItem panel;
-  JLabel itemDiscription;
-  JLabel itemIdLabel;
-  String itemId;
-  JLabel due;
   CheckoutItem current;
   public OverviewOverdueItem(CheckoutItem item) {
 	panel = this;
 	current = item;
-	panel.setLayout(new GridLayout(1, 3));
-	itemDiscription = new JLabel(item.getItemDiscription());
-	itemIdLabel = new JLabel(item.getItemId());
-	itemId = item.getItemId();
-	due = new JLabel(item.dueDate.toGMTString());
-	
+	panel.setLayout(new GridLayout(1, 2));
+	new JLabel(current.getItemDiscription());
 	panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 	panel.setMaximumSize(new Dimension(2000,25));
 	
-	panel.add(itemIdLabel);
-	panel.add(itemDiscription);
-	panel.add(due);
+	panel.add(new JLabel(current.getStudentEmail()));
+	panel.add(new JLabel(current.getItemDiscription()));
 	
 	panel.setVisible(true);
   }

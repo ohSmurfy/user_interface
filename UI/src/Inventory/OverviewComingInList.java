@@ -27,11 +27,9 @@ public class OverviewComingInList extends JPanel{
 		header.setMaximumSize(new Dimension(2000,25));
 
 		JPanel description = new JPanel();
-		description.setLayout(new GridLayout(1,3));
-		JLabel nameColumn = new JLabel("Student Id");
+		description.setLayout(new GridLayout(1,2));
 		JLabel emailColumn = new JLabel("Student Email");
 		JLabel timeColumn = new JLabel("Time");
-		description.add(nameColumn);
 		description.add(emailColumn);
 		description.add(timeColumn);
 		description.setVisible(true);
