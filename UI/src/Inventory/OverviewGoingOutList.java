@@ -23,53 +23,28 @@ public class OverviewGoingOutList extends JPanel{
 	    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
 		JPanel header = new JPanel();
-		JLabel goingOut = new JLabel("Going Out");
-		header.setLayout(new GridLayout(1, 3));
-		header.add(goingOut);
+		header.add(new JLabel("Going Out"));
 		header.setVisible(true);
 		header.setMaximumSize(new Dimension(2000,25));
 
 		//Descriptions
 		JPanel description = new JPanel();
 		description.setLayout(new GridLayout(1,2));
-		JLabel nameColumn = new JLabel("Name");
-		JLabel timeColumn = new JLabel("Time");
-		description.add(nameColumn);
-		description.add(timeColumn);
+		description.add(new JLabel("Email"));
+		description.add(new JLabel("Time"));
 		description.setVisible(true);
 		description.setMaximumSize(new Dimension(2000,25));
-		
-		
-//		//Items
-//		JPanel outItems = new JPanel();
-//		outItems.setLayout(new GridLayout(1,1));
-//		
-//		Date todaysDate = new Date();
-//		
-//	    try {
-//    	  SQLCheckoutItemRepo goingOutList = new SQLCheckoutItemRepo();
-//    	  java.util.List<CheckoutItem> items = goingOutList.getAll();
-//          for(CheckoutItem item : items){
-//        	  if(item.getDueDate().getDay() == todaysDate.getDay()){
-//        	  	outItems.add(new OverviewGoingOutItem(item));
-//        	  	//outItems.add(item.getTime());
-//        	  }
-//          }
-//
-//		}
-//		catch (SQLException ex) {
-//		  JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);
-//		} catch (ItemException ex){
-//		  JOptionPane.showMessageDialog(panel,ex);
-//		}
 		
 	    
 	    panel.add(Box.createVerticalStrut(5));
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		panel.add(header);
 		panel.add(description);
-//		panel.add(outItems);
-		
+
+		panel.add(new OverviewGoingOutItem("millembi@uni.edu"));
+	    panel.add(Box.createVerticalStrut(5));
+		panel.add(new OverviewGoingOutItem("kyle@uni.edu"));
+
 	}
 	
 

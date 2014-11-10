@@ -34,8 +34,6 @@ public class OverviewComingInList extends JPanel{
 		description.add(timeColumn);
 		description.setVisible(true);
 		description.setMaximumSize(new Dimension(2000,25));
-		description.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-
 		
 		java.sql.Date todaysDate = new java.sql.Date(new java.util.Date().getTime());
 		

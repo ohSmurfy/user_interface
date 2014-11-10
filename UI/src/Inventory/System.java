@@ -19,7 +19,7 @@ public class System extends JPanel {
         JTabbedPane tabbedPane = new JTabbedPane();
          
         JComponent panel1 = makePanel();
-        panel1.setPreferredSize(new Dimension(600, 100));
+//        panel1.setPreferredSize(new Dimension(600, 100));
 
         tabbedPane.addTab("Overview", overview);
         tabbedPane.addTab("Check out", panel1);

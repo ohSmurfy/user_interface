@@ -17,11 +17,11 @@ public class OverviewOverdueItem extends JPanel {
   public OverviewOverdueItem(CheckoutItem item) {
 	panel = this;
 	current = item;
-	panel.setLayout(new GridLayout(1, 2));
+	panel.setLayout(new GridLayout(1, 3));
 	new JLabel(current.getItemDiscription());
 	panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 	panel.setMaximumSize(new Dimension(2000,25));
-	
+	panel.add(new JLabel(current.getStudentId()));
 	panel.add(new JLabel(current.getStudentEmail()));
 	panel.add(new JLabel(current.getItemDiscription()));
 	
