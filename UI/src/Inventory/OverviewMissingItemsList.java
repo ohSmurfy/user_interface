@@ -12,10 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class OVerviewMissingItemsList extends JPanel {
+public class OverviewMissingItemsList extends JPanel {
 	
-	OVerviewMissingItemsList panel;
-	public OVerviewMissingItemsList(){
+	OverviewMissingItemsList panel;
+	public OverviewMissingItemsList(){
 		panel = this;
 		
 		JPanel header = new JPanel();

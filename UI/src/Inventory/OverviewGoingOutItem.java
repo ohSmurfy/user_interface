@@ -11,15 +11,14 @@ import java.util.List;
 
 import javax.swing.*;
 
-public class OverviewComingInItemList extends JPanel {
-  OverviewComingInItemList panel;
+public class OverviewGoingOutItem extends JPanel {
+  OverviewGoingOutItem panel;
   JLabel itemDiscription;
   JLabel itemIdLabel;
   String itemId;
   JLabel due;
   CheckoutItem current;
-  
-  public OverviewComingInItemList(CheckoutItem item) {
+  public OverviewGoingOutItem(CheckoutItem item) {
 	panel = this;
 	current = item;
 	panel.setLayout(new GridLayout(1, 2));
@@ -36,3 +35,5 @@ public class OverviewComingInItemList extends JPanel {
 	panel.setVisible(true);
   }
 }
+
+

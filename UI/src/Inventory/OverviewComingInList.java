@@ -48,7 +48,7 @@ public class OverviewComingInList extends JPanel{
 	      java.util.List<CheckoutItem> items = goingOutList.getAll();
 	      for (CheckoutItem item : items) {
 	    	  if(item.getDueDate().getDay() == todaysDate.getDay()){
-	        	  	inItems.add(new OverviewComingInItemList(item));
+	        	  	inItems.add(new OverviewComingInItem(item));
 	        	  	//outItems.add(item.getTime());
 	        	  }
 	      }

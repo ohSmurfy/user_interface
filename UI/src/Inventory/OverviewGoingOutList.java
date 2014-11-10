@@ -51,7 +51,7 @@ public class OverviewGoingOutList extends JPanel{
     	  java.util.List<CheckoutItem> items = goingOutList.getAll();
           for(CheckoutItem item : items){
         	  if(item.getDueDate().getDay() == todaysDate.getDay()){
-        	  	outItems.add(new OverviewGoingOutItemList(item));
+        	  	outItems.add(new OverviewGoingOutItem(item));
         	  	//outItems.add(item.getTime());
         	  }
           }

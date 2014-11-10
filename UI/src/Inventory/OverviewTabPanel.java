@@ -12,7 +12,7 @@ OverviewTabPanel panel;
 	
 	public OverviewTabPanel(){
 		
-		OVerviewMissingItemsList missingItemListPanel = new OVerviewMissingItemsList();
+		OverviewMissingItemsList missingItemListPanel = new OverviewMissingItemsList();
 		OverviewOverdueItemsList overdueItemListPanel = new OverviewOverdueItemsList();
 		
 		JPanel myPanel = new JPanel();

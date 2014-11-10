@@ -11,14 +11,14 @@ import java.util.List;
 
 import javax.swing.*;
 
-public class OverviewOverdueItemList extends JPanel {
-  OverviewOverdueItemList panel;
+public class OverviewOverdueItem extends JPanel {
+  OverviewOverdueItem panel;
   JLabel itemDiscription;
   JLabel itemIdLabel;
   String itemId;
   JLabel due;
   CheckoutItem current;
-  public OverviewOverdueItemList(CheckoutItem item) {
+  public OverviewOverdueItem(CheckoutItem item) {
 	panel = this;
 	current = item;
 	panel.setLayout(new GridLayout(1, 3));
@@ -33,6 +33,7 @@ public class OverviewOverdueItemList extends JPanel {
 	panel.add(itemIdLabel);
 	panel.add(itemDiscription);
 	panel.add(due);
+	
 	panel.setVisible(true);
   }
 }

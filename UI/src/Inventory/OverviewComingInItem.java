@@ -11,17 +11,18 @@ import java.util.List;
 
 import javax.swing.*;
 
-public class OverviewMissingItemList extends JPanel {
-  OverviewMissingItemList panel;
+public class OverviewComingInItem extends JPanel {
+  OverviewComingInItem panel;
   JLabel itemDiscription;
   JLabel itemIdLabel;
   String itemId;
   JLabel due;
   CheckoutItem current;
-  public OverviewMissingItemList(CheckoutItem item) {
+  
+  public OverviewComingInItem(CheckoutItem item) {
 	panel = this;
 	current = item;
-	panel.setLayout(new GridLayout(1, 3));
+	panel.setLayout(new GridLayout(1, 2));
 	itemDiscription = new JLabel(item.getItemDiscription());
 	itemIdLabel = new JLabel(item.getItemId());
 	itemId = item.getItemId();
@@ -31,7 +32,6 @@ public class OverviewMissingItemList extends JPanel {
 	panel.setMaximumSize(new Dimension(2000,25));
 	
 	panel.add(itemIdLabel);
-	panel.add(itemDiscription);
 	panel.add(due);
 	panel.setVisible(true);
   }
