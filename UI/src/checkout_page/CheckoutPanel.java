@@ -31,8 +31,14 @@ public class CheckoutPanel extends JPanel {
 		inventoryPanel.setLayout(new BorderLayout());
 		inventoryPanel.add(inventoryList, BorderLayout.NORTH);
 		inventoryPanel.add(inventoryList, BorderLayout.CENTER);
-		inventoryPanel.setPreferredSize(new Dimension(200, 100));
+		inventoryPanel.setPreferredSize(new Dimension(100, 200));
 		inventoryPanel.setVisible(true);
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.ipadx = 10;
+		gbc.ipady = 15;
+		panel.add(inventoryPanel,gbc);
+		
 		
 		JPanel cartPanel = new JPanel();
 		JPanel cartList = new JPanel();
@@ -41,35 +47,55 @@ public class CheckoutPanel extends JPanel {
 		cartPanel.setLayout(new BorderLayout());
 		cartPanel.add(cartList,BorderLayout.CENTER);
 		cartPanel.add(cart,BorderLayout.NORTH);
-		cartPanel.setPreferredSize(new Dimension(200,100));
+		cartPanel.setPreferredSize(new Dimension(100,200));
 		cartPanel.setVisible(true);
+		gbc.gridx = 2;
+		gbc.gridy = 1;
+		gbc.ipadx = 10;
+		gbc.ipady = 15;
+		panel.add(inventoryPanel, gbc);
 		
 		JPanel idSearchPanel = new JPanel();
 		JTextField studentIdSearch = new JTextField(10);
 		JButton getItemsByStudentId = new JButton("Enter");
-		idSearchPanel.setPreferredSize(new Dimension(30,100));
+		idSearchPanel.setPreferredSize(new Dimension(100,30));
 		idSearchPanel.setLayout(new BorderLayout());
 		idSearchPanel.add(studentIdSearch,BorderLayout.EAST);
 		idSearchPanel.add(getItemsByStudentId, BorderLayout.WEST);
 		idSearchPanel.setVisible(true);
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.ipadx = 10;
+		gbc.ipady = 10;
+		panel.add(idSearchPanel,gbc);
 		
 		JPanel arrowButtonPanel = new JPanel();
 		JButton leftArrow = new JButton("<");
 		leftArrow.addActionListener(new RemoveItemListener());
 		JButton rightArrow = new JButton(">");
 		rightArrow.addActionListener(new AddItemListener());
-		arrowButtonPanel.setPreferredSize(new Dimension(150,100));
+		arrowButtonPanel.setPreferredSize(new Dimension(75,200));
 		arrowButtonPanel.setLayout(new BorderLayout());
 		arrowButtonPanel.add(leftArrow,BorderLayout.NORTH);
 		arrowButtonPanel.add(rightArrow,BorderLayout.SOUTH);
 		arrowButtonPanel.setVisible(true);
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		gbc.ipadx = 10;
+		gbc.ipady = 15;
+		panel.add(arrowButtonPanel,gbc);
 		
 		JPanel continuePanel = new JPanel();
 		JButton continueButton = new JButton("Continue");
 		continueButton.addActionListener(new ContinueButtonListener());
-		continuePanel.setPreferredSize(new Dimension(30,100));
+		continuePanel.setPreferredSize(new Dimension(100,30));
 		continuePanel.setLayout(new BorderLayout());
 		continuePanel.add(continueButton,BorderLayout.CENTER);
+		gbc.gridx = 2;
+		gbc.gridy = 2;
+		gbc.ipadx = 10;
+		gbc.ipady = 20;
+		panel.add(continuePanel,gbc);
 		
 		panel.setVisible(true);
 	}
