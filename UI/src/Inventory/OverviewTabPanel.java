@@ -12,16 +12,16 @@ OverviewTabPanel panel;
 	
 	public OverviewTabPanel(){
 		
-		MissingItemsList missingItemListPanel = new MissingItemsList();
-		OverdueItemsList overdueItemListPanel = new OverdueItemsList();
+		OVerviewMissingItemsList missingItemListPanel = new OVerviewMissingItemsList();
+		OverviewOverdueItemsList overdueItemListPanel = new OverviewOverdueItemsList();
 		
 		JPanel myPanel = new JPanel();
 		myPanel.setLayout(new GridLayout(2,1));
 		myPanel.add(missingItemListPanel);
 		myPanel.add(overdueItemListPanel);
 		panel = this;
-		GoingOutList goingOutListPanel = new GoingOutList();
-		ComingInList comingInListPanel = new ComingInList();
+		OverviewGoingOutList goingOutListPanel = new OverviewGoingOutList();
+		OverviewComingInList comingInListPanel = new OverviewComingInList();
 
 	    panel.setLayout(new GridLayout(1,3));
 

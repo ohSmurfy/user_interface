@@ -12,9 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class OverdueItemsList extends JPanel {
-	OverdueItemsList panel;
-	public OverdueItemsList(){
+public class OverviewOverdueItemsList extends JPanel {
+	OverviewOverdueItemsList panel;
+	public OverviewOverdueItemsList(){
 		
 		panel = this;
 		
