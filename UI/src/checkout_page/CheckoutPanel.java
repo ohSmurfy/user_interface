@@ -9,6 +9,9 @@ import javax.swing.JLabel;
 import java.awt.event.*;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import javax.swing.BorderFactory;
+import java.awt.Color;
+import java.awt.BorderLayout;
 
 public class CheckoutPanel extends JPanel {
 	
@@ -16,55 +19,57 @@ public class CheckoutPanel extends JPanel {
 	
 	public CheckoutPanel() {
 		panel = this;
-		JPanel itemListPanel = new JPanel();
+		
 		panel.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		
-		JButton continueButton = new JButton("Continue");
-		continueButton.setPreferredSize(new Dimension(15,30));
-		continueButton.addActionListener(new ContinueButtonListener());
-		gbc.gridx = 2;
-		gbc.gridy = 2;
-		panel.add(continueButton,gbc);
+		JPanel inventoryPanel = new JPanel();
+		JPanel inventoryList = new JPanel();
+		inventoryList.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		JLabel inventory = new JLabel("Inventory");
+		inventoryPanel.setLayout(new BorderLayout());
+		inventoryPanel.add(inventoryList, BorderLayout.NORTH);
+		inventoryPanel.add(inventoryList, BorderLayout.CENTER);
+		inventoryPanel.setPreferredSize(new Dimension(200, 100));
+		inventoryPanel.setVisible(true);
 		
-		JPanel inventory = new JPanel();
-		inventory.setPreferredSize(new Dimension(100,150));
-		gbc.gridx = 0;
-		gbc.gridy = 1;
-		panel.add(itemListPanel, gbc);
+		JPanel cartPanel = new JPanel();
+		JPanel cartList = new JPanel();
+		cartList.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		JLabel cart = new JLabel("Cart");
+		cartPanel.setLayout(new BorderLayout());
+		cartPanel.add(cartList,BorderLayout.CENTER);
+		cartPanel.add(cart,BorderLayout.NORTH);
+		cartPanel.setPreferredSize(new Dimension(200,100));
+		cartPanel.setVisible(true);
 		
-		JButton addToCartArrow = new JButton(">");
-		addToCartArrow.setPreferredSize(new Dimension(50,50));
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		panel.add(addToCartArrow, gbc);
-		
-		
-		JButton removeFromCartArrow = new JButton("<");
-		removeFromCartArrow.setPreferredSize(new Dimension(50,50));
-		gbc.gridx = 1;
-		gbc.gridy = 1;
-		panel.add(removeFromCartArrow, gbc);
-		
-		JPanel cart = new JPanel();
-		cart.setPreferredSize(new Dimension(100,150));
-		gbc.gridx = 1;
-		gbc.gridy = 2;
-		panel.add(cart,gbc);
-		
-		
-		JTextField studentIdSearch = new JTextField();
-		studentIdSearch.setPreferredSize(new Dimension(20,60));
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		panel.add(studentIdSearch, gbc);
-		
+		JPanel idSearchPanel = new JPanel();
+		JTextField studentIdSearch = new JTextField(10);
 		JButton getItemsByStudentId = new JButton("Enter");
-		getItemsByStudentId.setPreferredSize(new Dimension(15,30));
-		gbc.gridx = 0;
-		gbc.gridy = 0;
-		panel.add(getItemsByStudentId,gbc);
+		idSearchPanel.setPreferredSize(new Dimension(30,100));
+		idSearchPanel.setLayout(new BorderLayout());
+		idSearchPanel.add(studentIdSearch,BorderLayout.EAST);
+		idSearchPanel.add(getItemsByStudentId, BorderLayout.WEST);
+		idSearchPanel.setVisible(true);
+		
+		JPanel arrowButtonPanel = new JPanel();
+		JButton leftArrow = new JButton("<");
+		leftArrow.addActionListener(new RemoveItemListener());
+		JButton rightArrow = new JButton(">");
+		rightArrow.addActionListener(new AddItemListener());
+		arrowButtonPanel.setPreferredSize(new Dimension(150,100));
+		arrowButtonPanel.setLayout(new BorderLayout());
+		arrowButtonPanel.add(leftArrow,BorderLayout.NORTH);
+		arrowButtonPanel.add(rightArrow,BorderLayout.SOUTH);
+		arrowButtonPanel.setVisible(true);
+		
+		JPanel continuePanel = new JPanel();
+		JButton continueButton = new JButton("Continue");
+		continueButton.addActionListener(new ContinueButtonListener());
+		continuePanel.setPreferredSize(new Dimension(30,100));
+		continuePanel.setLayout(new BorderLayout());
+		continuePanel.add(continueButton,BorderLayout.CENTER);
 		
 		panel.setVisible(true);
 	}
