@@ -12,17 +12,17 @@ import java.sql.SQLException;
 public class System extends JPanel {
 	CheckInTabPanel checkIn = new CheckInTabPanel();
     InventoryTabPanel inventory = new InventoryTabPanel();
+    OverviewTabPanel overview = new OverviewTabPanel();
     public System() {
         super(new GridLayout(1, 1));
          
         JTabbedPane tabbedPane = new JTabbedPane();
          
         JComponent panel1 = makePanel();
-        JComponent panel2 = makePanel();
         panel1.setPreferredSize(new Dimension(600, 100));
 
-        tabbedPane.addTab("Overview", panel1);
-        tabbedPane.addTab("Check out", panel2);
+        tabbedPane.addTab("Overview", overview);
+        tabbedPane.addTab("Check out", panel1);
         tabbedPane.addTab("Check in", checkIn);
         tabbedPane.addTab("Inventory", inventory);
         tabbedPane.addChangeListener(new ChangeListener() {
