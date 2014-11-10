@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -18,14 +19,17 @@ public class OverviewComingInList extends JPanel{
 	OverviewComingInList panel;
 	public OverviewComingInList(){
 		panel = this;
-	    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-
+	    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));		
+	    refresh();
+	}
+	  public void refresh(){  
+		panel.removeAll();
 		JPanel header = new JPanel();
 		JLabel comingIn = new JLabel("Coming In");
 		header.add(comingIn);
 		header.setVisible(true);
 		header.setMaximumSize(new Dimension(2000,25));
-
+		
 		JPanel description = new JPanel();
 		description.setLayout(new GridLayout(1,2));
 		JLabel emailColumn = new JLabel("Student Email");
@@ -34,35 +38,28 @@ public class OverviewComingInList extends JPanel{
 		description.add(timeColumn);
 		description.setVisible(true);
 		description.setMaximumSize(new Dimension(2000,25));
-		
+			
 		java.sql.Date todaysDate = new java.sql.Date(new java.util.Date().getTime());
-		
+			
 	    panel.add(Box.createVerticalStrut(5));
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-		
+			
 		panel.add(header);
 		panel.add(description);
-		
+			
 	    try {
 	      SQLCheckoutItemRepo checkoutTable = new SQLCheckoutItemRepo();
 
 	      for (String studentId : checkoutTable.getStudentIds(todaysDate)) {
 	    	panel.add( new OverviewComingInItem(checkoutTable.getByStudentId(studentId)));
 	  	    panel.add(Box.createVerticalStrut(5));
-
 	      }
-//	    	  if(item.getDueDate().getDay() == todaysDate.getDay()){
-//	        	  	inItems.add(new OverviewComingInItem(item));
-//	        	  	//outItems.add(item.getTime());
-//	        	  }
-//	      }
 	    } catch (SQLException ex) {
 	      JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);
 	    } catch (ItemException ex){
 	      JOptionPane.showMessageDialog(panel,ex);
-	    }		
-	}
-	
-	
-
+	    }
+      panel.revalidate();
+      panel.repaint();
+  }
 }

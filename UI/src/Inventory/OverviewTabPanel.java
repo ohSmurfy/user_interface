@@ -8,31 +8,35 @@ import javax.swing.JPanel;
 
 public class OverviewTabPanel extends JPanel {
 
-OverviewTabPanel panel;
-	
-	public OverviewTabPanel(){
-		
-		OverviewMissingItemsList missingItemListPanel = new OverviewMissingItemsList();
-		OverviewOverdueItemsList overdueItemListPanel = new OverviewOverdueItemsList();
-		
-		JPanel myPanel = new JPanel();
-		myPanel.setLayout(new GridLayout(2,1));
-		myPanel.add(missingItemListPanel);
-		myPanel.add(overdueItemListPanel);
-		panel = this;
-		OverviewGoingOutList goingOutListPanel = new OverviewGoingOutList();
-		OverviewComingInList comingInListPanel = new OverviewComingInList();
+  OverviewTabPanel panel;
+  OverviewGoingOutList goingOutListPanel; 
+  OverviewComingInList comingInListPanel;
+  OverviewMissingItemsList missingItemListPanel;
+  OverviewOverdueItemsList overdueItemListPanel;
+  public OverviewTabPanel(){
+	panel = this;
+    panel.setLayout(new GridLayout(1,3));
 
-	    panel.setLayout(new GridLayout(1,3));
-
-	    panel.add(goingOutListPanel);
-		panel.add(comingInListPanel);
-		panel.add(myPanel);
-
-	    panel.setVisible(true);
+    goingOutListPanel = new OverviewGoingOutList();
+	comingInListPanel = new OverviewComingInList();
+	missingItemListPanel = new OverviewMissingItemsList();
+	overdueItemListPanel = new OverviewOverdueItemsList();
 		
+	JPanel thirdRow = new JPanel();
+	thirdRow.setLayout(new GridLayout(2,1));
+	thirdRow.add(missingItemListPanel);
+	thirdRow.add(overdueItemListPanel);
 		
-	}
-	
-	
+    panel.add(goingOutListPanel);
+	panel.add(comingInListPanel);
+	panel.add(thirdRow);
+    panel.setVisible(true);
+  }	
+  
+  public void refresh(){
+    goingOutListPanel.refresh();
+    comingInListPanel.refresh();
+    missingItemListPanel.refresh();
+    overdueItemListPanel.refresh();
+  }
 }
