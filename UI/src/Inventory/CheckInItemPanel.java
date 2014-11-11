@@ -1,9 +1,14 @@
 package Inventory;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.text.*;
+import java.util.List;
+
 import javax.swing.*;
 
 public class CheckInItemPanel extends JPanel {
@@ -15,7 +20,6 @@ public class CheckInItemPanel extends JPanel {
   JButton checkIn = new JButton("Check in!");
   CheckoutItem current;
   CheckInListPanel parent;
-  
   public CheckInItemPanel(CheckoutItem item, CheckInListPanel p) {
 	panel = this;
 	parent = p;
@@ -24,10 +28,8 @@ public class CheckInItemPanel extends JPanel {
 	itemDiscription = new JLabel(item.getItemDiscription());
 	itemIdLabel = new JLabel(item.getItemId());
 	itemId = item.getItemId();
-    DateFormat format = new SimpleDateFormat( "yyyy/MM/dd h:mm a" );
-
-	due = new JLabel(format.format(item.dueDate));
-
+	due = new JLabel(item.dueDate.toGMTString());
+	
 	checkIn.addActionListener(new ActionListener() {
 	  public void actionPerformed(ActionEvent e) {
 	    try {
