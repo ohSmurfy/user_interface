@@ -24,7 +24,7 @@ public class SQLCheckoutItemRepo {
     }
   
   public List<String> getStudentIds(java.sql.Date date) throws SQLException {
-	  String query = "select studentId from checkout where Date(dueDate) = ?";
+	  String query = "select DISTINCT studentId from checkout where Date(dueDate) = ?";
 	  PreparedStatement stmt = connect().prepareStatement(query);
 	  stmt.setDate(1, date);
 	  ResultSet rs = stmt.executeQuery();
