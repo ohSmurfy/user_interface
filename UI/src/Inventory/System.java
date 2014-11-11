@@ -10,44 +10,43 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
  
 public class System extends JPanel {
-  JTabbedPane tabbedPane;
-  CheckInTabPanel checkIn;
-  InventoryTabPanel inventory;
-  OverviewTabPanel overview;
-  System panel;
-  public System() {
-    panel = this;
-    panel.setLayout(new GridLayout(1,1));
+	CheckInTabPanel checkIn = new CheckInTabPanel();
+    InventoryTabPanel inventory = new InventoryTabPanel();
+    CheckoutPanel checkout = new CheckoutPanel();
+    public System() {
+        super(new GridLayout(1, 1));
+        
+        JTabbedPane tabbedPane = new JTabbedPane();
+         
+        JComponent panel1 = makePanel();
+        JComponent panel2 = makePanel();
+        panel1.setPreferredSize(new Dimension(600, 100));
+
+        tabbedPane.addTab("Overview", panel1);
+        tabbedPane.addTab("Check out", checkout);
+        tabbedPane.addTab("Check in", checkIn);
+        tabbedPane.addTab("Inventory", inventory);
+        tabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				 (inventory.getListPanel()).refresh();
+			}
+        });
+        JScrollPane scroll = new JScrollPane(tabbedPane);
+        add(scroll);     
+    }
     
-    tabbedPane = new JTabbedPane();
-    checkIn = new CheckInTabPanel();
-    inventory = new InventoryTabPanel();
-    overview = new OverviewTabPanel();
-    
-    tabbedPane.addTab("Overview", overview);
-    tabbedPane.addTab("Check out", new JPanel());
-    tabbedPane.addTab("Check in", checkIn);
-    tabbedPane.addTab("Inventory", inventory);
-    tabbedPane.addChangeListener(new ChangeListener() {
-	  public void stateChanged(ChangeEvent arg0) {
-		(inventory.getListPanel()).refresh();
-		overview.refresh();
-		}
-      });
-    JScrollPane scroll = new JScrollPane(tabbedPane);
-    panel.add(scroll);     
-  }
-  
-  public CheckInTabPanel checkinTab(){
-	  return checkIn;
-  }
+//    this will change to 4 different functions creating inventory/in/out/overview
+    protected JComponent makePanel() {
+        JPanel panel = new JPanel(false);
+        return panel;
+    }
  
-  public static void main(String[] args) {
-    JFrame frame = new JFrame("Inventory System");
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.add(new System());
-    frame.pack();
-    frame.setVisible(true);
-  }
+    public static void main(String[] args) {
+      JFrame frame = new JFrame("Inventory System");
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.add(new System());
+      frame.pack();
+      frame.setVisible(true);
+    }
 }
 

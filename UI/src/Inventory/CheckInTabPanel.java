@@ -36,7 +36,7 @@ public class CheckInTabPanel extends JPanel{
 	    checkInHeader.add(employeeIdLabel);
 	    checkInHeader.add(employeeId);
 	    checkInHeader.setVisible(true);
-	    checkInHeader.setMaximumSize(new Dimension(400,50));
+	    
 	    panel.add(checkInHeader);
 	    panel.add(checkInListPanel);
 	    panel.setVisible(true);

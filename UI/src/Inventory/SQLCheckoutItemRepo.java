@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.*;
 
 public class SQLCheckoutItemRepo {
-  Connection dbCon;
+  
   public SQLCheckoutItemRepo() throws SQLException {
     create();
   }
@@ -24,7 +24,7 @@ public class SQLCheckoutItemRepo {
     }
   
   public List<String> getStudentIds(java.sql.Date date) throws SQLException {
-	  String query = "select DISTINCTROW studentId from checkout where Date(dueDate) = ?";
+	  String query = "select studentId from checkout where Date(dueDate) = ?";
 	  PreparedStatement stmt = connect().prepareStatement(query);
 	  stmt.setDate(1, date);
 	  ResultSet rs = stmt.executeQuery();
@@ -70,13 +70,10 @@ public class SQLCheckoutItemRepo {
   }
   
   private Connection connect() throws SQLException{
-	if (dbCon == null) {
-      String dbURL = "jdbc:mysql://localhost/inventory";
-      String username ="root";
-      String password = "password";
-      dbCon =  DriverManager.getConnection(dbURL, username, password);
-	}
-	return dbCon;
+    String dbURL = "jdbc:mysql://localhost/inventory";
+    String username ="root";
+    String password = "password";
+    return DriverManager.getConnection(dbURL, username, password);
   }
 //  
   private List<CheckoutItem> makeCheckoutList(ResultSet rs) throws SQLException {
@@ -94,9 +91,7 @@ public class SQLCheckoutItemRepo {
         rs.getTimestamp("time"), 
         rs.getTimestamp("dueDate"));  
     }
-  public void close() throws SQLException {
-	dbCon.close();
-  }
+  
   private void create() throws SQLException {
     Connection dbCon = connect();
     String table = "create table checkout(" +
