@@ -14,7 +14,6 @@ public class ExpandedComingInView extends JFrame{
   
   public ExpandedComingInView(List<CheckoutItem> items) {
 	frame = this;
-    frame.setSize(new Dimension(250,350));
 
 	JPanel panel = new JPanel();
 	firstItem = items.get(0);
@@ -68,5 +67,6 @@ public class ExpandedComingInView extends JFrame{
     panel.setVisible(true);
     frame.add(panel);
     frame.setVisible(true);
+    frame.pack();
   }
 }

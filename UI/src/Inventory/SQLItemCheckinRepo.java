@@ -3,17 +3,8 @@ package Inventory;
 import java.sql.*;
 import java.util.*;
 
-/*
- * create table dun
- * insert dun
- * getbydate dun
- * getAll dun
- * getByStudentId dun 
- * getByItemId dun 
- * delete dun
- */
 public class SQLItemCheckinRepo {
-  
+  Connection dbCon;
   public SQLItemCheckinRepo() throws SQLException {
     create();
   }
@@ -66,6 +57,7 @@ public class SQLItemCheckinRepo {
     PreparedStatement stmt = connect().prepareStatement(query);
     stmt.setString(1, id);
     ResultSet rs = stmt.executeQuery();
+    rs.next();
     return toItem(rs);
   }
 
@@ -76,13 +68,19 @@ public class SQLItemCheckinRepo {
     stmt.executeUpdate();
   }
   
-  private Connection connect() throws SQLException{
-    String dbURL = "jdbc:mysql://localhost/inventory";
-    String username ="root";
-    String password = "password";
-    return DriverManager.getConnection(dbURL, username, password);
+  public void close() throws SQLException{
+	  dbCon.close();
   }
-//  
+  private Connection connect() throws SQLException{
+	if (dbCon == null) {
+	  String dbURL = "jdbc:mysql://localhost/inventory";
+	  String username ="root";
+      String password = "password";	
+      dbCon = DriverManager.getConnection(dbURL, username, password);
+	}
+    return dbCon;
+  }
+  
   private List<CheckoutItem> makeCheckoutList(ResultSet rs) throws SQLException {
     List<CheckoutItem> items = new ArrayList<CheckoutItem>();   
     while (rs.next()) items.add(toItem(rs));
@@ -100,7 +98,7 @@ public class SQLItemCheckinRepo {
     }
   
   private void create() throws SQLException {
-    Connection dbCon = connect();
+    dbCon = connect();
     String table = "create table checkIn(" +
                    "studentId varchar(20) not null," +
                    "studentEmail varchar(50) not null," +

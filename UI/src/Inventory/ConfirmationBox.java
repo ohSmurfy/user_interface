@@ -1,90 +1,139 @@
 package Inventory;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
+
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import java.awt.Dimension;
-import java.awt.BorderLayout;
+
 import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
+
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.GridBagLayout;
+
 import javax.swing.JTextField;
-import java.awt.GridBagConstraints;
+
 import java.awt.GridLayout;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 public class ConfirmationBox extends JFrame{
 	
 	ConfirmationBox cframe;
-	
-	public ConfirmationBox() {
+	JPanel itemPanel;
+	Reservation currentReservation;
+	JTextField employeeId;
+	public ConfirmationBox(Reservation reservation) {
 		cframe = this;
+		currentReservation = reservation;
+		employeeId = new JTextField(10);
 		cframe.setTitle("Confirmation");
-		cframe.setLayout(new GridBagLayout());
-		cframe.setPreferredSize(new Dimension(800,600));
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.HORIZONTAL;
+		JPanel summaryPanel = new JPanel();
+		
+		summaryPanel.setLayout(new BoxLayout(summaryPanel, BoxLayout.Y_AXIS));
 		
 		JPanel itemSummaryPanel = new JPanel();
-		JPanel itemSummary = new JPanel();
-		itemSummary.setPreferredSize(new Dimension(400,600));
-		itemSummary.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		JLabel summary = new JLabel("Summary");
-		itemSummaryPanel.add(itemSummary);
-		itemSummaryPanel.add(summary);
-		gbc.gridy = 0;
-		gbc.gridx = 0;
-		gbc.weightx = 0.5;
-		gbc.weighty = 0.5;
-		cframe.add(itemSummaryPanel,gbc);
-		
+		itemSummaryPanel.setLayout(new BoxLayout(itemSummaryPanel, BoxLayout.Y_AXIS));
+		itemSummaryPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
+		itemPanel = new JPanel();
+		itemPanel.setLayout(new GridLayout(1,2));
+		itemPanel.add(new JLabel("Item Id"));
+		itemPanel.add(new JLabel("Description"));
+		itemSummaryPanel.add(itemPanel);
 		
-		JPanel infoPanel = new JPanel();
-		infoPanel.setPreferredSize(new Dimension(200,600));
-		infoPanel.setLayout(new GridLayout(4,2));
-		JLabel studentId = new JLabel("Student ID");
-		JTextField sIdField = new JTextField();
-		JLabel employeeId = new JLabel("Employee ID");
-		JTextField eIdField = new JTextField();
-		JLabel dueDate = new JLabel("Due Date: ");
-		JTextField dueDateField = new JTextField();
-		infoPanel.add(studentId);
-		infoPanel.add(sIdField);
-		infoPanel.add(employeeId);
-		infoPanel.add(eIdField);
-		infoPanel.add(dueDate);
-		infoPanel.add(dueDateField);
-		gbc.gridy = 1;
-		gbc.gridx = 0;
-		gbc.weightx = 0.5;
-		gbc.weighty = 0.5;
-		cframe.add(infoPanel,gbc);
+        for (InventoryItem item : reservation.getItems()) {
+    		itemPanel = new JPanel();
+    		itemPanel.setLayout(new GridLayout(1,2));
+    		itemPanel.add(new JLabel(item.getId()));
+    		itemPanel.add(new JLabel(item.getDiscription()));
+    		itemSummaryPanel.add(itemPanel);
+        }
+        summaryPanel.add(itemSummaryPanel);
+        
+		JPanel studentId = new JPanel();
+		studentId.setLayout(new GridLayout(1,2));
+		studentId.add(new JLabel("Student Id"));
+		studentId.add(new JLabel(currentReservation.getStudentId()));
+		summaryPanel.add(studentId);
 		
-		JPanel checkoutPanel = new JPanel();
-		checkoutPanel.setPreferredSize(new Dimension(200,600));
+		JPanel studentEmail = new JPanel();
+		studentEmail.setLayout(new GridLayout(1,2));
+		studentEmail.add(new JLabel("Student Email"));
+		studentEmail.add(new JLabel(currentReservation.getStudentEmail()));
+		summaryPanel.add(studentEmail);
+        
+
+	    DateFormat format = new SimpleDateFormat( "yyy/MM/dd h:mm a" );
+		
+		JPanel dueDate = new JPanel();
+		dueDate.setLayout(new GridLayout(1,2));
+		dueDate.add(new JLabel("Due Date"));
+		dueDate.add(new JLabel(format.format(currentReservation.getDue())));
+		summaryPanel.add(dueDate);
+        
+		JPanel employeeIDPanel = new JPanel();
+		employeeIDPanel.setLayout(new GridLayout(1,2));
+		employeeIDPanel.add(new JLabel("Enter Employee ID:"));
+		employeeIDPanel.add(employeeId);
+		summaryPanel.add(employeeIDPanel);
+		
+		JPanel checkOutPanel = new JPanel();
+		checkOutPanel.setLayout(new GridLayout(1,2));
+
+		JButton cancel = new JButton("Cancel");
 		JButton checkout = new JButton("Checkout");
+
+		cancel.addActionListener(new CancelActionListener());
 		checkout.addActionListener(new CheckoutActionListener());
-		checkout.setPreferredSize(new Dimension(35,60));
-		checkoutPanel.add(checkout);
-		gbc.gridy = 2;
-		gbc.gridx = 0;
-		gbc.weightx = 0.5;
-		gbc.weighty = 0.5;
-		cframe.add(checkoutPanel,gbc);
+		checkOutPanel.add(cancel);
+		checkOutPanel.add(checkout);
 		
-		
-		
-		
+		summaryPanel.add(checkOutPanel);
+		cframe.add(summaryPanel);
+
+	}
+
+	private class CheckoutActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			String eId = employeeId.getText();
+	        if (eId.equals(null) || eId.equals("")) 
+	        	JOptionPane.showMessageDialog(cframe,"please enter employee id before continuing");
+	        else {
+	        	try {
+	        		SQLCheckoutItemRepo checkoutTable = new SQLCheckoutItemRepo();
+	        		SQLInventoryItemRepo inventoryTable = new SQLInventoryItemRepo();
+	        		for (InventoryItem item : currentReservation.getItems()) {
+	        			checkoutTable.insertNewItem(new CheckoutItem(currentReservation.getStudentId(), 
+	        				currentReservation.getStudentEmail(), 
+	        				eId, 
+	        				item.getId(), 
+	        				item.getDiscription(), 
+	        				null, 
+	        				currentReservation.getDue()));
+	        			inventoryTable.updateState(item.getId(), "out");
+	            	}
+	        	} catch (SQLException sqlError) {	        	
+	        		JOptionPane.showMessageDialog(cframe,"SQL ERROR " + sqlError);
+	        	}
+			cframe.dispose();
+
+	        }
+		}
 	}
 	
-	private class CheckoutActionListener implements ActionListener {
+	private class CancelActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			//work with database	
 			cframe.dispose();
 		}
 	}
+	
 	
 }
