@@ -1,18 +1,28 @@
 package Inventory;
 
 import javax.swing.JPanel;
+
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.Dimension;
+
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+
 import java.awt.event.*;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+
 import javax.swing.BorderFactory;
+
 import java.awt.Color;
 import java.awt.BorderLayout;
+import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.List;
+
 import javax.swing.Box;
 
 public class CheckoutPanel extends JPanel {
@@ -90,11 +100,11 @@ public class CheckoutPanel extends JPanel {
 		JButton leftArrow = new JButton("<");
 		leftArrow.addActionListener(new RemoveItemListener());
 		leftArrow.setPreferredSize(arrowButtonSize);
-		leftArrow.setAlignmentX(arrowButtonPanel.CENTER_ALIGNMENT);
+		leftArrow.setAlignmentX(Component.CENTER_ALIGNMENT);
 		JButton rightArrow = new JButton(">");
 		rightArrow.addActionListener(new AddItemListener());
 		rightArrow.setPreferredSize(arrowButtonSize);
-		rightArrow.setAlignmentX(arrowButtonPanel.CENTER_ALIGNMENT);
+		rightArrow.setAlignmentX(Component.CENTER_ALIGNMENT);
 		arrowButtonPanel.setPreferredSize(new Dimension(60,200));
 		arrowButtonPanel.setLayout(new BoxLayout(arrowButtonPanel,BoxLayout.PAGE_AXIS));
 		arrowButtonPanel.add(leftArrow);
@@ -127,10 +137,18 @@ public class CheckoutPanel extends JPanel {
 	}
 	
 	private class ContinueButtonListener implements ActionListener {
-		ReminderFrame reminder;
-					
+			ReminderFrame reminder;
+			List<InventoryItem> inv;
 		public void actionPerformed(ActionEvent e) {
-			reminder = new ReminderFrame();
+		    Calendar calendar = Calendar.getInstance();
+			java.util.Date now = calendar.getTime();
+			java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
+			try{
+				SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
+				inv = inventory.getAll();
+			
+			} catch (SQLException e2) {}
+			reminder = new ReminderFrame(new Reservation("mike","Mike@gmail.com",currentTimestamp, inv));
 			reminder.setLocationRelativeTo(null);
 			reminder.pack();
 			reminder.setVisible(true);
