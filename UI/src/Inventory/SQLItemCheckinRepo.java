@@ -61,6 +61,14 @@ public class SQLItemCheckinRepo {
     return makeCheckoutList(rs);
   }
 
+  public CheckoutItem getNewestByItemId(String id) throws SQLException {
+	String query = "select * from checkIn where itemId = ? order by time desc Limit 1";
+    PreparedStatement stmt = connect().prepareStatement(query);
+    stmt.setString(1, id);
+    ResultSet rs = stmt.executeQuery();
+    return toItem(rs);
+  }
+
   public void deleteCheckoutItemByItemId(String id) throws SQLException {
     String query = "delete from checkout where itemId = ?";
     PreparedStatement stmt = connect().prepareStatement(query);

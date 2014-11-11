@@ -50,6 +50,7 @@ public class OverviewComingInItem extends JPanel {
 	    JTabbedPane tabedPane = ((JTabbedPane) panel.getParent().getParent().getParent());
 	    mainWindow.checkinTab().overviewPanelClicked(current.studentId);
 	    tabedPane.setSelectedIndex(2);
+	    j.dispose();
 	}
 
 	@Override
