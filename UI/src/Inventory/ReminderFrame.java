@@ -54,7 +54,7 @@ public class ReminderFrame extends JFrame{
 	private class OkayListener implements ActionListener {
 		ConfirmationBox confirmation;
 		public void actionPerformed(ActionEvent e) {
-			confirmation = new ConfirmationBox();
+			confirmation = new ConfirmationBox(currentReservation);
 			confirmation.setLocationRelativeTo(null);
 			confirmation.pack();
 			confirmation.setVisible(true);
