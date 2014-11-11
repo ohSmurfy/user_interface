@@ -1,16 +1,9 @@
 package Inventory;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.List;
-
+import java.text.*;
 import javax.swing.*;
 
 public class CheckInItemPanel extends JPanel {
@@ -22,6 +15,7 @@ public class CheckInItemPanel extends JPanel {
   JButton checkIn = new JButton("Check in!");
   CheckoutItem current;
   CheckInListPanel parent;
+  
   public CheckInItemPanel(CheckoutItem item, CheckInListPanel p) {
 	panel = this;
 	parent = p;

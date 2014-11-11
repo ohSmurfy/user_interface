@@ -10,16 +10,21 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
  
 public class System extends JPanel {
-  CheckInTabPanel checkIn = new CheckInTabPanel();
-  InventoryTabPanel inventory = new InventoryTabPanel();
-  OverviewTabPanel overview = new OverviewTabPanel();
+  JTabbedPane tabbedPane;
+  CheckInTabPanel checkIn;
+  InventoryTabPanel inventory;
+  OverviewTabPanel overview;
   public System() {
     super(new GridLayout(1, 1));
          
-    JTabbedPane tabbedPane = new JTabbedPane();
+    tabbedPane = new JTabbedPane();
 
+    checkIn = new CheckInTabPanel();
+    inventory = new InventoryTabPanel();
+    overview = new OverviewTabPanel();
+    
     tabbedPane.addTab("Overview", overview);
-    tabbedPane.addTab("Check out", new JPanel(false));
+    tabbedPane.addTab("Check out", new JPanel());
     tabbedPane.addTab("Check in", checkIn);
     tabbedPane.addTab("Inventory", inventory);
     tabbedPane.addChangeListener(new ChangeListener() {
@@ -31,7 +36,10 @@ public class System extends JPanel {
     JScrollPane scroll = new JScrollPane(tabbedPane);
     add(scroll);     
   }
-    
+  
+  public CheckInTabPanel checkinTab(){
+	  return checkIn;
+  }
  
   public static void main(String[] args) {
     JFrame frame = new JFrame("Inventory System");

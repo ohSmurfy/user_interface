@@ -13,7 +13,7 @@ import java.util.*;
  * delete dun
  */
 public class SQLItemCheckinRepo {
-  
+  Connection dbCon;
   public SQLItemCheckinRepo() throws SQLException {
     create();
   }
@@ -69,12 +69,19 @@ public class SQLItemCheckinRepo {
   }
   
   private Connection connect() throws SQLException{
-    String dbURL = "jdbc:mysql://localhost/inventory";
-    String username ="root";
-    String password = "password";
-    return DriverManager.getConnection(dbURL, username, password);
+	if (dbCon == null) {
+      String dbURL = "jdbc:mysql://localhost/inventory";
+      String username ="root";
+      String password = "password";
+      dbCon = DriverManager.getConnection(dbURL, username, password);
+	}
+    return dbCon;
   }
-//  
+  
+  public void close() throws SQLException {
+	dbCon.close();
+  }
+  
   private List<CheckoutItem> makeCheckoutList(ResultSet rs) throws SQLException {
     List<CheckoutItem> items = new ArrayList<CheckoutItem>();   
     while (rs.next()) items.add(toItem(rs));
