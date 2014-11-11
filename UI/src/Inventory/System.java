@@ -5,15 +5,13 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
  
 public class System extends JPanel {
   JTabbedPane tabbedPane;
   CheckInTabPanel checkIn;
   InventoryTabPanel inventory;
   OverviewTabPanel overview;
+  CheckoutPanel checkout;
   System panel;
   public System() {
     panel = this;
@@ -23,9 +21,10 @@ public class System extends JPanel {
     checkIn = new CheckInTabPanel();
     inventory = new InventoryTabPanel();
     overview = new OverviewTabPanel();
+    checkout = new CheckoutPanel();
     
     tabbedPane.addTab("Overview", overview);
-    tabbedPane.addTab("Check out", new JPanel());
+    tabbedPane.addTab("Check out", checkout);
     tabbedPane.addTab("Check in", checkIn);
     tabbedPane.addTab("Inventory", inventory);
     tabbedPane.addChangeListener(new ChangeListener() {
