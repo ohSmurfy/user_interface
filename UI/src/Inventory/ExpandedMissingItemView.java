@@ -19,7 +19,6 @@ public class ExpandedMissingItemView extends JFrame{
 	  CheckoutItem maybeItem;
   public ExpandedMissingItemView(InventoryItem item) {
 	  frame = this;
-	  frame.setSize(new Dimension(350,200));
 
 	  JPanel panel = new JPanel();
 	  panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -41,6 +40,12 @@ public class ExpandedMissingItemView extends JFrame{
 	  try{ 
 		SQLCheckoutItemRepo checkoutTable = new SQLCheckoutItemRepo();
         for (CheckoutItem checkedout : checkoutTable.getByItemId(item.getId())) {
+    		JPanel currentID = new JPanel();
+    		currentID.setLayout(new GridLayout(1,2));
+    		currentID.add(new JLabel("Student Id :"));
+    		currentID.add(new JLabel(checkedout.getStudentId()));
+    		currentID.setMaximumSize(new Dimension(2000,25));
+    		
     		JPanel checkedOutBy = new JPanel();
     		checkedOutBy.setLayout(new GridLayout(1,2));
     		checkedOutBy.add(new JLabel("Checked out By :"));
@@ -89,5 +94,6 @@ public class ExpandedMissingItemView extends JFrame{
 	  panel.setVisible(true);
 	  frame.add(panel);
 	  frame.setVisible(true);
+	  frame.pack();
   }
 }
