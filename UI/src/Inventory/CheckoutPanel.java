@@ -150,8 +150,4 @@ public class CheckoutPanel extends JPanel {
 			//update by removing items from cart panel
 		}
 	}
-	
-	
-	
 }
-

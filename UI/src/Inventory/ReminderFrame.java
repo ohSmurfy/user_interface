@@ -19,7 +19,6 @@ public class ReminderFrame extends JFrame{
 		frame = this;
 		frame.setTitle("Reminder");
 		JPanel remindersForItems = new JPanel();
-		JLabel tester = new JLabel("Testing");
 		remindersForItems.setPreferredSize(new Dimension(200,300));
 		JButton okay = new JButton("Okay");
 		okay.setPreferredSize(new Dimension(35,60));
