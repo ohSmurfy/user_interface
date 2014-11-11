@@ -32,6 +32,11 @@ public class ExpandedComingInView extends JFrame{
     studentEmailPanel.add(new JLabel(firstItem.getStudentEmail()));
     studentEmailPanel.setMaximumSize(new Dimension(2000,25));
 
+    JPanel checkedOutByPanel = new JPanel();
+    checkedOutByPanel.setLayout(new GridLayout(1,2));
+    checkedOutByPanel.add(new JLabel("Checked Out By :"));
+    checkedOutByPanel.add(new JLabel(firstItem.getEmployeeId()));
+    checkedOutByPanel.setMaximumSize(new Dimension(2000,25));
 
     DateFormat format = new SimpleDateFormat( "h:mm a" );	
     JPanel timePanel = new JPanel();
@@ -42,6 +47,7 @@ public class ExpandedComingInView extends JFrame{
 
 	panel.add(studentIDPanel);
 	panel.add(studentEmailPanel);
+	panel.add(checkedOutByPanel);
 	panel.add(timePanel);
 
     itemPane = new JPanel();
