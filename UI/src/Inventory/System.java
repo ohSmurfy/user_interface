@@ -14,11 +14,12 @@ public class System extends JPanel {
   CheckInTabPanel checkIn;
   InventoryTabPanel inventory;
   OverviewTabPanel overview;
+  System panel;
   public System() {
-    super(new GridLayout(1, 1));
-         
+    panel = this;
+    panel.setLayout(new GridLayout(1,1));
+    
     tabbedPane = new JTabbedPane();
-
     checkIn = new CheckInTabPanel();
     inventory = new InventoryTabPanel();
     overview = new OverviewTabPanel();
@@ -34,7 +35,7 @@ public class System extends JPanel {
 		}
       });
     JScrollPane scroll = new JScrollPane(tabbedPane);
-    add(scroll);     
+    panel.add(scroll);     
   }
   
   public CheckInTabPanel checkinTab(){
