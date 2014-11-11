@@ -57,8 +57,9 @@ public class ExpandedMissingItemView extends JFrame{
     		currentlyHas.add(new JLabel("Currently Has :"));
     		currentlyHas.add(new JLabel(checkedout.getStudentEmail()));
     		currentlyHas.setMaximumSize(new Dimension(2000,25));
-    	    panel.add(checkedOutBy);
+    	    panel.add(currentID);
     		panel.add(currentlyHas);
+    	    panel.add(checkedOutBy);
         }
 	  } catch(SQLException e) { 
           JOptionPane.showMessageDialog(panel, "SQL Error" + e);
