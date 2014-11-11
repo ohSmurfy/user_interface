@@ -3,28 +3,26 @@ package Inventory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
 
 import java.awt.Color;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
-import java.awt.Dimension;
-import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.GridBagLayout;
 
 import javax.swing.JTextField;
 
-import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
 public class ConfirmationBox extends JFrame{
 	
 	ConfirmationBox cframe;
@@ -102,6 +100,34 @@ public class ConfirmationBox extends JFrame{
 
 	}
 
+	private class CheckoutActionListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			String eId = employeeId.getText();
+	        if (eId.equals(null) || eId.equals("")) 
+	        	JOptionPane.showMessageDialog(cframe,"please enter employee id before continuing");
+	        else {
+	        	try {
+	        		SQLCheckoutItemRepo checkoutTable = new SQLCheckoutItemRepo();
+	        		SQLInventoryItemRepo inventoryTable = new SQLInventoryItemRepo();
+	        		for (InventoryItem item : currentReservation.getItems()) {
+	        			checkoutTable.insertNewItem(new CheckoutItem(currentReservation.getStudentId(), 
+	        				currentReservation.getStudentEmail(), 
+	        				eId, 
+	        				item.getId(), 
+	        				item.getDiscription(), 
+	        				null, 
+	        				currentReservation.getDue()));
+	        			inventoryTable.updateState(item.getId(), "out");
+	            	}
+	        	} catch (SQLException sqlError) {	        	
+	        		JOptionPane.showMessageDialog(cframe,"SQL ERROR " + sqlError);
+	        	}
+			cframe.dispose();
+
+	        }
+		}
+	}
+	
 	private class CancelActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			//work with database	
@@ -109,11 +135,5 @@ public class ConfirmationBox extends JFrame{
 		}
 	}
 	
-	private class CheckoutActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			//work with database	
-			cframe.dispose();
-		}
-	}
 	
 }
