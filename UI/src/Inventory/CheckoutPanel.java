@@ -35,11 +35,10 @@ public class CheckoutPanel extends JPanel {
 	JTextField studentId;
 	JTextField itemId;
 	Reservation reservation;
+	List<InventoryItem> originalInventory;
 	List<InventoryItem> inventory;
-	List<InventoryItem> cart;
+	List<InventoryItem> cart = new ArrayList<InventoryItem>();;
 	JButton continueButton;
-	JButton removeFromCartBtn;
-	JButton addToCartbtn;
 	JButton quickAddBtn;
 	JPanel cartPanel;
 	JPanel inventoryPanel;
@@ -73,16 +72,15 @@ public class CheckoutPanel extends JPanel {
 	    
 
 	    JPanel labelPanel = new JPanel();
-	    labelPanel.setLayout(new GridLayout(1,3));
+	    labelPanel.setLayout(new GridLayout(1,2));
 	    labelPanel.add(new JLabel("Inventory"));
-	    labelPanel.add(new JLabel(""));
 	    labelPanel.add(new JLabel("Checkout Cart"));
 	    labelPanel.setMaximumSize(new Dimension(2000,25));
 	    
 	    
 	    
 	    JPanel inventoryCartPanel = new JPanel();
-	    inventoryCartPanel.setLayout(new GridLayout(1,3));
+	    inventoryCartPanel.setLayout(new GridLayout(1,2));
 
 	    inventoryPanel = new JPanel();
 	    inventoryPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
@@ -90,21 +88,6 @@ public class CheckoutPanel extends JPanel {
 	    
 	    refreshInvPage();
         
-	    JPanel buttonPanel = new JPanel();
-	    buttonPanel.setLayout(new FlowLayout());
-		
-		removeFromCartBtn = new JButton("<");
-//		removeFromCartBtn.addActionListener(new RemoveItemListener());
-		removeFromCartBtn.setPreferredSize(new Dimension(50,50));
-		removeFromCartBtn.setEnabled(false); 
-
-		addToCartbtn = new JButton(">");
-//		addToCartbtn.addActionListener(new AddItemListener());
-		addToCartbtn.setPreferredSize(new Dimension(50,50));
-		addToCartbtn.setEnabled(false); 
-
-		buttonPanel.add(addToCartbtn);
-		buttonPanel.add(removeFromCartBtn);
 		
 	    cartPanel = new JPanel();
 	    cartPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
@@ -112,7 +95,6 @@ public class CheckoutPanel extends JPanel {
 
 	    
 	    inventoryCartPanel.add(inventoryPanel);
-	    inventoryCartPanel.add(buttonPanel);
 	    inventoryCartPanel.add(cartPanel);
 	    
 	    
@@ -144,8 +126,18 @@ public class CheckoutPanel extends JPanel {
 		panel.setVisible(true);
 	}
 	
+	public void refreshCheckouttab() {
+		refreshInvPage();
+		cart = new ArrayList<InventoryItem>();
+		refreshCartPanel();
+		studentId.setText("");
+		itemId.setText("");
+		continueButton.setEnabled(false);
+		quickAddBtn.setEnabled(false);
+	}
 	public void refreshInvPage() {
 	    JPanel inventoryHeader = new JPanel();
+	    inventoryPanel.removeAll();
 	    inventoryHeader.setLayout(new GridLayout(1,3));
 	    inventoryHeader.add(new JLabel("Item ID"));
 	    inventoryHeader.add(new JLabel("Discription"));
@@ -159,18 +151,14 @@ public class CheckoutPanel extends JPanel {
 	    
         for (InventoryItem item : inventory) {
     	    JPanel itemPanel = new JPanel();
-    	    itemPanel.setLayout(new GridLayout(1,3));
-    	    itemPanel.add(new JLabel(item.getId()));
-    	    itemPanel.add(new JLabel(item.getDiscription()));
-    	    itemPanel.add(new JCheckBox());
-    	    itemPanel.setMaximumSize(new Dimension(2000,25));
-    	    itemPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
     	    inventoryPanel.add(Box.createVerticalStrut(5));
-    	    inventoryPanel.add(itemPanel);
+    	    inventoryPanel.add(new CheckoutInventoryItem(item));
         }		
+        inventoryPanel.revalidate();
+        inventoryPanel.repaint();
 	}
 	
-	private void refreshCurrentInv() {
+	public void refreshCurrentInv() {
 		inventoryPanel.removeAll();
 		List<InventoryItem> temp = new ArrayList<InventoryItem>();
 		JPanel inventoryHeader = new JPanel();
@@ -188,17 +176,11 @@ public class CheckoutPanel extends JPanel {
 		    }
 	    }
 	    inventory.removeAll(temp);
-	    for (InventoryItem item : inventory) {
+        for (InventoryItem item : inventory) {
     	    JPanel itemPanel = new JPanel();
-    	    itemPanel.setLayout(new GridLayout(1,3));
-    	    itemPanel.add(new JLabel(item.getId()));
-    	    itemPanel.add(new JLabel(item.getDiscription()));
-    	    itemPanel.add(new JCheckBox());
-    	    itemPanel.setMaximumSize(new Dimension(2000,25));
-    	    itemPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
     	    inventoryPanel.add(Box.createVerticalStrut(5));
-    	    inventoryPanel.add(itemPanel);
-        }		
+    	    inventoryPanel.add(new CheckoutInventoryItem(item));
+        }			
         inventoryPanel.revalidate();
         inventoryPanel.repaint();
 	}
@@ -215,15 +197,9 @@ public class CheckoutPanel extends JPanel {
 
         for (InventoryItem item : cart) {
     	    JPanel itemPanel = new JPanel();
-    	    itemPanel.setLayout(new GridLayout(1,3));
-    	    itemPanel.add(new JLabel(item.getId()));
-    	    itemPanel.add(new JLabel(item.getDiscription()));
-    	    itemPanel.add(new JCheckBox());
-    	    itemPanel.setMaximumSize(new Dimension(2000,25));
-    	    itemPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
     	    cartPanel.add(Box.createVerticalStrut(5));
-    	    cartPanel.add(itemPanel);
-        }		
+    	    cartPanel.add(new CheckoutCartItem(item));
+        }			
         cartPanel.revalidate();
         cartPanel.repaint();
 	}
@@ -255,30 +231,30 @@ public class CheckoutPanel extends JPanel {
 			refreshCurrentInv();
 		}
 	}
-	private class AddItemListener implements ActionListener {
-		
-		public void actionPerformed(ActionEvent e) {
-			//update by adding items to cart pane
-		}
-	}
-	
-	private class RemoveItemListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			//update by removing items from cart panel
-		}
-	}
+
 	private class ReservationListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-//			inventoryPanel.remove(inventoryPanel.getComponent(0));
-			continueButton.setEnabled(true);
-			removeFromCartBtn.setEnabled(true);
-			addToCartbtn.setEnabled(true);
-			quickAddBtn.setEnabled(true);
-			Mockapi fakeApi = new Mockapi();
-			reservation = fakeApi.getUser(studentId.getText());
-			cart = reservation.getItems();
-			refreshCartPanel();
-			refreshCurrentInv();
+	        if (studentId.getText().equals(null) || studentId.getText().equals("")) 
+	        	JOptionPane.showMessageDialog(panel,"please enter student id before continuing");
+	        else {
+	        	if (cart != null){
+	        		inventory.addAll(cart);
+	        		cart = new ArrayList<InventoryItem>();
+	        	}
+				continueButton.setEnabled(true);
+				quickAddBtn.setEnabled(true);
+				Mockapi fakeApi = new Mockapi();
+				reservation = fakeApi.getUser(studentId.getText());
+				cart = reservation.getItems();
+				refreshCartPanel();
+				refreshCurrentInv();
+	        }
 		}
+	}
+	public List<InventoryItem> getCart() {
+		return cart;
+	}
+	public List<InventoryItem> getInventory() {
+		return inventory;
 	}
 }
