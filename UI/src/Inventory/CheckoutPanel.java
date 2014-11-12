@@ -3,11 +3,13 @@ package Inventory;
 import javax.swing.JPanel;
 
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -21,6 +23,7 @@ import javax.swing.BorderFactory;
 import java.awt.Color;
 import java.awt.BorderLayout;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -34,7 +37,12 @@ public class CheckoutPanel extends JPanel {
 	Reservation reservation;
 	List<InventoryItem> inventory;
 	List<InventoryItem> cart;
-	
+	JButton continueButton;
+	JButton removeFromCartBtn;
+	JButton addToCartbtn;
+	JButton quickAddBtn;
+	JPanel cartPanel;
+	JPanel inventoryPanel;
 	public CheckoutPanel() {
 		panel = this;
 		studentId = new JTextField(10);
@@ -56,16 +64,14 @@ public class CheckoutPanel extends JPanel {
 	    quickAddPanel.setLayout(new GridLayout(1,3));
 	    quickAddPanel.add(new JLabel("Item Id: "));
 	    quickAddPanel.add(itemId);
-	    JButton quickAddBtn = new JButton("Quick Add to Cart");
+	    quickAddBtn = new JButton("Quick Add to Cart");
+	    quickAddBtn.setEnabled(false); 
+
 //	    quickAdd.addActionListener(new QuickAdd());
 	    quickAddPanel.add(quickAddBtn);
 	    quickAddPanel.setMaximumSize(new Dimension(600,25));
 	    
-	    try {
-	    	SQLInventoryItemRepo inventoryTable = new SQLInventoryItemRepo();
-	    	inventory = inventoryTable.getAll();
-	    } catch (SQLException e) {JOptionPane.showMessageDialog(panel, "SQL Error" + e);}
-	    
+
 	    JPanel labelPanel = new JPanel();
 	    labelPanel.setLayout(new GridLayout(1,3));
 	    labelPanel.add(new JLabel("Inventory"));
@@ -77,9 +83,38 @@ public class CheckoutPanel extends JPanel {
 	    
 	    JPanel inventoryCartPanel = new JPanel();
 	    inventoryCartPanel.setLayout(new GridLayout(1,3));
-	    inventoryCartPanel.add(new JLabel(""));
-	    inventoryCartPanel.add(new JLabel(""));
-	    inventoryCartPanel.add(new JLabel(""));
+
+	    inventoryPanel = new JPanel();
+	    inventoryPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	    inventoryPanel.setLayout(new BoxLayout(inventoryPanel, BoxLayout.Y_AXIS));
+	    
+	    refreshInventoryPanel();
+        
+	    JPanel buttonPanel = new JPanel();
+	    buttonPanel.setLayout(new FlowLayout());
+		
+		removeFromCartBtn = new JButton("<");
+//		removeFromCartBtn.addActionListener(new RemoveItemListener());
+		removeFromCartBtn.setPreferredSize(new Dimension(50,50));
+		removeFromCartBtn.setEnabled(false); 
+
+		addToCartbtn = new JButton(">");
+//		addToCartbtn.addActionListener(new AddItemListener());
+		addToCartbtn.setPreferredSize(new Dimension(50,50));
+		addToCartbtn.setEnabled(false); 
+
+		buttonPanel.add(addToCartbtn);
+		buttonPanel.add(removeFromCartBtn);
+		
+	    cartPanel = new JPanel();
+	    cartPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	    cartPanel.setLayout(new BoxLayout(cartPanel, BoxLayout.Y_AXIS));
+
+	    
+	    inventoryCartPanel.add(inventoryPanel);
+	    inventoryCartPanel.add(buttonPanel);
+	    inventoryCartPanel.add(cartPanel);
+	    
 	    
 	    
 	    JPanel continuePanel = new JPanel();
@@ -87,8 +122,10 @@ public class CheckoutPanel extends JPanel {
 	    continuePanel.add(new JLabel(""));
 	    continuePanel.add(new JLabel(""));
 
-		JButton continueButton = new JButton("Continue");
-		continueButton.addActionListener(new ContinueButtonListener());
+		continueButton = new JButton("Continue");
+		continueButton.setEnabled(false); 
+
+//		continueButton.addActionListener(new ContinueButtonListener());
 	    continuePanel.add(continueButton);  
 	    continuePanel.setMaximumSize(new Dimension(2000,50));
 
@@ -103,110 +140,97 @@ public class CheckoutPanel extends JPanel {
 	    panel.add(Box.createVerticalStrut(5));
 	    panel.add(continuePanel);
 
-//		panel.setLayout(new GridBagLayout());
-//		GridBagConstraints gbc = new GridBagConstraints();
-//		gbc.fill = GridBagConstraints.HORIZONTAL;
-//		
-//		
-//		JPanel inventoryPanel = new JPanel();
-//		Dimension inventoryPanelSize = new Dimension(100,200);
-//		JPanel inventoryList = new JPanel();
-//		inventoryList.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-//		JLabel inventory = new JLabel("Inventory");
-//		inventoryPanel.setPreferredSize(inventoryPanelSize);
-//		inventoryPanel.setMaximumSize(inventoryPanelSize);
-//		inventoryPanel.setMinimumSize(inventoryPanelSize);
-//		inventoryPanel.setLayout(new BoxLayout(inventoryPanel,BoxLayout.PAGE_AXIS));
-//		inventoryPanel.add(inventory);
-//		inventoryPanel.add(Box.createVerticalGlue());
-//		inventoryPanel.add(inventoryList);
-//		inventoryPanel.setVisible(true);
-//		gbc.weightx = 0.3;
-//		gbc.weighty = 0.3;
-//		gbc.gridx = 0;
-//		gbc.gridy = 1;
-//		gbc.ipadx = 10;
-//		gbc.ipady = 15;
-//		panel.add(inventoryPanel,gbc);
-//		
-//		
-//		JPanel cartPanel = new JPanel();
-//		JPanel cartList = new JPanel();
-//		cartList.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-//		JLabel cart = new JLabel("Cart");
-//		cartPanel.setPreferredSize(new Dimension(100,200));
-//		cartPanel.setLayout(new BoxLayout(cartPanel,BoxLayout.PAGE_AXIS));
-//		cartPanel.add(cart);
-//		cartPanel.add(Box.createVerticalGlue());
-//		cartPanel.add(cartList);
-//		cartPanel.setVisible(true);
-//		gbc.weightx = 0.5;
-//		gbc.weighty = 0.5;
-//		gbc.gridx = 2;
-//		gbc.gridy = 1;
-//		gbc.ipadx = 10;
-//		gbc.ipady = 15;
-//		panel.add(cartPanel, gbc);
-//		
-//		JPanel idSearchPanel = new JPanel();
-//		JTextField studentIdSearch = new JTextField(10);
-//		JButton getItemsByStudentId = new JButton("Enter");
-//		JLabel patronId = new JLabel("Patron ID");
-//		idSearchPanel.setPreferredSize(new Dimension(100,30));
-//		idSearchPanel.setLayout(new BoxLayout(idSearchPanel,BoxLayout.LINE_AXIS));
-//		idSearchPanel.add(studentIdSearch);
-//		idSearchPanel.add(Box.createHorizontalGlue());
-//		idSearchPanel.add(getItemsByStudentId);
-//		idSearchPanel.setVisible(true);
-//		gbc.weightx = 0.5;
-//		gbc.weighty = 0.5;
-//		gbc.gridx = 0;
-//		gbc.gridy = 0;
-//		gbc.ipadx = 10;
-//		gbc.ipady = 10;
-//		panel.add(idSearchPanel,gbc);
-//		
-//		JPanel arrowButtonPanel = new JPanel();
-//		Dimension arrowButtonSize = new Dimension(40,40);
-//		JButton leftArrow = new JButton("<");
-//		leftArrow.addActionListener(new RemoveItemListener());
-//		leftArrow.setPreferredSize(arrowButtonSize);
-//		leftArrow.setAlignmentX(Component.CENTER_ALIGNMENT);
-//		JButton rightArrow = new JButton(">");
-//		rightArrow.addActionListener(new AddItemListener());
-//		rightArrow.setPreferredSize(arrowButtonSize);
-//		rightArrow.setAlignmentX(Component.CENTER_ALIGNMENT);
-//		arrowButtonPanel.setPreferredSize(new Dimension(60,200));
-//		arrowButtonPanel.setLayout(new BoxLayout(arrowButtonPanel,BoxLayout.PAGE_AXIS));
-//		arrowButtonPanel.add(leftArrow);
-//		arrowButtonPanel.add(Box.createVerticalGlue());
-//		arrowButtonPanel.add(rightArrow);
-//		arrowButtonPanel.setVisible(true);
-//		gbc.weightx = 0.5;
-//		gbc.weighty = 0.5;
-//		gbc.gridx = 1;
-//		gbc.gridy = 1;
-//		gbc.ipadx = 10;
-//		gbc.ipady = 15;
-//		panel.add(arrowButtonPanel,gbc);
 
-		
 		panel.setVisible(true);
 	}
 	
+	public void refreshInventoryPanel() {
+	    JPanel inventoryHeader = new JPanel();
+	    inventoryHeader.setLayout(new GridLayout(1,3));
+	    inventoryHeader.add(new JLabel("Item ID"));
+	    inventoryHeader.add(new JLabel("Discription"));
+	    inventoryHeader.add(new JLabel(""));
+	    inventoryHeader.setMaximumSize(new Dimension(2000,25));
+	    inventoryPanel.add(inventoryHeader);
+	    try {
+	    	SQLInventoryItemRepo inventoryTable = new SQLInventoryItemRepo();
+	    	inventory = inventoryTable.getAll();
+	    } catch (SQLException e) {JOptionPane.showMessageDialog(panel, "SQL Error" + e);}
+	    
+        for (InventoryItem item : inventory) {
+    	    JPanel itemPanel = new JPanel();
+    	    itemPanel.setLayout(new GridLayout(1,3));
+    	    itemPanel.add(new JLabel(item.getId()));
+    	    itemPanel.add(new JLabel(item.getDiscription()));
+    	    itemPanel.add(new JCheckBox());
+    	    itemPanel.setMaximumSize(new Dimension(2000,25));
+    	    itemPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+    	    inventoryPanel.add(Box.createVerticalStrut(5));
+    	    inventoryPanel.add(itemPanel);
+        }		
+	}
+	private void refreshCurrentInv() {
+		inventoryPanel.removeAll();
+		List<InventoryItem> temp = new ArrayList<InventoryItem>();
+		JPanel inventoryHeader = new JPanel();
+	    inventoryHeader.setLayout(new GridLayout(1,3));
+	    inventoryHeader.add(new JLabel("Item ID"));
+	    inventoryHeader.add(new JLabel("Discription"));
+	    inventoryHeader.add(new JLabel(""));
+	    inventoryHeader.setMaximumSize(new Dimension(2000,25));
+	    inventoryPanel.add(inventoryHeader);
+	    for (InventoryItem inventoryItem : inventory){
+		    for (InventoryItem cartItem : cart){
+		    	if (inventoryItem.getId().equals(cartItem.getId())) {
+		    		temp.add(inventoryItem);
+		    	}
+		    }
+	    }
+	    inventory.removeAll(temp);
+	    for (InventoryItem item : inventory) {
+    	    JPanel itemPanel = new JPanel();
+    	    itemPanel.setLayout(new GridLayout(1,3));
+    	    itemPanel.add(new JLabel(item.getId()));
+    	    itemPanel.add(new JLabel(item.getDiscription()));
+    	    itemPanel.add(new JCheckBox());
+    	    itemPanel.setMaximumSize(new Dimension(2000,25));
+    	    itemPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+    	    inventoryPanel.add(Box.createVerticalStrut(5));
+    	    inventoryPanel.add(itemPanel);
+        }		
+        inventoryPanel.revalidate();
+        inventoryPanel.repaint();
+	}
+	public void refreshCartPanel() {
+		cartPanel.removeAll();
+		
+	    JPanel cartHeader = new JPanel();
+	    cartHeader.setLayout(new GridLayout(1,3));
+	    cartHeader.add(new JLabel("Item ID"));
+	    cartHeader.add(new JLabel("Discription"));
+	    cartHeader.add(new JLabel(""));
+	    cartHeader.setMaximumSize(new Dimension(2000,25));
+	    cartPanel.add(cartHeader);
+
+        for (InventoryItem item : cart) {
+    	    JPanel itemPanel = new JPanel();
+    	    itemPanel.setLayout(new GridLayout(1,3));
+    	    itemPanel.add(new JLabel(item.getId()));
+    	    itemPanel.add(new JLabel(item.getDiscription()));
+    	    itemPanel.add(new JCheckBox());
+    	    itemPanel.setMaximumSize(new Dimension(2000,25));
+    	    itemPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+    	    cartPanel.add(Box.createVerticalStrut(5));
+    	    cartPanel.add(itemPanel);
+        }		
+        cartPanel.revalidate();
+        cartPanel.repaint();
+	}
 	private class ContinueButtonListener implements ActionListener {
 			ReminderFrame reminder;
-			List<InventoryItem> inv;
 		public void actionPerformed(ActionEvent e) {
-		    Calendar calendar = Calendar.getInstance();
-			java.util.Date now = calendar.getTime();
-			java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
-			try{
-				SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
-				inv = inventory.getAll();
-			
-			} catch (SQLException e2) {}
-			reminder = new ReminderFrame(new Reservation("mike","Mike@gmail.com",currentTimestamp, inv));
+			reservation.updateReservedItems(cart);
+			reminder = new ReminderFrame(reservation);
 			reminder.setLocationRelativeTo(null);
 			reminder.pack();
 			reminder.setVisible(true);
@@ -214,22 +238,30 @@ public class CheckoutPanel extends JPanel {
 		
 	}
 	
-//	private class AddItemListener implements ActionListener {
-//		
-//		public void actionPerformed(ActionEvent e) {
-//			//update by adding items to cart panel
-//		}
-//	}
-//	
-//	private class RemoveItemListener implements ActionListener {
-//		public void actionPerformed(ActionEvent e) {
-//			//update by removing items from cart panel
-//		}
-//	}
+	private class AddItemListener implements ActionListener {
+		
+		public void actionPerformed(ActionEvent e) {
+			//update by adding items to cart pane
+		}
+	}
+	
+	private class RemoveItemListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			//update by removing items from cart panel
+		}
+	}
 	private class ReservationListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+//			inventoryPanel.remove(inventoryPanel.getComponent(0));
+			continueButton.setEnabled(true);
+			removeFromCartBtn.setEnabled(true);
+			addToCartbtn.setEnabled(true);
+			quickAddBtn.setEnabled(true);
 			Mockapi fakeApi = new Mockapi();
 			reservation = fakeApi.getUser(studentId.getText());
+			cart = reservation.getItems();
+			refreshCartPanel();
+			refreshCurrentInv();
 		}
 	}
 }

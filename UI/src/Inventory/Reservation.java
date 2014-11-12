@@ -27,4 +27,7 @@ public class Reservation {
 	public List<InventoryItem> getItems(){
 		return reservedItems;
 	}
+	public void updateReservedItems(List<InventoryItem> items) {
+		reservedItems = items;
+	}
 }
