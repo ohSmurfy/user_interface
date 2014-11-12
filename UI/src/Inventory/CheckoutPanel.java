@@ -67,7 +67,7 @@ public class CheckoutPanel extends JPanel {
 	    quickAddBtn = new JButton("Quick Add to Cart");
 	    quickAddBtn.setEnabled(false); 
 
-//	    quickAdd.addActionListener(new QuickAdd());
+	    quickAddBtn.addActionListener(new QuickAdd());
 	    quickAddPanel.add(quickAddBtn);
 	    quickAddPanel.setMaximumSize(new Dimension(600,25));
 	    
@@ -88,7 +88,7 @@ public class CheckoutPanel extends JPanel {
 	    inventoryPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	    inventoryPanel.setLayout(new BoxLayout(inventoryPanel, BoxLayout.Y_AXIS));
 	    
-	    refreshInventoryPanel();
+	    refreshInvPage();
         
 	    JPanel buttonPanel = new JPanel();
 	    buttonPanel.setLayout(new FlowLayout());
@@ -125,7 +125,7 @@ public class CheckoutPanel extends JPanel {
 		continueButton = new JButton("Continue");
 		continueButton.setEnabled(false); 
 
-//		continueButton.addActionListener(new ContinueButtonListener());
+		continueButton.addActionListener(new ContinueButtonListener());
 	    continuePanel.add(continueButton);  
 	    continuePanel.setMaximumSize(new Dimension(2000,50));
 
@@ -144,7 +144,7 @@ public class CheckoutPanel extends JPanel {
 		panel.setVisible(true);
 	}
 	
-	public void refreshInventoryPanel() {
+	public void refreshInvPage() {
 	    JPanel inventoryHeader = new JPanel();
 	    inventoryHeader.setLayout(new GridLayout(1,3));
 	    inventoryHeader.add(new JLabel("Item ID"));
@@ -169,6 +169,7 @@ public class CheckoutPanel extends JPanel {
     	    inventoryPanel.add(itemPanel);
         }		
 	}
+	
 	private void refreshCurrentInv() {
 		inventoryPanel.removeAll();
 		List<InventoryItem> temp = new ArrayList<InventoryItem>();
@@ -237,7 +238,23 @@ public class CheckoutPanel extends JPanel {
 		}
 		
 	}
-	
+	private class QuickAdd implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			InventoryItem tempItem = null; 
+
+			for (InventoryItem item : inventory) {
+				if (item.getId().equals(itemId.getText())){
+					tempItem = item;
+				}
+			}
+			if (tempItem != null) {
+				inventory.remove(tempItem);
+				cart.add(tempItem);
+			}
+			refreshCartPanel();
+			refreshCurrentInv();
+		}
+	}
 	private class AddItemListener implements ActionListener {
 		
 		public void actionPerformed(ActionEvent e) {
