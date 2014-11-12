@@ -10,7 +10,8 @@ import java.util.*;
 //insert works if item doesn't exist
 
 public class SQLInventoryItemRepo {
-  
+  Connection dbCon;
+
   public SQLInventoryItemRepo() throws SQLException {
     create();
   }
@@ -74,10 +75,13 @@ public class SQLInventoryItemRepo {
   }
   
   private Connection connect() throws SQLException{
-    String dbURL = "jdbc:mysql://localhost/inventory";
-    String username ="root";
-    String password = "password";
-    return DriverManager.getConnection(dbURL, username, password);
+	if (dbCon == null) {
+	  String dbURL = "jdbc:mysql://localhost/inventory";
+	  String username ="root";
+      String password = "password";	
+      dbCon = DriverManager.getConnection(dbURL, username, password);
+	}
+    return dbCon;
   }
   
   private List<InventoryItem> makeInventoryList(ResultSet rs) throws SQLException {

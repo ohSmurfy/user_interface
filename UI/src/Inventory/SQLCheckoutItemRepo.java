@@ -4,7 +4,8 @@ import java.sql.*;
 import java.util.*;
 
 public class SQLCheckoutItemRepo {
-  
+  Connection dbCon;
+
   public SQLCheckoutItemRepo() throws SQLException {
     create();
   }
@@ -70,10 +71,13 @@ public class SQLCheckoutItemRepo {
   }
   
   private Connection connect() throws SQLException{
-    String dbURL = "jdbc:mysql://localhost/inventory";
-    String username ="root";
-    String password = "password";
-    return DriverManager.getConnection(dbURL, username, password);
+	if (dbCon == null) {
+	  String dbURL = "jdbc:mysql://localhost/inventory";
+	  String username ="root";
+      String password = "password";	
+      dbCon = DriverManager.getConnection(dbURL, username, password);
+	}
+    return dbCon;
   }
 //  
   private List<CheckoutItem> makeCheckoutList(ResultSet rs) throws SQLException {
