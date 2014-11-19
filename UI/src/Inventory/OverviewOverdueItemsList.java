@@ -3,7 +3,9 @@ package Inventory;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -43,13 +45,14 @@ public class OverviewOverdueItemsList extends JPanel {
     try {
 	  SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
 	  SQLCheckoutItemRepo checkoutTable = new SQLCheckoutItemRepo();
-      java.util.List<InventoryItem> items = inventory.getByCurrentState("overdue");
-      for (InventoryItem item1 : items) {
-    	for (CheckoutItem checkedoutItem : checkoutTable.getByItemId(item1.getId())){
-          panel.add(new OverviewOverdueItem(checkedoutItem));
-	      panel.add(Box.createVerticalStrut(5));
-	   	}
-	  }
+      Timestamp currentTime = new Timestamp((new java.util.Date()).getTime());
+      for (CheckoutItem item : checkoutTable.getAll()) {
+    	  if (item.dueDate.before(currentTime)){
+    		  inventory.updateState(item.itemId, "overdue");
+    		  panel.add(new OverviewOverdueItem(item));
+    	      panel.add(Box.createVerticalStrut(5));
+    	  }
+      }
 	} catch (SQLException ex) {
       JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);
     } catch (ItemException ex){
