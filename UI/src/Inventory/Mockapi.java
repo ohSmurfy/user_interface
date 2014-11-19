@@ -15,7 +15,7 @@ public class Mockapi {
 		}
 		else{
 			items.add(new InventoryItem("1011","Camera 3", "in", "Check Batteries"));
-			return new Reservation("jim","bob@gmail.com",Timestamp.valueOf("2014-11-11 12:00:00"), items);	
+			return new Reservation("jim","bob@gmail.com",Timestamp.valueOf("2014-11-18 12:00:00"), items);	
 		}
 	}
 }

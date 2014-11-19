@@ -30,10 +30,9 @@ public class OverviewOverdueItemsList extends JPanel {
 	header.setMaximumSize(new Dimension(2000,25));
 			
 	JPanel description = new JPanel();
-	description.setLayout(new GridLayout(1,3));
-	description.add(new JLabel("Student Id"));
+	description.setLayout(new GridLayout(1,2));
 	description.add(new JLabel("Email"));
-	description.add(new JLabel("Item"));
+	description.add(new JLabel("Item Discription"));
 	description.setVisible(true);
 	description.setMaximumSize(new Dimension(2000,25));
 
