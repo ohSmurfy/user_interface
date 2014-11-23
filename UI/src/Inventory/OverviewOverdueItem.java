@@ -50,7 +50,7 @@ public class OverviewOverdueItem extends JPanel {
 		// TODO Auto-generated method stub
 	    panel.setBackground(new Color(75,17,111));
 	    j = new ExpandedOverdueView(current);
-	    j.setLocation((int) Component.RIGHT_ALIGNMENT, (int) Component.TOP_ALIGNMENT);
+	    j.setLocation((int) Component.RIGHT_ALIGNMENT, (int) Component.TOP_ALIGNMENT );
 	}
 
 	@Override
