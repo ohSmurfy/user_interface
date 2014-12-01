@@ -25,11 +25,11 @@ public class OverviewOverdueItem extends JPanel {
 	defaultColor = panel.getBackground();
 	current = item;
 	panel.setLayout(new GridLayout(1, 2));
-	new JLabel(current.getItemDiscription());
+	new JLabel(current.getItemDescription());
 	panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 	panel.setMaximumSize(new Dimension(2000,25));
 	panel.add(new JLabel(current.getStudentEmail()));
-	panel.add(new JLabel(current.getItemDiscription()));
+	panel.add(new JLabel(current.getItemDescription()));
 	
 	panel.setVisible(true);
 	panel.addMouseListener(new Mouse());

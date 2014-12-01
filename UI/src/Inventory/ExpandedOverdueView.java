@@ -54,8 +54,8 @@ public class ExpandedOverdueView extends JFrame{
 
     JPanel descriptionPanel = new JPanel();
     descriptionPanel.setLayout(new GridLayout(1,2));
-    descriptionPanel.add(new JLabel("Item Discription:"));
-    descriptionPanel.add(new JLabel(item.getItemDiscription()));
+    descriptionPanel.add(new JLabel("Item Description:"));
+    descriptionPanel.add(new JLabel(item.getItemDescription()));
     descriptionPanel.setMaximumSize(new Dimension(2000,25));
     panel.setVisible(true);
     frame.add(panel);

@@ -140,7 +140,7 @@ public class CheckoutPanel extends JPanel {
 	    inventoryPanel.removeAll();
 	    inventoryHeader.setLayout(new GridLayout(1,3));
 	    inventoryHeader.add(new JLabel("Item ID"));
-	    inventoryHeader.add(new JLabel("Discription"));
+	    inventoryHeader.add(new JLabel("Description"));
 	    inventoryHeader.add(new JLabel(""));
 	    inventoryHeader.setMaximumSize(new Dimension(2000,25));
 	    inventoryPanel.add(inventoryHeader);
@@ -164,7 +164,7 @@ public class CheckoutPanel extends JPanel {
 		JPanel inventoryHeader = new JPanel();
 	    inventoryHeader.setLayout(new GridLayout(1,3));
 	    inventoryHeader.add(new JLabel("Item ID"));
-	    inventoryHeader.add(new JLabel("Discription"));
+	    inventoryHeader.add(new JLabel("Description"));
 	    inventoryHeader.add(new JLabel(""));
 	    inventoryHeader.setMaximumSize(new Dimension(2000,25));
 	    inventoryPanel.add(inventoryHeader);
@@ -190,7 +190,7 @@ public class CheckoutPanel extends JPanel {
 	    JPanel cartHeader = new JPanel();
 	    cartHeader.setLayout(new GridLayout(1,3));
 	    cartHeader.add(new JLabel("Item ID"));
-	    cartHeader.add(new JLabel("Discription"));
+	    cartHeader.add(new JLabel("Description"));
 	    cartHeader.add(new JLabel(""));
 	    cartHeader.setMaximumSize(new Dimension(2000,25));
 	    cartPanel.add(cartHeader);

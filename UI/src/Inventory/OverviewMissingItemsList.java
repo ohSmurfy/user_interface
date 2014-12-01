@@ -30,7 +30,7 @@ public class OverviewMissingItemsList extends JPanel {
   JPanel description = new JPanel();
   description.setLayout(new GridLayout(1,2));
   description.add(new JLabel("Item Id"));
-  description.add(new JLabel("Discription"));
+  description.add(new JLabel("Description"));
   description.setVisible(true);
   description.setMaximumSize(new Dimension(2000,25));
 	

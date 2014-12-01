@@ -14,10 +14,10 @@ import Inventory.SQLInventoryItemRepo;
 
 public class InventoryNewItemPanel extends JFrame{
   JTextField id = new JTextField(10);
-  JTextField discription = new JTextField(10);
+  JTextField description = new JTextField(10);
   JTextField reminder = new JTextField(10);
   JLabel idLabel = new JLabel("Item ID");
-  JLabel discriptionLabel = new JLabel("Discription");
+  JLabel descriptionLabel = new JLabel("Description");
   JLabel reminderLabel = new JLabel("Reminder");
   JPanel panel = new JPanel(false);
   JButton add = new JButton("Add Item");
@@ -36,7 +36,7 @@ public class InventoryNewItemPanel extends JFrame{
       {
         try {
           SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
-          inventory.insertNewItem(new InventoryItem(id.getText(), discription.getText(),"in",reminder.getText()));
+          inventory.insertNewItem(new InventoryItem(id.getText(), description.getText(),"in",reminder.getText()));
           frame.dispose();
           itemListPanel.refresh();
         } catch (SQLException ex) {
@@ -48,8 +48,8 @@ public class InventoryNewItemPanel extends JFrame{
     });
     panel.add(idLabel);
     panel.add(id);
-    panel.add(discriptionLabel);
-    panel.add(discription);
+    panel.add(descriptionLabel);
+    panel.add(description);
     panel.add(reminderLabel);
     panel.add(reminder);
     panel.add(add);

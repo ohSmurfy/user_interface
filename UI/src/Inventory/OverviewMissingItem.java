@@ -17,7 +17,7 @@ import javax.swing.*;
 public class OverviewMissingItem extends JPanel {
   OverviewMissingItem panel;
   ExpandedMissingItemView expanded;
-  JLabel itemDiscription;
+  JLabel itemDescription;
   JLabel itemIdLabel;
   InventoryItem current;
   Color defaultColor;
@@ -33,7 +33,7 @@ public class OverviewMissingItem extends JPanel {
 	panel.setMaximumSize(new Dimension(2000,25));
 	
 	panel.add(new JLabel(current.getId()));
-	panel.add(new JLabel(current.getDiscription()));
+	panel.add(new JLabel(current.getDescription()));
 	panel.addMouseListener(new Mouse());
 	panel.setVisible(true);
   }

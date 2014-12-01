@@ -15,14 +15,14 @@ import Inventory.SQLInventoryItemRepo;
 public class InventroyItemPanel extends JPanel{
   String[] options = {"in","out","overdue","missing","delete"}; 
   JComboBox combo = new JComboBox(options);
-  JLabel itemDiscription;
+  JLabel itemDescription;
   JLabel itemId;
   InventroyItemPanel panel;
   
   public InventroyItemPanel(InventoryItem item) {
     panel = this;
     panel.setLayout(new GridLayout(1, 3));
-    itemDiscription = new JLabel(item.getDiscription());
+    itemDescription = new JLabel(item.getDescription());
     itemId = new JLabel(item.getId());
     combo.setSelectedItem(item.getState());
     combo.addActionListener(new ActionListener()    {
@@ -47,7 +47,7 @@ public class InventroyItemPanel extends JPanel{
     panel.setMaximumSize(new Dimension(2000,25));
     
     panel.add(itemId);
-    panel.add(itemDiscription);
+    panel.add(itemDescription);
     panel.add(combo);
     panel.setVisible(true);
   }

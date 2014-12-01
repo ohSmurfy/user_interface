@@ -29,13 +29,13 @@ public class ExpandedMissingItemView extends JFrame{
 	  itemId.add(new JLabel(item.getId()));
 	  itemId.setMaximumSize(new Dimension(2000,25));
 	    
-	  JPanel itemDiscription = new JPanel();
-	  itemDiscription.setLayout(new GridLayout(1,2));
-	  itemDiscription.add(new JLabel("Discription :"));
-	  itemDiscription.add(new JLabel(item.getDiscription()));
-	  itemDiscription.setMaximumSize(new Dimension(2000,25));
+	  JPanel itemDescription = new JPanel();
+	  itemDescription.setLayout(new GridLayout(1,2));
+	  itemDescription.add(new JLabel("Description :"));
+	  itemDescription.add(new JLabel(item.getDescription()));
+	  itemDescription.setMaximumSize(new Dimension(2000,25));
       panel.add(itemId);
-	  panel.add(itemDiscription);
+	  panel.add(itemDescription);
 
 	  try{ 
 		SQLCheckoutItemRepo checkoutTable = new SQLCheckoutItemRepo();

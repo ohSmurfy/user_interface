@@ -2,12 +2,12 @@ package Inventory;
 
 public class InventoryItem {
   String id;
-  String discription;
+  String description;
   String state;
   String reminder;
-  InventoryItem(String itemId, String itemDiscription, String currentState, String itemReminder) {
+  InventoryItem(String itemId, String itemDescription, String currentState, String itemReminder) {
     id = itemId;
-    discription = itemDiscription;
+    description = itemDescription;
     state = currentState;
     reminder = itemReminder;
   }
@@ -16,8 +16,8 @@ public class InventoryItem {
     return id;
   }
   
-  public String getDiscription(){
-    return discription;
+  public String getDescription(){
+    return description;
   }
   public String getState(){
     return state;

@@ -48,7 +48,7 @@ public class SQLInventoryItemRepo {
       query = "insert into inventory values(?,?,?,?)";
       stmt = dbCon.prepareStatement(query);
       stmt.setString(1,item.getId());
-      stmt.setString(2,item.getDiscription());
+      stmt.setString(2,item.getDescription());
       stmt.setString(3,item.getState());
       stmt.setString(4,item.getReminder());
       stmt.executeUpdate();

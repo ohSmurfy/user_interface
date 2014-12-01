@@ -11,14 +11,14 @@ public class SQLItemCheckinRepo {
   
   public void insertNewItem(CheckoutItem item) throws SQLException {
     String query = "insert into checkIn(" +
-        "studentId, studentEmail, employeeId, itemId, itemDiscription, dueDate)" +
+        "studentId, studentEmail, employeeId, itemId, itemDescription, dueDate)" +
         "values(?,?,?,?,?,?)";
     PreparedStatement stmt = connect().prepareStatement(query);
     stmt.setString(1, item.getStudentId());
     stmt.setString(2, item.getStudentEmail());
     stmt.setString(3, item.getEmployeeId());
     stmt.setString(4, item.getItemId());
-    stmt.setString(5, item.getItemDiscription());
+    stmt.setString(5, item.getItemDescription());
     stmt.setTimestamp(6, item.getDueDate());
     stmt.executeUpdate();
     }
@@ -92,7 +92,7 @@ public class SQLItemCheckinRepo {
         rs.getString("studentEmail"), 
         rs.getString("employeeId"), 
         rs.getString("itemId"), 
-        rs.getString("itemDiscription"), 
+        rs.getString("itemDescription"), 
         rs.getTimestamp("time"), 
         rs.getTimestamp("dueDate"));  
     }
@@ -104,7 +104,7 @@ public class SQLItemCheckinRepo {
                    "studentEmail varchar(50) not null," +
                    "employeeId varchar(50) not null," +
                    "itemId varchar(20) not null," +
-                   "itemDiscription varchar(40) not null," +
+                   "itemDescription varchar(40) not null," +
                    "time TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
                    "dueDate TIMESTAMP not null)";
     if (!dbCon.getMetaData().getTables(null, null, "checkIn", null).next()) 

@@ -52,7 +52,7 @@ public class ConfirmationBox extends JFrame{
     		itemPanel = new JPanel();
     		itemPanel.setLayout(new GridLayout(1,2));
     		itemPanel.add(new JLabel(item.getId()));
-    		itemPanel.add(new JLabel(item.getDiscription()));
+    		itemPanel.add(new JLabel(item.getDescription()));
     		itemSummaryPanel.add(itemPanel);
         }
         summaryPanel.add(itemSummaryPanel);
@@ -114,7 +114,7 @@ public class ConfirmationBox extends JFrame{
 	        				currentReservation.getStudentEmail(), 
 	        				eId, 
 	        				item.getId(), 
-	        				item.getDiscription(), 
+	        				item.getDescription(), 
 	        				null, 
 	        				currentReservation.getDue()));
 	        			inventoryTable.updateState(item.getId(), "out");

@@ -13,7 +13,7 @@ import javax.swing.*;
 
 public class CheckInItemPanel extends JPanel {
   CheckInItemPanel panel;
-  JLabel itemDiscription;
+  JLabel itemDescription;
   JLabel itemIdLabel;
   String itemId;
   JLabel due;
@@ -25,7 +25,7 @@ public class CheckInItemPanel extends JPanel {
 	parent = p;
 	current = item;
 	panel.setLayout(new GridLayout(1, 4));
-	itemDiscription = new JLabel(item.getItemDiscription());
+	itemDescription = new JLabel(item.getItemDescription());
 	itemIdLabel = new JLabel(item.getItemId());
 	itemId = item.getItemId();
 	due = new JLabel(item.dueDate.toGMTString());
@@ -59,7 +59,7 @@ public class CheckInItemPanel extends JPanel {
 	panel.setMaximumSize(new Dimension(2000,25));
 	
 	panel.add(itemIdLabel);
-	panel.add(itemDiscription);
+	panel.add(itemDescription);
 	panel.add(due);
 	panel.add(checkIn);
 	panel.setVisible(true);

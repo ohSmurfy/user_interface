@@ -7,16 +7,16 @@ public class CheckoutItem {
   String studentEmail;
   String employeeId;
   String itemId;
-  String itemDiscription;
+  String itemDescription;
   Timestamp time;
   Timestamp dueDate;
 
-  public CheckoutItem(String sId, String sEmail,String eId,String iId, String iDiscription, Timestamp currentTime, Timestamp due) {
+  public CheckoutItem(String sId, String sEmail,String eId,String iId, String iDescription, Timestamp currentTime, Timestamp due) {
     studentId = sId; 
     studentEmail = sEmail;
     employeeId = eId;
     itemId = iId;
-    itemDiscription = iDiscription;
+    itemDescription = iDescription;
     time = currentTime;
     dueDate = due;
   }
@@ -37,8 +37,8 @@ public class CheckoutItem {
   public String getItemId() {
     return itemId;
   }
-  public String getItemDiscription() {
-	return itemDiscription;
+  public String getItemDescription() {
+	return itemDescription;
   }
   public Timestamp getTime() {
     return time;

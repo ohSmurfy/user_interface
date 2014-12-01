@@ -21,7 +21,7 @@ public class CheckoutCartItem extends JPanel{
 		current = item;
 		itemPanel.setLayout(new GridLayout(1,3));
 	    itemPanel.add(new JLabel(item.getId()));
-	    itemPanel.add(new JLabel(item.getDiscription()));
+	    itemPanel.add(new JLabel(item.getDescription()));
 	    add = new JButton("Remove from Cart");
 	    add.addActionListener(new addToCart());
 	    itemPanel.add(add);

@@ -36,7 +36,7 @@ public class ReminderFrame extends JFrame{
         for (InventoryItem item : currentReservation.getItems()) {
         	reminderPanel = new JPanel();
         	reminderPanel.setLayout(new GridLayout(1,2));
-        	reminderPanel.add(new JLabel(item.getDiscription()));
+        	reminderPanel.add(new JLabel(item.getDescription()));
         	reminderPanel.add(new JLabel(item.getReminder()));
         	reminderPanel.setMaximumSize(new Dimension(2000,50));
         	remindersForItems.add(reminderPanel);

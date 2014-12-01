@@ -52,14 +52,14 @@ public class ExpandedComingInView extends JFrame{
     itemPane = new JPanel();
 	itemPane.setLayout(new GridLayout(1,2));
 	itemPane.add(new JLabel("Item Id"));
-	itemPane.add(new JLabel("Discription"));
+	itemPane.add(new JLabel("Description"));
 	itemPane.setMaximumSize(new Dimension(2000,25));
 	panel.add(itemPane);
     for (CheckoutItem item : items) {
       itemPane = new JPanel();
 	  itemPane.setLayout(new GridLayout(1,2));
 	  itemPane.add(new JLabel(item.getItemId()));
-	  itemPane.add(new JLabel(item.getItemDiscription()));
+	  itemPane.add(new JLabel(item.getItemDescription()));
 	  itemPane.setMaximumSize(new Dimension(2000,25));
 
 	  panel.add(itemPane);
