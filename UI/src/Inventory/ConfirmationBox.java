@@ -29,8 +29,10 @@ public class ConfirmationBox extends JFrame{
 	JPanel itemPanel;
 	Reservation currentReservation;
 	JTextField employeeId;
-	public ConfirmationBox(Reservation reservation) {
+	CheckoutPanel panel;
+	public ConfirmationBox(Reservation reservation, CheckoutPanel checkoutItem) {
 		cframe = this;
+		panel = checkoutItem;
 		currentReservation = reservation;
 		employeeId = new JTextField(10);
 		cframe.setTitle("Confirmation");
@@ -91,7 +93,35 @@ public class ConfirmationBox extends JFrame{
 		JButton checkout = new JButton("Checkout");
 
 		cancel.addActionListener(new CancelActionListener());
-		checkout.addActionListener(new CheckoutActionListener());
+		checkout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String eId = employeeId.getText();
+		        if (eId.equals(null) || eId.equals("")) 
+		        	JOptionPane.showMessageDialog(cframe,"please enter employee id before continuing");
+		        else {
+		        	panel.refreshCheckouttab();
+		        	try {
+		        		SQLCheckoutItemRepo checkoutTable = new SQLCheckoutItemRepo();
+		        		SQLInventoryItemRepo inventoryTable = new SQLInventoryItemRepo();
+		        		for (InventoryItem item : currentReservation.getItems()) {
+		        			checkoutTable.insertNewItem(new CheckoutItem(currentReservation.getStudentId(), 
+		        				currentReservation.getStudentEmail(), 
+		        				eId, 
+		        				item.getId(), 
+		        				item.getDescription(), 
+		        				null, 
+		        				currentReservation.getDue()));
+		        			inventoryTable.updateState(item.getId(), "out");
+		            	}
+		        		JOptionPane.showMessageDialog(cframe,"Items Checked Out");
+		        	} catch (SQLException sqlError) {	        	
+		        		JOptionPane.showMessageDialog(cframe,"SQL ERROR " + sqlError);
+		        	}
+				cframe.dispose();
+
+		        }
+			}
+	      });
 		checkOutPanel.add(cancel);
 		checkOutPanel.add(checkout);
 		
@@ -99,38 +129,9 @@ public class ConfirmationBox extends JFrame{
 		cframe.add(summaryPanel);
 
 	}
-
-	private class CheckoutActionListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			String eId = employeeId.getText();
-	        if (eId.equals(null) || eId.equals("")) 
-	        	JOptionPane.showMessageDialog(cframe,"please enter employee id before continuing");
-	        else {
-	        	try {
-	        		SQLCheckoutItemRepo checkoutTable = new SQLCheckoutItemRepo();
-	        		SQLInventoryItemRepo inventoryTable = new SQLInventoryItemRepo();
-	        		for (InventoryItem item : currentReservation.getItems()) {
-	        			checkoutTable.insertNewItem(new CheckoutItem(currentReservation.getStudentId(), 
-	        				currentReservation.getStudentEmail(), 
-	        				eId, 
-	        				item.getId(), 
-	        				item.getDescription(), 
-	        				null, 
-	        				currentReservation.getDue()));
-	        			inventoryTable.updateState(item.getId(), "out");
-	            	}
-	        	} catch (SQLException sqlError) {	        	
-	        		JOptionPane.showMessageDialog(cframe,"SQL ERROR " + sqlError);
-	        	}
-			cframe.dispose();
-
-	        }
-		}
-	}
 	
 	private class CancelActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			//work with database	
 			cframe.dispose();
 		}
 	}

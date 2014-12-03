@@ -207,7 +207,7 @@ public class CheckoutPanel extends JPanel {
 			ReminderFrame reminder;
 		public void actionPerformed(ActionEvent e) {
 			reservation.updateReservedItems(cart);
-			reminder = new ReminderFrame(reservation);
+			reminder = new ReminderFrame(reservation, panel);
 			reminder.setLocationRelativeTo(null);
 			reminder.pack();
 			reminder.setVisible(true);
