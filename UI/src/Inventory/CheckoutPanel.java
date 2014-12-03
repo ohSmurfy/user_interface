@@ -85,9 +85,7 @@ public class CheckoutPanel extends JPanel {
 	    inventoryPanel = new JPanel();
 	    inventoryPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	    inventoryPanel.setLayout(new BoxLayout(inventoryPanel, BoxLayout.Y_AXIS));
-	    
-	    refreshInvPage();
-        
+	            
 		
 	    cartPanel = new JPanel();
 	    cartPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
@@ -126,6 +124,10 @@ public class CheckoutPanel extends JPanel {
 		panel.setVisible(true);
 	}
 	
+	public boolean enabled() {
+		if (quickAddBtn == null) return false;
+		else return quickAddBtn.isEnabled();
+	}
 	public void refreshCheckouttab() {
 		refreshInvPage();
 		cart = new ArrayList<InventoryItem>();
@@ -150,9 +152,8 @@ public class CheckoutPanel extends JPanel {
 	    } catch (SQLException e) {JOptionPane.showMessageDialog(panel, "SQL Error" + e);}
 	    
         for (InventoryItem item : inventory) {
-    	    JPanel itemPanel = new JPanel();
     	    inventoryPanel.add(Box.createVerticalStrut(5));
-    	    inventoryPanel.add(new CheckoutInventoryItem(item));
+    	    inventoryPanel.add(new CheckoutInventoryItem(item, enabled()));
         }		
         inventoryPanel.revalidate();
         inventoryPanel.repaint();
@@ -179,7 +180,7 @@ public class CheckoutPanel extends JPanel {
         for (InventoryItem item : inventory) {
     	    JPanel itemPanel = new JPanel();
     	    inventoryPanel.add(Box.createVerticalStrut(5));
-    	    inventoryPanel.add(new CheckoutInventoryItem(item));
+    	    inventoryPanel.add(new CheckoutInventoryItem(item, enabled()));
         }			
         inventoryPanel.revalidate();
         inventoryPanel.repaint();
@@ -196,7 +197,6 @@ public class CheckoutPanel extends JPanel {
 	    cartPanel.add(cartHeader);
 
         for (InventoryItem item : cart) {
-    	    JPanel itemPanel = new JPanel();
     	    cartPanel.add(Box.createVerticalStrut(5));
     	    cartPanel.add(new CheckoutCartItem(item));
         }			
