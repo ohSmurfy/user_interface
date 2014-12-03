@@ -46,6 +46,7 @@ public class CheckoutPanel extends JPanel {
 		panel = this;
 		studentId = new JTextField(10);
 		itemId = new JTextField(10);
+		itemId.setEditable(false);
 	    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 	    
 	    JPanel reserveationPanel = new JPanel();
@@ -159,6 +160,16 @@ public class CheckoutPanel extends JPanel {
         inventoryPanel.repaint();
 	}
 	
+	public void goingOutClicked(Reservation newRes) {
+		studentId.setText(newRes.getStudentId());
+		continueButton.setEnabled(true);
+		quickAddBtn.setEnabled(true);
+		itemId.setEditable(true);
+		cart = newRes.getItems();
+		refreshCartPanel();
+		refreshCurrentInv();
+	}
+	
 	public void refreshCurrentInv() {
 		inventoryPanel.removeAll();
 		List<InventoryItem> temp = new ArrayList<InventoryItem>();
@@ -243,6 +254,7 @@ public class CheckoutPanel extends JPanel {
 	        	}
 				continueButton.setEnabled(true);
 				quickAddBtn.setEnabled(true);
+				itemId.setEditable(true);
 				Mockapi fakeApi = new Mockapi();
 				reservation = fakeApi.getUser(studentId.getText());
 				cart = reservation.getItems();
