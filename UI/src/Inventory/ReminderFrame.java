@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 
@@ -13,6 +14,7 @@ import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class ReminderFrame extends JFrame{
 	
@@ -22,8 +24,11 @@ public class ReminderFrame extends JFrame{
 	JButton okay;
 	JPanel reminderPanel;
 	Reservation currentReservation;
-	public ReminderFrame(Reservation reservation) {
+	CheckoutPanel panel; 
+	public ReminderFrame(Reservation reservation, CheckoutPanel checkoutPanel) {
 		frame = this;
+		panel = checkoutPanel;
+
 		currentReservation = reservation;
 		frame.setTitle("Reminder");
 		
@@ -43,24 +48,20 @@ public class ReminderFrame extends JFrame{
         }
         
 		okay = new JButton("Okay");
-		okay.addActionListener(new OkayListener());
+	    okay.addActionListener(new ActionListener() {
+	        public void actionPerformed(ActionEvent e)
+	        {
+				ConfirmationBox confirmation = new ConfirmationBox(currentReservation, panel);
+				confirmation.setLocationRelativeTo(null);
+				confirmation.pack();
+				confirmation.setVisible(true);
+				frame.dispose();
+	        }
+	      });
 		
 		buttonPanel.add(okay);
 		remindersForItems.add(buttonPanel);
 		frame.add(remindersForItems);
 		frame.pack();
 	}
-	
-	private class OkayListener implements ActionListener {
-		ConfirmationBox confirmation;
-		public void actionPerformed(ActionEvent e) {
-			confirmation = new ConfirmationBox(currentReservation);
-			confirmation.setLocationRelativeTo(null);
-			confirmation.pack();
-			confirmation.setVisible(true);
-			frame.dispose();
-			
-		}
-	}
-	
 }

@@ -46,6 +46,7 @@ public class CheckoutPanel extends JPanel {
 		panel = this;
 		studentId = new JTextField(10);
 		itemId = new JTextField(10);
+		itemId.setEditable(false);
 	    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 	    
 	    JPanel reserveationPanel = new JPanel();
@@ -85,9 +86,7 @@ public class CheckoutPanel extends JPanel {
 	    inventoryPanel = new JPanel();
 	    inventoryPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	    inventoryPanel.setLayout(new BoxLayout(inventoryPanel, BoxLayout.Y_AXIS));
-	    
-	    refreshInvPage();
-        
+	            
 		
 	    cartPanel = new JPanel();
 	    cartPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
@@ -126,6 +125,10 @@ public class CheckoutPanel extends JPanel {
 		panel.setVisible(true);
 	}
 	
+	public boolean enabled() {
+		if (quickAddBtn == null) return false;
+		else return quickAddBtn.isEnabled();
+	}
 	public void refreshCheckouttab() {
 		refreshInvPage();
 		cart = new ArrayList<InventoryItem>();
@@ -150,12 +153,21 @@ public class CheckoutPanel extends JPanel {
 	    } catch (SQLException e) {JOptionPane.showMessageDialog(panel, "SQL Error" + e);}
 	    
         for (InventoryItem item : inventory) {
-    	    JPanel itemPanel = new JPanel();
     	    inventoryPanel.add(Box.createVerticalStrut(5));
-    	    inventoryPanel.add(new CheckoutInventoryItem(item));
+    	    inventoryPanel.add(new CheckoutInventoryItem(item, enabled()));
         }		
         inventoryPanel.revalidate();
         inventoryPanel.repaint();
+	}
+	
+	public void goingOutClicked(Reservation newRes) {
+		studentId.setText(newRes.getStudentId());
+		continueButton.setEnabled(true);
+		quickAddBtn.setEnabled(true);
+		itemId.setEditable(true);
+		cart = newRes.getItems();
+		refreshCartPanel();
+		refreshCurrentInv();
 	}
 	
 	public void refreshCurrentInv() {
@@ -179,7 +191,7 @@ public class CheckoutPanel extends JPanel {
         for (InventoryItem item : inventory) {
     	    JPanel itemPanel = new JPanel();
     	    inventoryPanel.add(Box.createVerticalStrut(5));
-    	    inventoryPanel.add(new CheckoutInventoryItem(item));
+    	    inventoryPanel.add(new CheckoutInventoryItem(item, enabled()));
         }			
         inventoryPanel.revalidate();
         inventoryPanel.repaint();
@@ -196,7 +208,6 @@ public class CheckoutPanel extends JPanel {
 	    cartPanel.add(cartHeader);
 
         for (InventoryItem item : cart) {
-    	    JPanel itemPanel = new JPanel();
     	    cartPanel.add(Box.createVerticalStrut(5));
     	    cartPanel.add(new CheckoutCartItem(item));
         }			
@@ -207,7 +218,7 @@ public class CheckoutPanel extends JPanel {
 			ReminderFrame reminder;
 		public void actionPerformed(ActionEvent e) {
 			reservation.updateReservedItems(cart);
-			reminder = new ReminderFrame(reservation);
+			reminder = new ReminderFrame(reservation, panel);
 			reminder.setLocationRelativeTo(null);
 			reminder.pack();
 			reminder.setVisible(true);
@@ -243,6 +254,7 @@ public class CheckoutPanel extends JPanel {
 	        	}
 				continueButton.setEnabled(true);
 				quickAddBtn.setEnabled(true);
+				itemId.setEditable(true);
 				Mockapi fakeApi = new Mockapi();
 				reservation = fakeApi.getUser(studentId.getText());
 				cart = reservation.getItems();

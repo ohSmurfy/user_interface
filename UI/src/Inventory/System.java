@@ -42,6 +42,9 @@ public class System extends JPanel {
 	  return checkIn;
   }
  
+  public CheckoutPanel checkoutTab(){
+	  return checkout;
+  }
   public static void main(String[] args) {
     JFrame frame = new JFrame("Inventory System");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

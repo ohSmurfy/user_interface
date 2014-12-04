@@ -19,7 +19,7 @@ public class CheckoutInventoryItem extends JPanel{
 	CheckoutInventoryItem itemPanel;
 	JButton add;
 	InventoryItem current;
-	public CheckoutInventoryItem(InventoryItem item) {
+	public CheckoutInventoryItem(InventoryItem item, boolean btnState) {
 		itemPanel = this;    
 		current = item;
 		itemPanel.setLayout(new GridLayout(1,3));
@@ -27,6 +27,7 @@ public class CheckoutInventoryItem extends JPanel{
 	    itemPanel.add(new JLabel(item.getDescription()));
 	    add = new JButton("Add to Cart");
 	    add.addActionListener(new addToCart());
+	    add.setEnabled(btnState);
 	    itemPanel.add(add);
 	    itemPanel.setMaximumSize(new Dimension(2000,25));
 	    itemPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
