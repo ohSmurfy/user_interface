@@ -26,7 +26,7 @@ public class OverviewOverdueItem extends JPanel {
 	current = item;
 	panel.setLayout(new GridLayout(1, 2));
 	new JLabel(current.getItemDescription());
-	panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+	panel.setBorder(BorderFactory.createLineBorder(new Color(75,17,111), 1));
 	panel.setMaximumSize(new Dimension(2000,25));
 	panel.add(new JLabel(current.getStudentEmail()));
 	panel.add(new JLabel(current.getItemDescription()));
