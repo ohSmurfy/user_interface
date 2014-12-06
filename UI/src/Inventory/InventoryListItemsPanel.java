@@ -24,7 +24,7 @@ public class InventoryListItemsPanel extends JPanel{
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
     panel.add(new InventoryHeaderPanel());
     panel.add(Box.createVerticalStrut(5));
-    panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+    panel.setBorder(BorderFactory.createLineBorder(new Color(75,17,111), 2));
     try {
       SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
       java.util.List<InventoryItem> items = inventory.getAll();

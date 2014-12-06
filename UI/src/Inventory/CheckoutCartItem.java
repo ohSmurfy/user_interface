@@ -26,7 +26,7 @@ public class CheckoutCartItem extends JPanel{
 	    add.addActionListener(new addToCart());
 	    itemPanel.add(add);
 	    itemPanel.setMaximumSize(new Dimension(2000,25));
-	    itemPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+	    itemPanel.setBorder(BorderFactory.createLineBorder(new Color(75,17,111), 1));
 	}
 	
 	private class addToCart implements ActionListener {

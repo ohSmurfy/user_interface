@@ -42,7 +42,7 @@ public class ConfirmationBox extends JFrame{
 		
 		JPanel itemSummaryPanel = new JPanel();
 		itemSummaryPanel.setLayout(new BoxLayout(itemSummaryPanel, BoxLayout.Y_AXIS));
-		itemSummaryPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		itemSummaryPanel.setBorder(BorderFactory.createLineBorder(new Color(75,17,111), 2));
 
 		itemPanel = new JPanel();
 		itemPanel.setLayout(new GridLayout(1,2));

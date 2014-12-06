@@ -34,7 +34,7 @@ public class OverviewComingInItem extends JPanel {
     DateFormat format = new SimpleDateFormat( "h:mm a" );
 	due = new JLabel(format.format(current.dueDate));
 	
-	panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+	panel.setBorder(BorderFactory.createLineBorder(new Color(75,17,111), 1));
 	panel.setMaximumSize(new Dimension(2000,50));
 	panel.add(new JLabel(current.getStudentEmail()));
 	panel.add(due);
