@@ -5,7 +5,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.List;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.BorderFactory;
@@ -41,10 +43,12 @@ public class OverviewGoingOutList extends JPanel{
 	panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	panel.add(header);
 	panel.add(description);
+	
+	ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
+	items.add(new InventoryItem("1000","Camera 1", "out", "Clean the lense"));
 
-	panel.add(new OverviewGoingOutItem("millembi@uni.edu"));
-	panel.add(Box.createVerticalStrut(5));
-	panel.add(new OverviewGoingOutItem("kyle@uni.edu"));	  
+
+	panel.add(new OverviewGoingOutItem(new Reservation("kyel","kyle@gmail.com","5:00 pm", Timestamp.valueOf("2014-12-03 19:00:00"), items)));
 	panel.revalidate();
 	panel.repaint();
   }	

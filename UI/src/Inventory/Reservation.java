@@ -7,13 +7,15 @@ public class Reservation {
 	String studentId;
 	String studentEmail;
 	Timestamp due;
+	String goingOutTime;
 	List<InventoryItem> reservedItems;
 	
-	public Reservation(String sId, String sEmail, Timestamp dueDate, List<InventoryItem> items) {
+	public Reservation(String sId, String sEmail, String time, Timestamp dueDate, List<InventoryItem> items) {
 		studentId = sId;
 		studentEmail = sEmail;
 		due = dueDate;
 		reservedItems = items;
+		goingOutTime = time;
 	}
 	public String getStudentId() {
 		return studentId;
@@ -29,5 +31,8 @@ public class Reservation {
 	}
 	public void updateReservedItems(List<InventoryItem> items) {
 		reservedItems = items;
+	}
+	public String getGoingOutTime(){
+		return goingOutTime;
 	}
 }

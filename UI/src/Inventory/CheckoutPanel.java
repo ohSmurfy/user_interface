@@ -23,6 +23,7 @@ import javax.swing.BorderFactory;
 import java.awt.Color;
 import java.awt.BorderLayout;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -255,8 +256,12 @@ public class CheckoutPanel extends JPanel {
 				continueButton.setEnabled(true);
 				quickAddBtn.setEnabled(true);
 				itemId.setEditable(true);
-				Mockapi fakeApi = new Mockapi();
-				reservation = fakeApi.getUser(studentId.getText());
+				
+				ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
+				items.add(new InventoryItem("1000","Camera 1", "out", "Clean the lense"));
+				
+				reservation = new Reservation("kyel","kyle@gmail.com","5:00 pm", Timestamp.valueOf("2014-12-03 19:00:00"), items);
+
 				cart = reservation.getItems();
 				refreshCartPanel();
 				refreshCurrentInv();
