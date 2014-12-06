@@ -100,7 +100,52 @@ public class SQLInventoryItemRepo {
                    " item varchar(40) not null, " + 
                    "current_state varchar(15) not null default 'in'," +
                    "reminder_message varchar(120) not null default '')";
-    if (!dbCon.getMetaData().getTables(null, null, "inventory", null).next()) 
-      dbCon.createStatement().executeUpdate(table);
+    if (!dbCon.getMetaData().getTables(null, null, "inventory", null).next()) {
+    	dbCon.createStatement().executeUpdate(table);
+    	
+      	insertNewItem(new InventoryItem("1001","CAM 1", "out", "reminder"));
+    	insertNewItem(new InventoryItem("1002","CAM 2", "in", "reminder"));
+    	insertNewItem(new InventoryItem("1003","CAM 3", "in", "reminder"));
+    	insertNewItem(new InventoryItem("1004","CAM 4", "in", "reminder"));
+    	insertNewItem(new InventoryItem("1005","CAM 5", "in", "reminder"));
+    	insertNewItem(new InventoryItem("1006","CAM 6", "in", "reminder"));
+    	
+    	insertNewItem(new InventoryItem("2000","Tripod 1", "in", "reminder"));
+    	insertNewItem(new InventoryItem("2001","Tripod 2", "in", "reminder"));
+    	insertNewItem(new InventoryItem("2002","Tripod 3", "in", "reminder"));
+    	insertNewItem(new InventoryItem("2003","Tripod 4", "in", "reminder"));
+    	insertNewItem(new InventoryItem("2004","Tripod 5", "in", "reminder"));
+    	insertNewItem(new InventoryItem("2005","Tripod 6", "in", "reminder"));
+    	
+    	insertNewItem(new InventoryItem("3001","Wireless Lav 1", "in", "reminder"));
+    	insertNewItem(new InventoryItem("3002","Wireless Lav 2", "in", "reminder"));
+    	insertNewItem(new InventoryItem("3003","Wireless Lav 3", "in", "reminder"));
+    	insertNewItem(new InventoryItem("3004","Wireless Lav 4", "in", "reminder"));
+
+    	insertNewItem(new InventoryItem("4001","Compact Flash 1", "in", "reminder"));
+    	insertNewItem(new InventoryItem("4002","Compact Flash 2", "in", "reminder"));
+    	insertNewItem(new InventoryItem("4003","Compact Flash 3", "in", "reminder"));
+    	insertNewItem(new InventoryItem("4004","Compact Flash 4", "missing", "reminder"));
+    	insertNewItem(new InventoryItem("4005","Compact Flash 5", "in", "reminder"));
+    	insertNewItem(new InventoryItem("4006","Compact Flash 6", "in", "reminder"));
+    	
+
+    	insertNewItem(new InventoryItem("5001","Battery 1", "in", "reminder"));
+    	insertNewItem(new InventoryItem("5002","Battery 2", "in", "reminder"));
+    	insertNewItem(new InventoryItem("5003","Battery 3", "in", "reminder"));
+    	insertNewItem(new InventoryItem("5004","Battery 4", "missing", "reminder"));
+    	insertNewItem(new InventoryItem("5005","Battery 5", "in", "reminder"));
+    	insertNewItem(new InventoryItem("5006","Battery 6", "in", "reminder"));
+    	
+
+    	insertNewItem(new InventoryItem("6001","Charger 1", "missing", "reminder"));
+    	insertNewItem(new InventoryItem("6002","Charger 2", "missing", "reminder"));
+    	insertNewItem(new InventoryItem("6003","Charger 3", "in", "reminder"));
+    	insertNewItem(new InventoryItem("6004","Charger 4", "in", "reminder"));
+    	insertNewItem(new InventoryItem("6005","Charger 5", "in", "reminder"));
+    	insertNewItem(new InventoryItem("6006","Charger 6", "in", "reminder"));
+    	
+    	insertNewItem(new InventoryItem("7004","Instantly Shuttle USB", "in", "reminder"));
+    }
   }
 }
