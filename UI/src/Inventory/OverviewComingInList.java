@@ -22,13 +22,16 @@ public class OverviewComingInList extends JPanel{
 	    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));		
 	    refresh();
 	}
-	  public void refresh(){  
+	
+	Dimension maxSize = new Dimension(2000,25);
+	
+	public void refresh(){  
 		panel.removeAll();
 		JPanel header = new JPanel();
 		JLabel comingIn = new JLabel("Coming In");
 		header.add(comingIn);
 		header.setVisible(true);
-		header.setMaximumSize(new Dimension(2000,25));
+		header.setMaximumSize(maxSize);
 		
 		JPanel description = new JPanel();
 		description.setLayout(new GridLayout(1,2));
@@ -37,7 +40,7 @@ public class OverviewComingInList extends JPanel{
 		description.add(emailColumn);
 		description.add(timeColumn);
 		description.setVisible(true);
-		description.setMaximumSize(new Dimension(2000,25));
+		description.setMaximumSize(maxSize);
 			
 		java.sql.Date todaysDate = new java.sql.Date(new java.util.Date().getTime());
 			

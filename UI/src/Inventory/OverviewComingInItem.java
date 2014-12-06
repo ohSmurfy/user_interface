@@ -24,6 +24,8 @@ public class OverviewComingInItem extends JPanel {
   ExpandedComingInView j;
   List<CheckoutItem> allItems;
   
+  Color borderColor = new Color(75,17,111);
+  
   public OverviewComingInItem(List<CheckoutItem> items) {
 	panel = this;
 	defaultColor = panel.getBackground();
@@ -34,7 +36,7 @@ public class OverviewComingInItem extends JPanel {
     DateFormat format = new SimpleDateFormat( "h:mm a" );
 	due = new JLabel(format.format(current.dueDate));
 	
-	panel.setBorder(BorderFactory.createLineBorder(new Color(75,17,111), 1));
+	panel.setBorder(BorderFactory.createLineBorder(borderColor, 1));
 	panel.setMaximumSize(new Dimension(2000,50));
 	panel.add(new JLabel(current.getStudentEmail()));
 	panel.add(due);
@@ -56,7 +58,7 @@ public class OverviewComingInItem extends JPanel {
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-	    panel.setBackground(new Color(75,17,111));
+	    panel.setBackground(borderColor);
 	    j = new ExpandedComingInView(allItems);
 	    j.setLocation((int) Component.RIGHT_ALIGNMENT, (int) Component.TOP_ALIGNMENT);
 	}
