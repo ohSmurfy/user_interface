@@ -45,7 +45,7 @@ public class OverviewGoingOutItem extends JPanel {
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
+			
 			
 		}
 
