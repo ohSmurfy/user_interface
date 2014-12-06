@@ -17,7 +17,7 @@ public class SQLInventoryItemRepo {
   }
   
   public List<InventoryItem> getAll() throws SQLException {
-    String query = "select * from inventory";
+    String query = "select * from inventory order by item";
     ResultSet rs= connect().prepareStatement(query).executeQuery();
     return makeInventoryList(rs);
   }
