@@ -23,7 +23,7 @@ public class OverviewGoingOutItem extends JPanel {
 	res = aRes;
 	panel.setLayout(new GridLayout(1, 2));
 	
-	panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+	panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
 	panel.setMaximumSize(new Dimension(2000,50));
 	
 	panel.add(new JLabel(res.getStudentEmail()));
