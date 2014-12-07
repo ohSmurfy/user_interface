@@ -55,7 +55,7 @@ public class CheckInItemPanel extends JPanel {
       };
     });
 	
-	panel.setBorder(BorderFactory.createLineBorder(new Color(75,17,111), 1));
+	panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
 	panel.setMaximumSize(new Dimension(2000,25));
 	
 	panel.add(itemIdLabel);

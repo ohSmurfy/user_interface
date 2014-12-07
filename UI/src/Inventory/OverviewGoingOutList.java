@@ -23,16 +23,21 @@ public class OverviewGoingOutList extends JPanel{
   public OverviewGoingOutList(){
     panel = this;
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+    panel.setBackground(new Color(162,181,205));
     refresh();
   }
   public void refresh(){  
     panel.removeAll();
 	JPanel header = new JPanel();
-	header.add(new JLabel("Going Out"));
+    header.setBackground(new Color(162,181,205));
+	JLabel goingOut = new JLabel("Going Out");
+	goingOut.setFont(goingOut.getFont ().deriveFont (15.0f));
+	header.add(goingOut);
 	header.setVisible(true);
 	header.setMaximumSize(new Dimension(2000,25));
 
 	JPanel description = new JPanel();
+	description.setBackground(new Color(162,181,205));
 	description.setLayout(new GridLayout(1,2));
 	description.add(new JLabel("Email"));
 	description.add(new JLabel("Time"));
@@ -40,7 +45,7 @@ public class OverviewGoingOutList extends JPanel{
 	description.setMaximumSize(new Dimension(2000,25));
 				    
     panel.add(Box.createVerticalStrut(5));
-	panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
 	panel.add(header);
 	panel.add(description);
 	

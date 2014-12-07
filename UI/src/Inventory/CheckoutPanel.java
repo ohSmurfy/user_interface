@@ -47,6 +47,7 @@ public class CheckoutPanel extends JPanel {
 	
 	public CheckoutPanel() {
 		panel = this;
+	    panel.setBackground(new Color(162,181,205));
 		studentId = new JTextField(10);
 		itemId = new JTextField(10);
 		itemId.setEditable(false);
@@ -56,6 +57,7 @@ public class CheckoutPanel extends JPanel {
 	    reserveationPanel.setLayout(new GridLayout(1,3));
 	    
 	    reserveationPanel.add(new JLabel("Student Id: "));
+	    reserveationPanel.setBackground(new Color(162,181,205));
 	    
 	    reserveationPanel.add(studentId);
 	    JButton getReservation = new JButton("Get Reservation!");
@@ -66,6 +68,7 @@ public class CheckoutPanel extends JPanel {
 	    JPanel quickAddPanel = new JPanel();
 	    quickAddPanel.setLayout(new GridLayout(1,3));
 	    quickAddPanel.add(new JLabel("Item Id: "));
+	    quickAddPanel.setBackground(new Color(162,181,205));
 	    quickAddPanel.add(itemId);
 	    quickAddBtn = new JButton("Quick Add to Cart");
 	    quickAddBtn.setEnabled(false); 
@@ -80,6 +83,7 @@ public class CheckoutPanel extends JPanel {
 	    labelPanel.add(new JLabel("Inventory"));
 	    labelPanel.add(new JLabel("Checkout Cart"));
 	    labelPanel.setMaximumSize(maxSize);
+	    labelPanel.setBackground(new Color(162,181,205));
 	    
 	    
 	    
@@ -87,14 +91,15 @@ public class CheckoutPanel extends JPanel {
 	    inventoryCartPanel.setLayout(new GridLayout(1,2));
 
 	    inventoryPanel = new JPanel();
-	    inventoryPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	    inventoryPanel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
 	    inventoryPanel.setLayout(new BoxLayout(inventoryPanel, BoxLayout.Y_AXIS));
+	    inventoryPanel.setBackground(new Color(162,181,205));
 	            
 		
 	    cartPanel = new JPanel();
-	    cartPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	    cartPanel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
 	    cartPanel.setLayout(new BoxLayout(cartPanel, BoxLayout.Y_AXIS));
-
+	    cartPanel.setBackground(new Color(162,181,205));
 	    
 	    inventoryCartPanel.add(inventoryPanel);
 	    inventoryCartPanel.add(cartPanel);
@@ -105,6 +110,7 @@ public class CheckoutPanel extends JPanel {
 	    continuePanel.setLayout(new GridLayout(1,3));
 	    continuePanel.add(new JLabel(""));
 	    continuePanel.add(new JLabel(""));
+	    continuePanel.setBackground(new Color(162,181,205));
 
 		continueButton = new JButton("Continue");
 		continueButton.setEnabled(false); 
@@ -148,6 +154,7 @@ public class CheckoutPanel extends JPanel {
 	    inventoryHeader.add(new JLabel("Item ID"));
 	    inventoryHeader.add(new JLabel("Description"));
 	    inventoryHeader.add(new JLabel(""));
+	    inventoryHeader.setBackground(new Color(162,181,205));
 	    inventoryHeader.setMaximumSize(new Dimension(2000,25));
 	    inventoryPanel.add(inventoryHeader);
 	    try {
@@ -181,6 +188,7 @@ public class CheckoutPanel extends JPanel {
 	    inventoryHeader.add(new JLabel("Item ID"));
 	    inventoryHeader.add(new JLabel("Description"));
 	    inventoryHeader.add(new JLabel(""));
+	    inventoryHeader.setBackground(new Color(162,181,205));
 	    inventoryHeader.setMaximumSize(new Dimension(2000,25));
 	    inventoryPanel.add(inventoryHeader);
 	    for (InventoryItem inventoryItem : inventory){
@@ -207,6 +215,7 @@ public class CheckoutPanel extends JPanel {
 	    cartHeader.add(new JLabel("Item ID"));
 	    cartHeader.add(new JLabel("Description"));
 	    cartHeader.add(new JLabel(""));
+	    cartHeader.setBackground(new Color(162,181,205));
 	    cartHeader.setMaximumSize(new Dimension(2000,25));
 	    cartPanel.add(cartHeader);
 

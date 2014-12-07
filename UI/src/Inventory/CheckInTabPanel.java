@@ -1,5 +1,6 @@
 package Inventory;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -27,6 +28,7 @@ public class CheckInTabPanel extends JPanel{
 	  public CheckInTabPanel() {
 	    panel = this;
 	    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+	    panel.setBackground(new Color(162,181,205));
 	    checkInListPanel = new CheckInListPanel();
 	    getItems.addActionListener(new ActionListener() {
 	      public void actionPerformed(ActionEvent e) {checkInListPanel.refresh(studentId.getText());};
@@ -39,6 +41,7 @@ public class CheckInTabPanel extends JPanel{
 	    checkInHeader.add(getItems);
 	    checkInHeader.add(employeeIdLabel);
 	    checkInHeader.add(employeeId);
+	    checkInHeader.setBackground(new Color(162,181,205));
 	    checkInHeader.setVisible(true);
 	    
 	    checkInHeader.setMaximumSize(maxSize);

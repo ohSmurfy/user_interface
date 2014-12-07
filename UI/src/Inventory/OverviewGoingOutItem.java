@@ -34,8 +34,9 @@ public class OverviewGoingOutItem extends JPanel {
 		panel.setLayout(panelLayout);
 		defaultColor = panel.getBackground();
 	
-		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		panel.setMaximumSize(maxSize);
+
+	panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
+	panel.setMaximumSize(maxSize);
 	
 		panel.add(new JLabel(res.getStudentEmail()));
 		panel.add(new JLabel(res.getGoingOutTime()));

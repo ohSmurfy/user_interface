@@ -26,7 +26,7 @@ public class OverviewOverdueItem extends JPanel {
 	current = item;
 	panel.setLayout(new GridLayout(1, 2));
 	new JLabel(current.getItemDescription());
-	panel.setBorder(BorderFactory.createLineBorder(new Color(75,17,111), 1));
+	panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
 	panel.setMaximumSize(new Dimension(2000,25));
 	panel.add(new JLabel(current.getStudentEmail()));
 	panel.add(new JLabel(current.getItemDescription()));
@@ -39,7 +39,7 @@ public class OverviewOverdueItem extends JPanel {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		System mainWindow = ((System) panel.getParent().getParent().getParent().getParent().getParent().getParent().getParent());
-	    JTabbedPane tabedPane = ((JTabbedPane) panel.getParent().getParent().getParent().getParent());
+	    JTabbedPane tabedPane = ((JTabbedPane) panel.getParent().getParent().getParent().getParent().getParent().getParent());
 	    mainWindow.checkinTab().overviewPanelClicked(current.studentId);
 	    tabedPane.setSelectedIndex(2);
 	    j.dispose();

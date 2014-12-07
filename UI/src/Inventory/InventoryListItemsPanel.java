@@ -22,27 +22,14 @@ public class InventoryListItemsPanel extends JPanel{
   public InventoryListItemsPanel(){  
     panel = this;
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-    panel.add(new InventoryHeaderPanel());
-    panel.add(Box.createVerticalStrut(5));
-    panel.setBorder(BorderFactory.createLineBorder(new Color(75,17,111), 2));
-    try {
-      SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
-      java.util.List<InventoryItem> items = inventory.getAll();
-      for (InventoryItem item : items) {
-        panel.add(new InventroyItemPanel(item));
-        panel.add(Box.createVerticalStrut(5));
-      }
-    } catch (SQLException ex) {
-      JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);
-    } catch (ItemException ex){
-      JOptionPane.showMessageDialog(panel,ex);
-    }
+    refresh();
   } 
   public void refresh(){
 	    panel.removeAll();
 	    panel.add(new InventoryHeaderPanel());
 	    panel.add(Box.createVerticalStrut(5));
-	      
+	    panel.setBorder(BorderFactory.createLineBorder(new Color(75,17,111), 2));
+
 	    try {
 	      SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
 	      panel.removeAll();
@@ -52,12 +39,13 @@ public class InventoryListItemsPanel extends JPanel{
 	        panel.add(new InventroyItemPanel(item));
 	        panel.add(Box.createVerticalStrut(5));
 	      }
-	      panel.revalidate();
-	      panel.repaint();
 	    } catch (SQLException ex) {
 	      JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);
 	    } catch (ItemException ex){
 	      JOptionPane.showMessageDialog(panel,ex);
 	    }
+
+     	panel.revalidate();
+	    panel.repaint();
 	  }
 }

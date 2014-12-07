@@ -29,7 +29,7 @@ public class OverviewMissingItem extends JPanel {
 
 	panel.setLayout(new GridLayout(1, 2));
 	
-	panel.setBorder(BorderFactory.createLineBorder(new Color(75,17,111), 1));
+	panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
 	panel.setMaximumSize(new Dimension(2000,25));
 	
 	panel.add(new JLabel(current.getId()));
