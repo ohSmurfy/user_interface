@@ -40,7 +40,7 @@ public class OverviewComingInItem extends JPanel {
 
 	panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
 	panel.setMaximumSize(maxSize);
-
+	
 	panel.add(new JLabel(current.getStudentEmail()));
 	panel.add(due);
 	panel.addMouseListener(new Mouse());
