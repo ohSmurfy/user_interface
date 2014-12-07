@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class CheckInTabPanel extends JPanel{
+	
 	CheckInTabPanel panel;
 	JLabel idLabel = new JLabel("Student Id");
 	JTextField studentId = new JTextField(10);
@@ -20,6 +21,9 @@ public class CheckInTabPanel extends JPanel{
 	JTextField employeeId = new JTextField(10);
     JButton getItems = new JButton("Get Items");
     CheckInListPanel checkInListPanel;
+    Dimension maxSize = new Dimension(600,50);
+    GridLayout headerLayout = new GridLayout(2,3);
+    
 	  public CheckInTabPanel() {
 	    panel = this;
 	    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -29,7 +33,7 @@ public class CheckInTabPanel extends JPanel{
 	    });
 	    
 	    JPanel checkInHeader = new JPanel();
-	    checkInHeader.setLayout(new GridLayout(2, 3));
+	    checkInHeader.setLayout(headerLayout);
 	    checkInHeader.add(idLabel);
 	    checkInHeader.add(studentId);
 	    checkInHeader.add(getItems);
@@ -37,7 +41,7 @@ public class CheckInTabPanel extends JPanel{
 	    checkInHeader.add(employeeId);
 	    checkInHeader.setVisible(true);
 	    
-	    checkInHeader.setMaximumSize(new Dimension(600,50));
+	    checkInHeader.setMaximumSize(maxSize);
 	    panel.add(checkInHeader);
 	    panel.add(checkInListPanel);
 	    panel.setVisible(true);

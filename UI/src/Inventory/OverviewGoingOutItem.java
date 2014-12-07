@@ -1,7 +1,7 @@
 package Inventory;
 import java.awt.event.MouseListener;
-
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -14,6 +14,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import javax.swing.*;
+
 import java.awt.event.MouseEvent;
 
 public class OverviewGoingOutItem extends JPanel {
@@ -21,14 +22,20 @@ public class OverviewGoingOutItem extends JPanel {
 	OverviewGoingOutItem panel;
 	CheckoutItem current;
 	Reservation res;
+	ExpandedGoingOut j;
+	Dimension maxSize = new Dimension(2000,25);
+	Color defaultColor;
+	Color borderColor = new Color(75,15,111);
+	GridLayout panelLayout = new GridLayout(1,2);
   
 	public OverviewGoingOutItem(Reservation aRes) {
 		panel = this;
 		res = aRes;
-		panel.setLayout(new GridLayout(1, 2));
+		panel.setLayout(panelLayout);
+		defaultColor = panel.getBackground();
 	
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-		panel.setMaximumSize(new Dimension(2000,50));
+		panel.setMaximumSize(maxSize);
 	
 		panel.add(new JLabel(res.getStudentEmail()));
 		panel.add(new JLabel(res.getGoingOutTime()));
@@ -39,20 +46,24 @@ public class OverviewGoingOutItem extends JPanel {
 
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
+			System mainWindow = ((System) panel.getParent().getParent().getParent().getParent().getParent().getParent());
+		    JTabbedPane tabedPane = ((JTabbedPane) panel.getParent().getParent().getParent());
+		    mainWindow.checkoutTab().goingOutClicked(res);
+		    tabedPane.setSelectedIndex(2);
+		    j.dispose();
 		}
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			
-			
+			 panel.setBackground(borderColor);
+			 j = new ExpandedGoingOut(res);
+			 j.setLocation((int) Component.RIGHT_ALIGNMENT, (int) Component.TOP_ALIGNMENT);
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
+			panel.setBackground(defaultColor);
+		    j.dispose();
 		}
 
 		@Override

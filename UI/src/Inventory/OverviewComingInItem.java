@@ -24,20 +24,22 @@ public class OverviewComingInItem extends JPanel {
   ExpandedComingInView j;
   List<CheckoutItem> allItems;
   
+  Dimension maxSize = new Dimension(2000,25);
   Color borderColor = new Color(75,17,111);
+  GridLayout panelLayout = new GridLayout(1,2);
   
   public OverviewComingInItem(List<CheckoutItem> items) {
 	panel = this;
 	defaultColor = panel.getBackground();
 	current = items.get(0);
 	allItems = items;
-	panel.setLayout(new GridLayout(1, 2));
+	panel.setLayout(panelLayout);
 	
     DateFormat format = new SimpleDateFormat( "h:mm a" );
 	due = new JLabel(format.format(current.dueDate));
 	
 	panel.setBorder(BorderFactory.createLineBorder(borderColor, 1));
-	panel.setMaximumSize(new Dimension(2000,50));
+	panel.setMaximumSize(maxSize);
 	panel.add(new JLabel(current.getStudentEmail()));
 	panel.add(due);
 	panel.addMouseListener(new Mouse());
@@ -57,7 +59,6 @@ public class OverviewComingInItem extends JPanel {
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 	    panel.setBackground(borderColor);
 	    j = new ExpandedComingInView(allItems);
 	    j.setLocation((int) Component.RIGHT_ALIGNMENT, (int) Component.TOP_ALIGNMENT);
@@ -65,19 +66,18 @@ public class OverviewComingInItem extends JPanel {
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
 	    panel.setBackground(defaultColor);
 	    j.dispose();
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		// method not needed
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
+		// method not needed
 	}
   }
 }
