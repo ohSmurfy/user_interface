@@ -14,6 +14,8 @@ public class ExpandedComingInView extends JFrame{
   
   public ExpandedComingInView(List<CheckoutItem> items) {
 	frame = this;
+	
+	Dimension maxSize = new Dimension(2000,25);
 
 	JPanel panel = new JPanel();
 	firstItem = items.get(0);
@@ -23,26 +25,26 @@ public class ExpandedComingInView extends JFrame{
     studentIDPanel.setLayout(new GridLayout(1,2));
     studentIDPanel.add(new JLabel("Student Id :"));
     studentIDPanel.add(new JLabel(firstItem.getStudentId()));
-    studentIDPanel.setMaximumSize(new Dimension(2000,25));
+    studentIDPanel.setMaximumSize(maxSize);
     
     JPanel studentEmailPanel = new JPanel();
     studentEmailPanel.setLayout(new GridLayout(1,2));
     studentEmailPanel.add(new JLabel("Student Email :"));
     studentEmailPanel.add(new JLabel(firstItem.getStudentEmail()));
-    studentEmailPanel.setMaximumSize(new Dimension(2000,25));
+    studentEmailPanel.setMaximumSize(maxSize);
 
     JPanel checkedOutByPanel = new JPanel();
     checkedOutByPanel.setLayout(new GridLayout(1,2));
     checkedOutByPanel.add(new JLabel("Checked Out By :"));
     checkedOutByPanel.add(new JLabel(firstItem.getEmployeeId()));
-    checkedOutByPanel.setMaximumSize(new Dimension(2000,25));
+    checkedOutByPanel.setMaximumSize(maxSize);
 
     DateFormat format = new SimpleDateFormat( "h:mm a" );	
     JPanel timePanel = new JPanel();
     timePanel.setLayout(new GridLayout(1,2));
     timePanel.add(new JLabel("Time :"));
     timePanel.add(new JLabel(format.format(firstItem.dueDate)));
-    timePanel.setMaximumSize(new Dimension(2000,25));
+    timePanel.setMaximumSize(maxSize);
 
 	panel.add(studentIDPanel);
 	panel.add(studentEmailPanel);
@@ -53,14 +55,14 @@ public class ExpandedComingInView extends JFrame{
 	itemPane.setLayout(new GridLayout(1,2));
 	itemPane.add(new JLabel("Item Id"));
 	itemPane.add(new JLabel("Description"));
-	itemPane.setMaximumSize(new Dimension(2000,25));
+	itemPane.setMaximumSize(maxSize);
 	panel.add(itemPane);
     for (CheckoutItem item : items) {
       itemPane = new JPanel();
 	  itemPane.setLayout(new GridLayout(1,2));
 	  itemPane.add(new JLabel(item.getItemId()));
 	  itemPane.add(new JLabel(item.getItemDescription()));
-	  itemPane.setMaximumSize(new Dimension(2000,25));
+	  itemPane.setMaximumSize(maxSize);
 
 	  panel.add(itemPane);
     }

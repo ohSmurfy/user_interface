@@ -43,6 +43,8 @@ public class CheckoutPanel extends JPanel {
 	JButton quickAddBtn;
 	JPanel cartPanel;
 	JPanel inventoryPanel;
+	Dimension maxSize = new Dimension(600,25);
+	
 	public CheckoutPanel() {
 		panel = this;
 	    panel.setBackground(new Color(162,181,205));
@@ -61,7 +63,7 @@ public class CheckoutPanel extends JPanel {
 	    JButton getReservation = new JButton("Get Reservation!");
 	    getReservation.addActionListener(new ReservationListener());
 	    reserveationPanel.add(getReservation);
-	    reserveationPanel.setMaximumSize(new Dimension(600,25));
+	    reserveationPanel.setMaximumSize(maxSize);
 	    
 	    JPanel quickAddPanel = new JPanel();
 	    quickAddPanel.setLayout(new GridLayout(1,3));
@@ -73,17 +75,16 @@ public class CheckoutPanel extends JPanel {
 
 	    quickAddBtn.addActionListener(new QuickAdd());
 	    quickAddPanel.add(quickAddBtn);
-	    quickAddPanel.setMaximumSize(new Dimension(600,25));
+	    quickAddPanel.setMaximumSize(maxSize);
 	    
 
 	    JPanel labelPanel = new JPanel();
 	    labelPanel.setLayout(new GridLayout(1,2));
 	    labelPanel.add(new JLabel("Inventory"));
 	    labelPanel.add(new JLabel("Checkout Cart"));
+
+	    labelPanel.setMaximumSize(maxSize);
 	    labelPanel.setBackground(new Color(162,181,205));
-	    labelPanel.setMaximumSize(new Dimension(2000,25));
-	    
-	    
 	    
 	    JPanel inventoryCartPanel = new JPanel();
 	    inventoryCartPanel.setLayout(new GridLayout(1,2));
