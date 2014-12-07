@@ -22,7 +22,7 @@ public class OverviewGoingOutItem extends JPanel {
 	OverviewGoingOutItem panel;
 	CheckoutItem current;
 	Reservation res;
-	ExpandedGoingOut j;
+	ExpandedGoingOut goingOutPopup;
 	Dimension maxSize = new Dimension(2000,25);
 	Color defaultColor;
 	Color borderColor = new Color(75,15,111);
@@ -40,6 +40,7 @@ public class OverviewGoingOutItem extends JPanel {
 		panel.add(new JLabel(res.getStudentEmail()));
 		panel.add(new JLabel(res.getGoingOutTime()));
 		panel.setVisible(true);
+		panel.addMouseListener(new MouseHovering());
 	}
 	
 	private class MouseHovering implements MouseListener {
@@ -50,20 +51,20 @@ public class OverviewGoingOutItem extends JPanel {
 		    JTabbedPane tabedPane = ((JTabbedPane) panel.getParent().getParent().getParent());
 		    mainWindow.checkoutTab().goingOutClicked(res);
 		    tabedPane.setSelectedIndex(2);
-		    j.dispose();
+		    goingOutPopup.dispose();
 		}
 
 		@Override
 		public void mouseEntered(MouseEvent e) {
 			 panel.setBackground(borderColor);
-			 j = new ExpandedGoingOut(res);
-			 j.setLocation((int) Component.RIGHT_ALIGNMENT, (int) Component.TOP_ALIGNMENT);
+			 goingOutPopup = new ExpandedGoingOut(res);
+			 goingOutPopup.setLocation((int) Component.RIGHT_ALIGNMENT, (int) Component.TOP_ALIGNMENT);
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
 			panel.setBackground(defaultColor);
-		    j.dispose();
+		    goingOutPopup.dispose();
 		}
 
 		@Override
