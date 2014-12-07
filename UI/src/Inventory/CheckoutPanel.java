@@ -82,12 +82,10 @@ public class CheckoutPanel extends JPanel {
 	    labelPanel.setLayout(new GridLayout(1,2));
 	    labelPanel.add(new JLabel("Inventory"));
 	    labelPanel.add(new JLabel("Checkout Cart"));
-<<<<<<< HEAD
+
 	    labelPanel.setMaximumSize(maxSize);
-=======
 	    labelPanel.setBackground(new Color(162,181,205));
-	    labelPanel.setMaximumSize(new Dimension(2000,25));
->>>>>>> master
+
 	    
 	    
 	    
