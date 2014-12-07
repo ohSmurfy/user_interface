@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.List;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,7 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class OverviewGoingOutList extends JPanel{
+public class OverviewGoingOutList extends JPanel
+{
 	
   OverviewGoingOutList panel;
   public OverviewGoingOutList(){
@@ -26,7 +28,8 @@ public class OverviewGoingOutList extends JPanel{
     panel.setBackground(new Color(162,181,205));
     refresh();
   }
-  public void refresh(){  
+  public void refresh()
+  {  
     panel.removeAll();
 	JPanel header = new JPanel();
     header.setBackground(new Color(162,181,205));
@@ -49,11 +52,22 @@ public class OverviewGoingOutList extends JPanel{
 	panel.add(header);
 	panel.add(description);
 	
-	ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
-	items.add(new InventoryItem("1000","Camera 1", "out", "Clean the lense"));
+	APIReference a = new APIReference();
+    try
+    {
+    	ArrayList<Reservation> reservations = a.getReservations();
+    	
+    	for (Reservation r : reservations)
+    	{
+    		panel.add(new OverviewGoingOutItem(r));
 
-
-	panel.add(new OverviewGoingOutItem(new Reservation("kyel","kyle@gmail.com","5:00 pm", Timestamp.valueOf("2014-12-03 19:00:00"), items)));
+    	}
+    }
+    catch(ParseException p1)
+    {
+    	java.lang.System.out.println("Broke");
+    }
+	
 	panel.revalidate();
 	panel.repaint();
   }	

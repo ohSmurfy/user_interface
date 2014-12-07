@@ -17,20 +17,13 @@ public class System extends JPanel {
   public System() {
     panel = this;
     panel.setLayout(new GridLayout(1,1));
-    APIReference a = new APIReference();
+    
     tabbedPane = new JTabbedPane();
     checkIn = new CheckInTabPanel();
     inventory = new InventoryTabPanel();
     overview = new OverviewTabPanel();
     checkout = new CheckoutPanel();
-    try
-    {
-    	a.getReservations();
-    }
-    catch(ParseException p1)
-    {
-    	java.lang.System.out.println("Broke");
-    }
+  
     tabbedPane.addTab("Overview", overview);
     tabbedPane.addTab("Check out", checkout);
     tabbedPane.addTab("Check in", checkIn);
