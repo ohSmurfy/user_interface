@@ -53,7 +53,7 @@ public class InventoryNewItemPanel extends JFrame{
     panel.add(reminderLabel);
     panel.add(reminder);
     panel.add(add);
-
+    
     frame.add(panel);
     frame.pack();
     frame.setVisible(true);

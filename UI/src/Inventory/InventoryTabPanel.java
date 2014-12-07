@@ -26,6 +26,7 @@ public class InventoryTabPanel extends JPanel{
   InventoryListItemsPanel inventoryListPanel;
   public InventoryTabPanel() {
     panel = this;
+    panel.setBackground(new Color(162,181,205));
     inventoryListPanel = new InventoryListItemsPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
     JButton newItem = new JButton("Add Item +");

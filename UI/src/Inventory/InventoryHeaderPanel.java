@@ -1,5 +1,6 @@
 package Inventory;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
@@ -18,6 +19,7 @@ public class InventoryHeaderPanel extends JPanel{
     headers.add(headerId);
     headers.add(headerDescription);
     headers.add(hearderCurrentState);
+    headers.setBackground(new Color(162,181,205));
     headers.setVisible(true);
     headers.setMaximumSize(new Dimension(2000,25));
   }

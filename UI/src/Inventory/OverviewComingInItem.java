@@ -38,8 +38,13 @@ public class OverviewComingInItem extends JPanel {
     DateFormat format = new SimpleDateFormat( "h:mm a" );
 	due = new JLabel(format.format(current.dueDate));
 	
+<<<<<<< HEAD
 	panel.setBorder(BorderFactory.createLineBorder(borderColor, 1));
 	panel.setMaximumSize(maxSize);
+=======
+	panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
+	panel.setMaximumSize(new Dimension(2000,50));
+>>>>>>> master
 	panel.add(new JLabel(current.getStudentEmail()));
 	panel.add(due);
 	panel.addMouseListener(new Mouse());
@@ -51,7 +56,7 @@ public class OverviewComingInItem extends JPanel {
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 	    System mainWindow = ((System) panel.getParent().getParent().getParent().getParent().getParent().getParent());
-	    JTabbedPane tabedPane = ((JTabbedPane) panel.getParent().getParent().getParent());
+	    JTabbedPane tabedPane = ((JTabbedPane) panel.getParent().getParent().getParent().getParent().getParent());
 	    mainWindow.checkinTab().overviewPanelClicked(current.studentId);
 	    tabedPane.setSelectedIndex(2);
 	    j.dispose();

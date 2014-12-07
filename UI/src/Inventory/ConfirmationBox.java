@@ -6,6 +6,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
@@ -122,11 +123,14 @@ public class ConfirmationBox extends JFrame{
 		        }
 			}
 	      });
-		checkOutPanel.add(cancel);
-		checkOutPanel.add(checkout);
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.add(cancel);
+		buttonPanel.add(checkout);
 		
 		summaryPanel.add(checkOutPanel);
+		summaryPanel.add(buttonPanel);
 		cframe.add(summaryPanel);
+		cframe.setMinimumSize(new Dimension(300,200));
 
 	}
 	
