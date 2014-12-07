@@ -16,10 +16,23 @@ public class SQLInventoryItemRepo {
     create();
   }
   
+  
   public List<InventoryItem> getAll() throws SQLException {
     String query = "select * from inventory order by item";
     ResultSet rs= connect().prepareStatement(query).executeQuery();
     return makeInventoryList(rs);
+  }
+  
+  public InventoryItem getItemByItemName(String id) throws SQLException, ItemException
+  {
+	  String query = "select * from inventory where inventory.item = ? LIMIT 1";
+	  PreparedStatement stmt = connect().prepareStatement(query);
+	  stmt.setString(1, id);
+	  ResultSet rs = stmt.executeQuery();
+	  if (rs.next()) 
+		  return toItem(rs);
+	  else 
+		  throw new ItemException("item id doesnt' exist");
   }
 
   public List<InventoryItem> getByCurrentState(String state) throws SQLException {
