@@ -24,10 +24,14 @@ public class ReminderFrame extends JFrame{
 	JButton okay;
 	JPanel reminderPanel;
 	Reservation currentReservation;
-	CheckoutPanel panel; 
+	CheckoutPanel panel;
+	Dimension maxSize = new Dimension(2000,50);
+	GridLayout reminderPanelLayout = new GridLayout(1,3);
+	
 	public ReminderFrame(Reservation reservation, CheckoutPanel checkoutPanel) {
 		frame = this;
 		panel = checkoutPanel;
+		
 
 		currentReservation = reservation;
 		frame.setTitle("Reminder");
@@ -36,32 +40,34 @@ public class ReminderFrame extends JFrame{
 		remindersForItems.setLayout(new BoxLayout(remindersForItems, BoxLayout.Y_AXIS));
 		
 		buttonPanel = new JPanel();
-		buttonPanel.setMaximumSize(new Dimension(2000,50));
+		buttonPanel.setMaximumSize(maxSize);
 		
         for (InventoryItem item : currentReservation.getItems()) {
         	reminderPanel = new JPanel();
-        	reminderPanel.setLayout(new GridLayout(1,2));
+        	reminderPanel.setLayout(reminderPanelLayout);
         	reminderPanel.add(new JLabel(item.getDescription()));
         	reminderPanel.add(new JLabel(item.getReminder()));
-        	reminderPanel.setMaximumSize(new Dimension(2000,50));
+        	reminderPanel.setMaximumSize(maxSize);
         	remindersForItems.add(reminderPanel);
         }
         
-		okay = new JButton("Okay");
-	    okay.addActionListener(new ActionListener() {
-	        public void actionPerformed(ActionEvent e)
-	        {
-				ConfirmationBox confirmation = new ConfirmationBox(currentReservation, panel);
-				confirmation.setLocationRelativeTo(null);
-				confirmation.pack();
-				confirmation.setVisible(true);
-				frame.dispose();
-	        }
-	      });
+		okay = new JButton("Done");
+	    okay.addActionListener(new DoneClicked());
 		
 		buttonPanel.add(okay);
 		remindersForItems.add(buttonPanel);
 		frame.add(remindersForItems);
 		frame.pack();
+	}
+	
+	private class DoneClicked implements ActionListener {
+		public void actionPerformed(ActionEvent e)
+        {
+			ConfirmationBox confirmation = new ConfirmationBox(currentReservation, panel);
+			confirmation.setLocationRelativeTo(null);
+			confirmation.pack();
+			confirmation.setVisible(true);
+			frame.dispose();
+        }
 	}
 }

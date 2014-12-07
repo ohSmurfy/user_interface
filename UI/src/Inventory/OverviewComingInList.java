@@ -23,7 +23,10 @@ public class OverviewComingInList extends JPanel{
 	    panel.setBackground(new Color(162,181,205));
 	    refresh();
 	}
-	  public void refresh(){  
+	
+	Dimension maxSize = new Dimension(2000,25);
+	
+	public void refresh(){  
 		panel.removeAll();
 		JPanel header = new JPanel();
 	    header.setBackground(new Color(162,181,205));
@@ -31,7 +34,7 @@ public class OverviewComingInList extends JPanel{
 		comingIn.setFont(comingIn.getFont ().deriveFont (15.0f));
 		header.add(comingIn);
 		header.setVisible(true);
-		header.setMaximumSize(new Dimension(2000,25));
+		header.setMaximumSize(maxSize);
 		
 		JPanel description = new JPanel();
 		description.setBackground(new Color(162,181,205));
@@ -41,7 +44,7 @@ public class OverviewComingInList extends JPanel{
 		description.add(emailColumn);
 		description.add(timeColumn);
 		description.setVisible(true);
-		description.setMaximumSize(new Dimension(2000,25));
+		description.setMaximumSize(maxSize);
 			
 		java.sql.Date todaysDate = new java.sql.Date(new java.util.Date().getTime());
 			

@@ -19,6 +19,8 @@ public class ExpandedMissingItemView extends JFrame{
 	  CheckoutItem maybeItem;
   public ExpandedMissingItemView(InventoryItem item) {
 	  frame = this;
+	  
+	  Dimension maxSize = new Dimension(2000,25);
 
 	  JPanel panel = new JPanel();
 	  panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -27,13 +29,13 @@ public class ExpandedMissingItemView extends JFrame{
 	  itemId.setLayout(new GridLayout(1,2));
 	  itemId.add(new JLabel("item Id :"));
 	  itemId.add(new JLabel(item.getId()));
-	  itemId.setMaximumSize(new Dimension(2000,25));
+	  itemId.setMaximumSize(maxSize);
 	    
 	  JPanel itemDescription = new JPanel();
 	  itemDescription.setLayout(new GridLayout(1,2));
 	  itemDescription.add(new JLabel("Description :"));
 	  itemDescription.add(new JLabel(item.getDescription()));
-	  itemDescription.setMaximumSize(new Dimension(2000,25));
+	  itemDescription.setMaximumSize(maxSize);
       panel.add(itemId);
 	  panel.add(itemDescription);
 
@@ -44,19 +46,19 @@ public class ExpandedMissingItemView extends JFrame{
     		currentID.setLayout(new GridLayout(1,2));
     		currentID.add(new JLabel("Student Id :"));
     		currentID.add(new JLabel(checkedout.getStudentId()));
-    		currentID.setMaximumSize(new Dimension(2000,25));
+    		currentID.setMaximumSize(maxSize);
     		
     		JPanel checkedOutBy = new JPanel();
     		checkedOutBy.setLayout(new GridLayout(1,2));
     		checkedOutBy.add(new JLabel("Checked out By :"));
     		checkedOutBy.add(new JLabel(checkedout.getEmployeeId()));
-    		checkedOutBy.setMaximumSize(new Dimension(2000,25));
+    		checkedOutBy.setMaximumSize(maxSize);
     		    
     		JPanel currentlyHas = new JPanel();
     		currentlyHas.setLayout(new GridLayout(1,2));
     		currentlyHas.add(new JLabel("Currently Has :"));
     		currentlyHas.add(new JLabel(checkedout.getStudentEmail()));
-    		currentlyHas.setMaximumSize(new Dimension(2000,25));
+    		currentlyHas.setMaximumSize(maxSize);
     	    panel.add(currentID);
     		panel.add(currentlyHas);
     	    panel.add(checkedOutBy);
@@ -73,13 +75,13 @@ public class ExpandedMissingItemView extends JFrame{
 		checkedInBy.setLayout(new GridLayout(1,2));
 		checkedInBy.add(new JLabel("Checked In By :"));
 		checkedInBy.add(new JLabel(maybeItem.getEmployeeId()));
-		checkedInBy.setMaximumSize(new Dimension(2000,25));
+		checkedInBy.setMaximumSize(maxSize);
 		    
 		JPanel lastCheckedOut = new JPanel();
 		lastCheckedOut.setLayout(new GridLayout(1,2));
 		lastCheckedOut.add(new JLabel("Checked Out Last :"));
 		lastCheckedOut.add(new JLabel(maybeItem.getStudentEmail()));
-		lastCheckedOut.setMaximumSize(new Dimension(2000,25));
+		lastCheckedOut.setMaximumSize(maxSize);
 	    panel.add(checkedInBy);
 		panel.add(lastCheckedOut);
 		historyTable.close();
@@ -87,7 +89,7 @@ public class ExpandedMissingItemView extends JFrame{
 		JPanel neverCheckedOut = new JPanel();
 		neverCheckedOut.setLayout(new GridLayout(1,2));
 		neverCheckedOut.add(new JLabel("Item has never been checked in"));
-		neverCheckedOut.setMaximumSize(new Dimension(2000,25));
+		neverCheckedOut.setMaximumSize(maxSize);
 		panel.add(neverCheckedOut);
 		try {historyTable.close();} catch(SQLException e2) {}
 	  }
