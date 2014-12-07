@@ -39,36 +39,51 @@ public class APIReference
 	private ArrayList<APIHelper> users = new ArrayList<APIHelper>();
 	private ArrayList<Reservation> reservations = new  ArrayList<Reservation>();
 	
-
-	
+	Date date =new Date();
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	HttpClient client = new DefaultHttpClient();
+	String baseUrl = "https://pro.lib.uni.edu/booked/Web/Services/index.php/";
+	String authenticateUrl = "Authentication/Authenticate";
+	String reservationUrl = "Reservations/?scheduleId=2&startDateTime="+ sdf.format(date);
+	String reservationUrl2 = "Reservations/";
+    HttpPost post = new HttpPost(baseUrl+authenticateUrl);
+    String creds = "{\"username\": \"fishesac\",\"password\": \"subarustisarefast\"}";
+    String sessionToken;
+    String userId;
+    JSONObject jo;
+    BufferedReader rd;
+    HttpResponse response;
+    
 	public APIReference()
 	{
-		
+		StringEntity e = new StringEntity(creds,HTTP.UTF_8);
+    	e.setContentType("application/json");
+        post.setEntity(e);
+        try
+        {
+        	response = client.execute(post);
+        	rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+        	jo = new JSONObject(rd.readLine());
+        	sessionToken = jo.get("sessionToken").toString();
+        	userId = jo.get("userId").toString();
+        }
+        catch (IOException a) 
+	    {
+	        a.printStackTrace();
+	    }
+	    catch (JSONException a) 
+	    {
+	        a.printStackTrace();
+	    }
 	}
 	
 	public ArrayList<Reservation> getReservations() throws ParseException 
 	{
-		Date date =new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		HttpClient client = new DefaultHttpClient();
-		String baseUrl = "https://pro.lib.uni.edu/booked/Web/Services/index.php/";
-		String authenticateUrl = "Authentication/Authenticate";
-		String reservationUrl = "Reservations/?scheduleId=2&startDateTime="+ sdf.format(date);
-		String reservationUrl2 = "Reservations/";
-	    HttpPost post = new HttpPost(baseUrl+authenticateUrl);
+		
 	    
-	    String creds = "{\"username\": \"fishesac\",\"password\": \"subarustisarefast\"}";
 	    try 
 	    {
-	    	StringEntity e = new StringEntity(creds,HTTP.UTF_8);
-	    	e.setContentType("application/json");
-	        post.setEntity(e);
-	   
-	        HttpResponse response = client.execute(post);
-	        BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-	        JSONObject jo = new JSONObject(rd.readLine());
-	        String sessionToken = jo.get("sessionToken").toString();
-	        String userId = jo.get("userId").toString();
+	    	
 	        
 	        
 		    HttpGet getReservationsCall = new HttpGet(baseUrl+reservationUrl);
