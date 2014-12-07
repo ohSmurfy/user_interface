@@ -40,7 +40,9 @@ public class System extends JPanel {
 		checkout.refreshCheckouttab();
 		}
       });
-    panel.add(tabbedPane);     
+    panel.add(tabbedPane);
+    panel.setBackground(Color.black);
+
   }
   
   public CheckInTabPanel checkinTab(){
