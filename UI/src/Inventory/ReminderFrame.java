@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
+import javax.swing.JCheckBox;
 
 import java.awt.Dimension;
 import java.awt.BorderLayout;
@@ -45,6 +46,7 @@ public class ReminderFrame extends JFrame{
         for (InventoryItem item : currentReservation.getItems()) {
         	reminderPanel = new JPanel();
         	reminderPanel.setLayout(reminderPanelLayout);
+        	reminderPanel.add(new JCheckBox());
         	reminderPanel.add(new JLabel(item.getDescription()));
         	reminderPanel.add(new JLabel(item.getReminder()));
         	reminderPanel.setMaximumSize(maxSize);
