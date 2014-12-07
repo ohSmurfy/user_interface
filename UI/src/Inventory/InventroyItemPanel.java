@@ -43,9 +43,8 @@ public class InventroyItemPanel extends JPanel{
         }
       }
     });
-    panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-    panel.setMaximumSize(new Dimension(2000,25));
-    
+    panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
+    panel.setMaximumSize(new Dimension(2000,25));    
     panel.add(itemId);
     panel.add(itemDescription);
     panel.add(combo);
