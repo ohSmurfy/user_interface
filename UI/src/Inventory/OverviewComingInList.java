@@ -26,6 +26,7 @@ public class OverviewComingInList extends JPanel{
 		panel.removeAll();
 		JPanel header = new JPanel();
 		JLabel comingIn = new JLabel("Coming In");
+		comingIn.setFont(comingIn.getFont ().deriveFont (15.0f));
 		header.add(comingIn);
 		header.setVisible(true);
 		header.setMaximumSize(new Dimension(2000,25));

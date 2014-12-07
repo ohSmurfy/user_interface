@@ -25,7 +25,9 @@ public class OverviewOverdueItemsList extends JPanel {
     panel.removeAll();
 
 	JPanel header = new JPanel();
-	header.add(new JLabel("Overdue"));
+	JLabel overdue = new JLabel("Overdue");
+	overdue.setFont(overdue.getFont ().deriveFont (15.0f));
+	header.add(overdue);	
 	header.setVisible(true);
 	header.setMaximumSize(new Dimension(2000,25));
 			

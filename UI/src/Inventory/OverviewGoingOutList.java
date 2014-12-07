@@ -28,7 +28,9 @@ public class OverviewGoingOutList extends JPanel{
   public void refresh(){  
     panel.removeAll();
 	JPanel header = new JPanel();
-	header.add(new JLabel("Going Out"));
+	JLabel goingOut = new JLabel("Going Out");
+	goingOut.setFont(goingOut.getFont ().deriveFont (15.0f));
+	header.add(goingOut);
 	header.setVisible(true);
 	header.setMaximumSize(new Dimension(2000,25));
 

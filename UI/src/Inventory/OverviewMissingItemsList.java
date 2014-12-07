@@ -23,7 +23,9 @@ public class OverviewMissingItemsList extends JPanel {
   public void refresh(){  
   panel.removeAll();
   JPanel header = new JPanel();
-  header.add(new JLabel("Missing"));
+  JLabel missing = new JLabel("Missing");
+  missing.setFont(missing.getFont ().deriveFont (15.0f));
+  header.add(missing);
   header.setVisible(true);
   header.setMaximumSize(new Dimension(2000,25));
 
