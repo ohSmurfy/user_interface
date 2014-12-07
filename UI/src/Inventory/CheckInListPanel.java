@@ -24,7 +24,7 @@ public class CheckInListPanel extends JPanel{
   public CheckInListPanel(){  
     panel = this;
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-    panel.setBorder(BorderFactory.createLineBorder(new Color(75,17,111), 2));
+    panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
     panel.setPreferredSize(new Dimension(400,400));
     panel.add(new CheckInHeader());
     panel.add(Box.createVerticalStrut(5));
