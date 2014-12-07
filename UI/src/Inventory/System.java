@@ -41,7 +41,7 @@ public class System extends JPanel {
 		}
       });
     panel.add(tabbedPane);
-    panel.setBackground(Color.black);
+    panel.setBackground(Color.DARK_GRAY);
 
   }
   

@@ -46,7 +46,7 @@ public class OverviewComingInList extends JPanel{
 		java.sql.Date todaysDate = new java.sql.Date(new java.util.Date().getTime());
 			
 	    panel.add(Box.createVerticalStrut(5));
-		panel.setBorder(BorderFactory.createLineBorder(new Color(75,17,111), 2));
+		panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
 			
 		panel.add(header);
 		panel.add(description);

@@ -45,7 +45,7 @@ public class OverviewGoingOutList extends JPanel{
 	description.setMaximumSize(new Dimension(2000,25));
 				    
     panel.add(Box.createVerticalStrut(5));
-	panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+	panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
 	panel.add(header);
 	panel.add(description);
 	

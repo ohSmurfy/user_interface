@@ -40,7 +40,7 @@ public class OverviewMissingItemsList extends JPanel {
   description.setMaximumSize(new Dimension(2000,25));
 	
   panel.add(Box.createVerticalStrut(5));
-  panel.setBorder(BorderFactory.createLineBorder(new Color(75,17,111), 2));
+  panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
   panel.add(header);
   panel.add(description);
   
