@@ -19,12 +19,14 @@ public class OverviewComingInList extends JPanel{
 	OverviewComingInList panel;
 	public OverviewComingInList(){
 		panel = this;
-	    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));		
+	    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+	    panel.setBackground(new Color(162,181,205));
 	    refresh();
 	}
 	  public void refresh(){  
 		panel.removeAll();
 		JPanel header = new JPanel();
+	    header.setBackground(new Color(162,181,205));
 		JLabel comingIn = new JLabel("Coming In");
 		comingIn.setFont(comingIn.getFont ().deriveFont (15.0f));
 		header.add(comingIn);
@@ -32,6 +34,7 @@ public class OverviewComingInList extends JPanel{
 		header.setMaximumSize(new Dimension(2000,25));
 		
 		JPanel description = new JPanel();
+		description.setBackground(new Color(162,181,205));
 		description.setLayout(new GridLayout(1,2));
 		JLabel emailColumn = new JLabel("Student Email");
 		JLabel timeColumn = new JLabel("Time");

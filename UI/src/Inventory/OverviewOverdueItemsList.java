@@ -19,12 +19,14 @@ public class OverviewOverdueItemsList extends JPanel {
   public OverviewOverdueItemsList(){
     panel = this;
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+    panel.setBackground(new Color(162,181,205));
     refresh();
     }
   public void refresh(){  
     panel.removeAll();
 
 	JPanel header = new JPanel();
+    header.setBackground(new Color(162,181,205));
 	JLabel overdue = new JLabel("Overdue");
 	overdue.setFont(overdue.getFont ().deriveFont (15.0f));
 	header.add(overdue);	
@@ -33,6 +35,7 @@ public class OverviewOverdueItemsList extends JPanel {
 			
 	JPanel description = new JPanel();
 	description.setLayout(new GridLayout(1,2));
+	description.setBackground(new Color(162,181,205));
 	description.add(new JLabel("Email"));
 	description.add(new JLabel("Item Description"));
 	description.setVisible(true);

@@ -18,11 +18,13 @@ public class OverviewMissingItemsList extends JPanel {
   public OverviewMissingItemsList(){
 	panel = this;
 	panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+    panel.setBackground(new Color(162,181,205));
 	refresh();
   }
   public void refresh(){  
   panel.removeAll();
   JPanel header = new JPanel();
+  header.setBackground(new Color(162,181,205));
   JLabel missing = new JLabel("Missing");
   missing.setFont(missing.getFont ().deriveFont (15.0f));
   header.add(missing);
@@ -30,6 +32,7 @@ public class OverviewMissingItemsList extends JPanel {
   header.setMaximumSize(new Dimension(2000,25));
 
   JPanel description = new JPanel();
+  description.setBackground(new Color(162,181,205));
   description.setLayout(new GridLayout(1,2));
   description.add(new JLabel("Item Id"));
   description.add(new JLabel("Description"));
