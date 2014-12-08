@@ -37,7 +37,6 @@ public class APIReference
 	private String password = "password";
 	private ArrayList todaysReferenceNumbers = new ArrayList();
 	private ArrayList<APIHelper> users = new ArrayList<APIHelper>();
-	private ArrayList<Reservation> reservations = new  ArrayList<Reservation>();
 	
 	Date date =new Date();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -79,7 +78,8 @@ public class APIReference
 	
 	public ArrayList<Reservation> getReservations() throws ParseException 
 	{
-		
+		ArrayList<Reservation> reservations = new  ArrayList<Reservation>();
+
 	    
 	    try 
 	    {
