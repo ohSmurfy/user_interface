@@ -45,10 +45,11 @@ public class CheckoutPanel extends JPanel {
 	JPanel cartPanel;
 	JPanel inventoryPanel;
 	Dimension maxSize = new Dimension(600,25);
+	Color themeColor = new Color(162,181,205);
 	JButton getReservation;
 	public CheckoutPanel() {
 		panel = this;
-	    panel.setBackground(new Color(162,181,205));
+	    panel.setBackground(themeColor);
 		studentId = new JTextField(10);
 		itemId = new JTextField(10);
 		itemId.setEditable(false);
@@ -58,7 +59,7 @@ public class CheckoutPanel extends JPanel {
 	    reserveationPanel.setLayout(new GridLayout(1,3));
 	    
 	    reserveationPanel.add(new JLabel("Student Id: "));
-	    reserveationPanel.setBackground(new Color(162,181,205));
+	    reserveationPanel.setBackground(themeColor);
 	    
 	    reserveationPanel.add(studentId);
 	    getReservation = new JButton("Get Reservation!");
@@ -69,7 +70,7 @@ public class CheckoutPanel extends JPanel {
 	    JPanel quickAddPanel = new JPanel();
 	    quickAddPanel.setLayout(new GridLayout(1,3));
 	    quickAddPanel.add(new JLabel("Item Id: "));
-	    quickAddPanel.setBackground(new Color(162,181,205));
+	    quickAddPanel.setBackground(themeColor);
 	    quickAddPanel.add(itemId);
 	    quickAddBtn = new JButton("Quick Add to Cart");
 	    quickAddBtn.setEnabled(false); 
@@ -85,7 +86,7 @@ public class CheckoutPanel extends JPanel {
 	    labelPanel.add(new JLabel("Checkout Cart"));
 
 	    labelPanel.setMaximumSize(maxSize);
-	    labelPanel.setBackground(new Color(162,181,205));
+	    labelPanel.setBackground(themeColor);
 	    
 	    JPanel inventoryCartPanel = new JPanel();
 	    inventoryCartPanel.setLayout(new GridLayout(1,2));
@@ -93,13 +94,13 @@ public class CheckoutPanel extends JPanel {
 	    inventoryPanel = new JPanel();
 	    inventoryPanel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
 	    inventoryPanel.setLayout(new BoxLayout(inventoryPanel, BoxLayout.Y_AXIS));
-	    inventoryPanel.setBackground(new Color(162,181,205));
+	    inventoryPanel.setBackground(themeColor);
 	            
 		
 	    cartPanel = new JPanel();
 	    cartPanel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
 	    cartPanel.setLayout(new BoxLayout(cartPanel, BoxLayout.Y_AXIS));
-	    cartPanel.setBackground(new Color(162,181,205));
+	    cartPanel.setBackground(themeColor);
 	    
 	    inventoryCartPanel.add(inventoryPanel);
 	    inventoryCartPanel.add(cartPanel);
@@ -110,7 +111,7 @@ public class CheckoutPanel extends JPanel {
 	    continuePanel.setLayout(new GridLayout(1,3));
 	    continuePanel.add(new JLabel(""));
 	    continuePanel.add(new JLabel(""));
-	    continuePanel.setBackground(new Color(162,181,205));
+	    continuePanel.setBackground(themeColor);
 
 		continueButton = new JButton("Continue");
 		continueButton.setEnabled(false); 
@@ -157,7 +158,7 @@ public class CheckoutPanel extends JPanel {
 	    inventoryHeader.add(new JLabel("Item ID"));
 	    inventoryHeader.add(new JLabel("Description"));
 	    inventoryHeader.add(new JLabel(""));
-	    inventoryHeader.setBackground(new Color(162,181,205));
+	    inventoryHeader.setBackground(themeColor);
 	    inventoryHeader.setMaximumSize(new Dimension(2000,25));
 	    inventoryPanel.add(inventoryHeader);
 	    try {
@@ -187,7 +188,7 @@ public class CheckoutPanel extends JPanel {
 	    inventoryHeader.add(new JLabel("Item ID"));
 	    inventoryHeader.add(new JLabel("Description"));
 	    inventoryHeader.add(new JLabel(""));
-	    inventoryHeader.setBackground(new Color(162,181,205));
+	    inventoryHeader.setBackground(themeColor);
 	    inventoryHeader.setMaximumSize(new Dimension(2000,25));
 	    inventoryPanel.add(inventoryHeader);
 	    for (InventoryItem inventoryItem : inventory){
@@ -214,7 +215,7 @@ public class CheckoutPanel extends JPanel {
 	    cartHeader.add(new JLabel("Item ID"));
 	    cartHeader.add(new JLabel("Description"));
 	    cartHeader.add(new JLabel(""));
-	    cartHeader.setBackground(new Color(162,181,205));
+	    cartHeader.setBackground(themeColor);
 	    cartHeader.setMaximumSize(new Dimension(2000,25));
 	    cartPanel.add(cartHeader);
 
