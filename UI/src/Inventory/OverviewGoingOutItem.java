@@ -34,8 +34,8 @@ public class OverviewGoingOutItem extends JPanel {
 		panel.setLayout(panelLayout);
 		defaultColor = panel.getBackground();
 
-	panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
-	panel.setMaximumSize(maxSize);
+		panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
+		panel.setMaximumSize(maxSize);
 	
 		panel.add(new JLabel(res.getStudentEmail()));
 		panel.add(new JLabel(res.getGoingOutTime()));
@@ -49,9 +49,10 @@ public class OverviewGoingOutItem extends JPanel {
 		public void mouseClicked(MouseEvent arg0) {
 			System mainWindow = ((System) panel.getParent().getParent().getParent().getParent().getParent().getParent());
 		    JTabbedPane tabedPane = ((JTabbedPane) panel.getParent().getParent().getParent());
-		    mainWindow.checkoutTab().goingOutClicked(res);
-		    tabedPane.setSelectedIndex(2);
 		    goingOutPopup.dispose();
+		    mainWindow.checkoutTab().goingOutClicked(res);
+		    tabedPane.setSelectedIndex(1);
+
 		}
 
 		@Override

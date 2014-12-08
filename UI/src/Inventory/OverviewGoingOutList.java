@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.List;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -14,6 +16,7 @@ import java.util.Date;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,15 +25,42 @@ public class OverviewGoingOutList extends JPanel
 {
 	
   OverviewGoingOutList panel;
+  APIReference api;
+  ArrayList<Reservation> reservations;
   public OverviewGoingOutList(){
     panel = this;
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
     panel.setBackground(new Color(162,181,205));
+    api = new APIReference();
+    try {
+		reservations = api.getReservations();
+		refresh();
+	} catch (ParseException e1) {
+		// TODO Auto-generated catch block
+		reservations = new ArrayList<Reservation>();
+	}   
     refresh();
+  
   }
+  
   public void refresh()
   {  
+	
     panel.removeAll();
+    JButton button = new JButton("Get Reservations");
+    button.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e)
+        {
+          try {
+			reservations = api.getReservations();
+			refresh();
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+        }
+      });
 	JPanel header = new JPanel();
     header.setBackground(new Color(162,181,205));
 	JLabel goingOut = new JLabel("Going Out");
@@ -49,23 +79,15 @@ public class OverviewGoingOutList extends JPanel
 				    
     panel.add(Box.createVerticalStrut(5));
 	panel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
+	panel.add(button);
 	panel.add(header);
 	panel.add(description);
-	
-	APIReference a = new APIReference();
-    try
-    {
-    	ArrayList<Reservation> reservations = a.getReservations();
     	
-    	for (Reservation r : reservations)
-    	{
-    		panel.add(new OverviewGoingOutItem(r));
+   	for (Reservation r : reservations)
+   	{
+   		panel.add(new OverviewGoingOutItem(r));
+  	    panel.add(Box.createVerticalStrut(5));
 
-    	}
-    }
-    catch(ParseException p1)
-    {
-    	java.lang.System.out.println("Broke");
     }
 	
 	panel.revalidate();

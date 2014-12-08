@@ -24,6 +24,7 @@ import java.awt.Color;
 import java.awt.BorderLayout;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -38,13 +39,13 @@ public class CheckoutPanel extends JPanel {
 	Reservation reservation;
 	List<InventoryItem> originalInventory;
 	List<InventoryItem> inventory;
-	List<InventoryItem> cart = new ArrayList<InventoryItem>();;
+	List<InventoryItem> cart;
 	JButton continueButton;
 	JButton quickAddBtn;
 	JPanel cartPanel;
 	JPanel inventoryPanel;
 	Dimension maxSize = new Dimension(600,25);
-	
+	JButton getReservation;
 	public CheckoutPanel() {
 		panel = this;
 	    panel.setBackground(new Color(162,181,205));
@@ -60,7 +61,7 @@ public class CheckoutPanel extends JPanel {
 	    reserveationPanel.setBackground(new Color(162,181,205));
 	    
 	    reserveationPanel.add(studentId);
-	    JButton getReservation = new JButton("Get Reservation!");
+	    getReservation = new JButton("Get Reservation!");
 	    getReservation.addActionListener(new ReservationListener());
 	    reserveationPanel.add(getReservation);
 	    reserveationPanel.setMaximumSize(maxSize);
@@ -131,6 +132,7 @@ public class CheckoutPanel extends JPanel {
 
 
 		panel.setVisible(true);
+		refreshInvPage();
 	}
 	
 	public boolean enabled() {
@@ -145,6 +147,8 @@ public class CheckoutPanel extends JPanel {
 		itemId.setText("");
 		continueButton.setEnabled(false);
 		quickAddBtn.setEnabled(false);
+		itemId.setEditable(false);
+
 	}
 	public void refreshInvPage() {
 	    JPanel inventoryHeader = new JPanel();
@@ -171,12 +175,8 @@ public class CheckoutPanel extends JPanel {
 	
 	public void goingOutClicked(Reservation newRes) {
 		studentId.setText(newRes.getStudentId());
-		continueButton.setEnabled(true);
-		quickAddBtn.setEnabled(true);
-		itemId.setEditable(true);
-		cart = newRes.getItems();
-		refreshCartPanel();
-		refreshCurrentInv();
+		getReservation.doClick();
+
 	}
 	
 	public void refreshCurrentInv() {
@@ -267,11 +267,19 @@ public class CheckoutPanel extends JPanel {
 				quickAddBtn.setEnabled(true);
 				itemId.setEditable(true);
 				
-				ArrayList<InventoryItem> items = new ArrayList<InventoryItem>();
-				items.add(new InventoryItem("1000","Camera 1", "out", "Clean the lense"));
 				
-				reservation = new Reservation("kyel","kyle@gmail.com","5:00 pm", Timestamp.valueOf("2014-12-03 19:00:00"), items);
-
+				APIReference api = new APIReference();
+				try {
+					ArrayList<Reservation> resverations = api.getReservations();
+					for (Reservation r: resverations){
+						if (studentId.getText().equals(r.getStudentId())){
+							reservation = r;
+						}
+					}
+				} catch (ParseException e1) {
+					e1.printStackTrace();
+				}
+				
 				cart = reservation.getItems();
 				refreshCartPanel();
 				refreshCurrentInv();

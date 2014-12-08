@@ -32,7 +32,6 @@ public class System extends JPanel {
 	  public void stateChanged(ChangeEvent arg0) {
 		(inventory.getListPanel()).refresh();
 		overview.refresh();
-		checkout.refreshCheckouttab();
 		}
       });
     JScrollPane scroll = new JScrollPane(tabbedPane);
