@@ -47,8 +47,8 @@ public class OverviewGoingOutItem extends JPanel {
 
 		@Override
 		public void mouseClicked(MouseEvent arg0) {
-			System mainWindow = ((System) panel.getParent().getParent().getParent().getParent().getParent().getParent());
-		    JTabbedPane tabedPane = ((JTabbedPane) panel.getParent().getParent().getParent());
+		    System mainWindow = ((System) panel.getParent().getParent().getParent().getParent().getParent().getParent());
+		    JTabbedPane tabedPane = ((JTabbedPane) panel.getParent().getParent().getParent().getParent().getParent());
 		    goingOutPopup.dispose();
 		    mainWindow.checkoutTab().goingOutClicked(res);
 		    tabedPane.setSelectedIndex(1);
