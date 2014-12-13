@@ -80,7 +80,7 @@ public class SQLItemCheckinRepo {
 	}
     return dbCon;
   }
-  
+ 
   private List<CheckoutItem> makeCheckoutList(ResultSet rs) throws SQLException {
     List<CheckoutItem> items = new ArrayList<CheckoutItem>();   
     while (rs.next()) items.add(toItem(rs));

@@ -70,6 +70,9 @@ public class SQLCheckoutItemRepo {
     stmt.executeUpdate();
   }
   
+  public void close() throws SQLException{
+	  dbCon.close();
+  }
   private Connection connect() throws SQLException{
 	if (dbCon == null) {
 	  String dbURL = "jdbc:mysql://localhost/inventory";
