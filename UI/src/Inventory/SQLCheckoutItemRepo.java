@@ -112,8 +112,8 @@ public class SQLCheckoutItemRepo {
     if (!dbCon.getMetaData().getTables(null, null, "checkout", null).next()) {
       dbCon.createStatement().executeUpdate(table);
 
-      insertNewItem(new CheckoutItem("millembi", "millembi@uni.edu", "hallkae", "1001", "CAM 1", null, Timestamp.valueOf("2014-12-6 12:00:00")));
-      insertNewItem(new CheckoutItem("millembi", "millembi@uni.edu", "hallkae", "4001", "Compact Flash 1", null, Timestamp.valueOf("2014-12-6 12:00:00")));
+      insertNewItem(new CheckoutItem("millembi", "millembi@uni.edu", "hallkae", "1001", "CAM 1", null, Timestamp.valueOf("2014-12-13 12:00:00")));
+      insertNewItem(new CheckoutItem("millembi", "millembi@uni.edu", "hallkae", "4001", "Compact Flash 1", null, Timestamp.valueOf("2014-12-13 12:00:00")));
       insertNewItem(new CheckoutItem("millembi", "millembi@uni.edu", "hallkae", "5001", "Battery 1", null, Timestamp.valueOf("2014-12-6 12:00:00")));
       insertNewItem(new CheckoutItem("millembi", "millembi@uni.edu", "hallkae", "6001", "Charger 1", null, Timestamp.valueOf("2014-12-6 12:00:00")));
       insertNewItem(new CheckoutItem("millembi", "millembi@uni.edu", "hallkae", "3001", "Wireless Lav 1", null, Timestamp.valueOf("2014-12-6 12:00:00")));
