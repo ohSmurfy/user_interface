@@ -24,18 +24,23 @@ public class System extends JPanel {
     overview = new OverviewTabPanel();
     checkout = new CheckoutPanel();
   
-    tabbedPane.addTab("Overview", overview);
-    tabbedPane.addTab("Check out", checkout);
-    tabbedPane.addTab("Check in", checkIn);
-    tabbedPane.addTab("Inventory", inventory);
+    JScrollPane scrollCheckin = new JScrollPane(checkIn);
+    JScrollPane scrollInventory = new JScrollPane(inventory);
+    JScrollPane scrollOverview = new JScrollPane(overview);
+    JScrollPane scrollCheckout = new JScrollPane(checkout);
+
+    tabbedPane.addTab("Overview", scrollOverview);
+    tabbedPane.addTab("Check out", scrollCheckout);
+    tabbedPane.addTab("Check in", scrollCheckin);
+    tabbedPane.addTab("Inventory", scrollInventory);
+    
     tabbedPane.addChangeListener(new ChangeListener() {
 	  public void stateChanged(ChangeEvent arg0) {
 		(inventory.getListPanel()).refresh();
 		overview.refresh();
 		}
       });
-    JScrollPane scroll = new JScrollPane(tabbedPane);
-    panel.add(scroll);     
+    panel.add(tabbedPane);     
   }
   
   public CheckInTabPanel checkinTab(){
