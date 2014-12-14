@@ -43,6 +43,9 @@ public class CheckInItemPanel extends JPanel {
             current.updateEmployeeId(eId);
             SQLItemCheckinRepo checkIn = new SQLItemCheckinRepo();
             checkIn.insertNewItem(current);
+            outItems.close();
+            inventory.close();
+            checkIn.close();
           }
         } catch (SQLException ex) {
           JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);

@@ -61,6 +61,7 @@ public class OverviewComingInList extends JPanel{
 	    	panel.add( new OverviewComingInItem(checkoutTable.getByStudentId(studentId)));
 	  	    panel.add(Box.createVerticalStrut(5));
 	      }
+	      checkoutTable.close();
 	    } catch (SQLException ex) {
 	      JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);
 	    } catch (ItemException ex){

@@ -42,11 +42,13 @@ public class CheckInListPanel extends JPanel{
           
           if (items.isEmpty()) {
             JOptionPane.showMessageDialog(panel, "No Items are checkedout to " + studentId);
+            outItems.close();
           } else {
             for (CheckoutItem item : items) {
               panel.add(new CheckInItemPanel(item, panel));
               panel.add(Box.createVerticalStrut(5));
             }
+            outItems.close();
           }
         } catch (SQLException ex) {
           JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);

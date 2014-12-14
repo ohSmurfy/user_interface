@@ -114,6 +114,8 @@ public class ConfirmationBox extends JFrame{
 		        				currentReservation.getDue()));
 		        			inventoryTable.updateState(item.getId(), "out");
 		            	}
+		        		checkoutTable.close();
+		        		inventoryTable.close();
 		        		JOptionPane.showMessageDialog(cframe,"Items Checked Out");
 		        	} catch (SQLException sqlError) {	        	
 		        		JOptionPane.showMessageDialog(cframe,"SQL ERROR " + sqlError);

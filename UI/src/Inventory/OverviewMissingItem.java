@@ -41,8 +41,7 @@ public class OverviewMissingItem extends JPanel {
 
     @Override
 	public void mouseClicked(MouseEvent arg0) {
-//	  System mainWindow = ((System) panel.getParent().getParent().getParent().getParent().getParent().getParent());
-//	  JTabbedPane tabedPane = ((JTabbedPane) panel.getParent().getParent().getParent());
+
     }
 
 	@Override

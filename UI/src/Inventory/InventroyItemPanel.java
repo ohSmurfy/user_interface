@@ -35,7 +35,8 @@ public class InventroyItemPanel extends JPanel{
             JOptionPane.showMessageDialog(panel,"Deleted!");
             InventoryListItemsPanel parent = (InventoryListItemsPanel) panel.getParent();
             parent.refresh();
-          } else JOptionPane.showMessageDialog(panel,"Updated!");
+          } else {JOptionPane.showMessageDialog(panel,"Updated!");}
+          inventory.close();
         } catch (SQLException ex) {
           JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);
         } catch (ItemException ex){

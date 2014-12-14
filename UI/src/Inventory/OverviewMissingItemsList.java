@@ -52,6 +52,7 @@ public class OverviewMissingItemsList extends JPanel {
       panel.add(new OverviewMissingItem(item));
       panel.add(Box.createVerticalStrut(5));
     }
+    inventory.close();
   } catch (SQLException ex) {
     JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);
   } catch (ItemException ex){

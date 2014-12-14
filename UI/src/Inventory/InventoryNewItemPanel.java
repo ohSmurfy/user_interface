@@ -39,6 +39,7 @@ public class InventoryNewItemPanel extends JFrame{
           inventory.insertNewItem(new InventoryItem(id.getText(), description.getText(),"in",reminder.getText()));
           frame.dispose();
           itemListPanel.refresh();
+          inventory.close();
         } catch (SQLException ex) {
           JOptionPane.showMessageDialog(frame, "SQL ERROR!" + ex);
         } catch (ItemException ex){

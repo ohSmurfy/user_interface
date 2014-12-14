@@ -164,6 +164,7 @@ public class CheckoutPanel extends JPanel {
 	    try {
 	    	SQLInventoryItemRepo inventoryTable = new SQLInventoryItemRepo();
 	    	inventory = inventoryTable.getAll();
+	    	inventoryTable.close();
 	    } catch (SQLException e) {JOptionPane.showMessageDialog(panel, "SQL Error" + e);}
 	    
         for (InventoryItem item : inventory) {

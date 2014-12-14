@@ -57,6 +57,8 @@ public class OverviewOverdueItemsList extends JPanel {
     	      panel.add(Box.createVerticalStrut(5));
     	  }
       }
+      inventory.close();
+      checkoutTable.close();
 	} catch (SQLException ex) {
       JOptionPane.showMessageDialog(panel, "SQL ERROR!" + ex);
     } catch (ItemException ex){

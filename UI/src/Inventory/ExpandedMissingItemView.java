@@ -63,6 +63,7 @@ public class ExpandedMissingItemView extends JFrame{
     		panel.add(currentlyHas);
     	    panel.add(checkedOutBy);
         }
+        checkoutTable.close();
 	  } catch(SQLException e) { 
           JOptionPane.showMessageDialog(panel, "SQL Error" + e);
 
