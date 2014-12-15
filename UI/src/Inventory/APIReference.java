@@ -32,9 +32,9 @@ import org.json.*;
 
 public class APIReference 
 {
-	private String studentId = "";
+	private String username = "";
 	private String studentScheduleIdId = "";
-	private String password = "password";
+	private String password = "";
 	private ArrayList todaysReferenceNumbers = new ArrayList();
 	private ArrayList<APIHelper> users = new ArrayList<APIHelper>();
 	
@@ -46,7 +46,7 @@ public class APIReference
 	String reservationUrl = "Reservations/?scheduleId=2&startDateTime="+ sdf.format(date);
 	String reservationUrl2 = "Reservations/";
     HttpPost post = new HttpPost(baseUrl+authenticateUrl);
-    String creds = "{\"username\": \"fishesac\",\"password\": \"PASSWORD\"}";
+    String creds = "{\"username\": \""+ username + "\",\"password\": \""+ password+"\"}";
     String sessionToken;
     String userId;
     JSONObject jo;
@@ -99,7 +99,6 @@ public class APIReference
 	        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
 		    
-		    //java.lang.System.out.println(returningReservations.getJSONArray("reservations").join("\n"));
 		    
 		    JSONArray jsArray = returningReservations.getJSONArray("reservations");
 
@@ -148,12 +147,7 @@ public class APIReference
 		    		}
 		        }
 		    }
-		    
-		    
-//		    for(int i = 0;i<users.size();i++)
-//		    {
-//		    	java.lang.System.out.println("Test yay:" + users.get(i).toString());
-//		    }
+
   
 		    for(int i = 0;i<users.size();i++)
 		    {
@@ -167,7 +161,6 @@ public class APIReference
 			    BufferedReader reservationInfoReader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 			    JSONObject reservationInfo = new JSONObject(reservationInfoReader.readLine());
 			    
-			    //java.lang.System.out.println(reservationInfo.getJSONObject("owner").get("emailAddress").toString());
 			    String email = reservationInfo.getJSONObject("owner").get("emailAddress").toString();
 			    
 			    String[] parts = email.split("@");
@@ -181,6 +174,7 @@ public class APIReference
 			    	{
 			    		SQLInventoryItemRepo inventory = new SQLInventoryItemRepo();
 			    		items.add(inventory.getItemByItemName(itemName));
+			    		inventory.close();
 			    		
 			   	    } 
 			    	catch (SQLException ex) 

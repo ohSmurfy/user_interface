@@ -112,18 +112,6 @@ public class SQLCheckoutItemRepo {
     if (!dbCon.getMetaData().getTables(null, null, "checkout", null).next()) {
       dbCon.createStatement().executeUpdate(table);
 
-      insertNewItem(new CheckoutItem("millembi", "millembi@uni.edu", "hallkae", "1001", "CAM 1", null, Timestamp.valueOf("2014-12-13 12:00:00")));
-      insertNewItem(new CheckoutItem("millembi", "millembi@uni.edu", "hallkae", "4001", "Compact Flash 1", null, Timestamp.valueOf("2014-12-13 12:00:00")));
-      insertNewItem(new CheckoutItem("millembi", "millembi@uni.edu", "hallkae", "5001", "Battery 1", null, Timestamp.valueOf("2014-12-6 12:00:00")));
-      insertNewItem(new CheckoutItem("millembi", "millembi@uni.edu", "hallkae", "6001", "Charger 1", null, Timestamp.valueOf("2014-12-6 12:00:00")));
-      insertNewItem(new CheckoutItem("millembi", "millembi@uni.edu", "hallkae", "3001", "Wireless Lav 1", null, Timestamp.valueOf("2014-12-6 12:00:00")));
-    
-      insertNewItem(new CheckoutItem("meyersak", "meyersak@uni.edu", "tommyb", "1002", "CAM 2", null, Timestamp.valueOf("2014-12-8 18:00:00")));
-      insertNewItem(new CheckoutItem("meyersak", "meyersak@uni.edu", "tommyb", "4002", "Compact Flash 2", null, Timestamp.valueOf("2014-12-8 18:00:00")));
-      insertNewItem(new CheckoutItem("meyersak", "meyersak@uni.edu", "tommyb", "5002", "Battery 2", null, Timestamp.valueOf("2014-12-8 18:00:00")));
-      insertNewItem(new CheckoutItem("meyersak", "meyersak@uni.edu", "tommyb", "6002", "Charger 2", null, Timestamp.valueOf("2014-12-8 18:00:00")));
-      insertNewItem(new CheckoutItem("meyersak", "meyersak@uni.edu", "tommyb", "3002", "Wireless Lav 2", null, Timestamp.valueOf("2014-12-8 18:00:00")));
-    
     }
     }
 }
