@@ -20,7 +20,7 @@ public class ExpandedOverdueView extends JFrame{
     
     JPanel studentIDPanel = new JPanel();
     studentIDPanel.setLayout(new GridLayout(1,2));
-    studentIDPanel.add(new JLabel("Student Id :"));
+    studentIDPanel.add(new JLabel("Student Username :"));
     studentIDPanel.add(new JLabel(item.getStudentId()));
     studentIDPanel.setMaximumSize(maxSize);
     

@@ -34,7 +34,7 @@ public class CheckInItemPanel extends JPanel {
 	  public void actionPerformed(ActionEvent e) {
 	    try {
           String eId = ((CheckInTabPanel) panel.getParent().getParent()).getEmployeeId();
-          if (eId.equals(null) || eId.equals("")) JOptionPane.showMessageDialog(panel,"please enter employee id before continuing");
+          if (eId.equals(null) || eId.equals("")) JOptionPane.showMessageDialog(panel,"please enter employee name before continuing");
           else {
             SQLCheckoutItemRepo outItems = new SQLCheckoutItemRepo();
             outItems.deleteCheckoutItemByItemId(current.getItemId());

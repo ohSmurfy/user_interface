@@ -25,7 +25,7 @@ public class OverviewComingInItem extends JPanel {
   List<CheckoutItem> allItems;
   
   Dimension maxSize = new Dimension(2000,25);
-  Color borderColor = new Color(75,17,111);
+  Color borderColor = new Color(165,101,186);
   GridLayout panelLayout = new GridLayout(1,2);
   
   public OverviewComingInItem(List<CheckoutItem> items) {

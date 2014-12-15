@@ -44,7 +44,7 @@ public class ExpandedMissingItemView extends JFrame{
         for (CheckoutItem checkedout : checkoutTable.getByItemId(item.getId())) {
     		JPanel currentID = new JPanel();
     		currentID.setLayout(new GridLayout(1,2));
-    		currentID.add(new JLabel("Student Id :"));
+    		currentID.add(new JLabel("Student Username :"));
     		currentID.add(new JLabel(checkedout.getStudentId()));
     		currentID.setMaximumSize(maxSize);
     		

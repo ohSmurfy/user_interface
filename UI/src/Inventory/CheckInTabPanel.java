@@ -16,9 +16,9 @@ import javax.swing.JTextField;
 public class CheckInTabPanel extends JPanel{
 	
 	CheckInTabPanel panel;
-	JLabel idLabel = new JLabel("Student Id");
+	JLabel idLabel = new JLabel("Student Username");
 	JTextField studentId = new JTextField(10);
-	JLabel employeeIdLabel = new JLabel("Employee Id");
+	JLabel employeeIdLabel = new JLabel("Employee Name");
 	JTextField employeeId = new JTextField(10);
     JButton getItems = new JButton("Get Items");
     CheckInListPanel checkInListPanel;

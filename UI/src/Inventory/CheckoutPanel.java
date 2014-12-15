@@ -58,7 +58,7 @@ public class CheckoutPanel extends JPanel {
 	    JPanel reserveationPanel = new JPanel();
 	    reserveationPanel.setLayout(new GridLayout(1,3));
 	    
-	    reserveationPanel.add(new JLabel("Student Id: "));
+	    reserveationPanel.add(new JLabel("Student Username: "));
 	    reserveationPanel.setBackground(themeColor);
 	    
 	    reserveationPanel.add(studentId);
@@ -259,7 +259,7 @@ public class CheckoutPanel extends JPanel {
 	private class ReservationListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 	        if (studentId.getText().equals(null) || studentId.getText().equals("")) 
-	        	JOptionPane.showMessageDialog(panel,"please enter student id before continuing");
+	        	JOptionPane.showMessageDialog(panel,"please enter student username before continuing");
 	        else {
 	        	if (cart != null){
 	        		inventory.addAll(cart);

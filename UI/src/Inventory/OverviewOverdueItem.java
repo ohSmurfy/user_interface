@@ -48,7 +48,7 @@ public class OverviewOverdueItem extends JPanel {
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		// TODO Auto-generated method stub
-	    panel.setBackground(new Color(75,17,111));
+	    panel.setBackground(new Color(165,101,186));
 	    j = new ExpandedOverdueView(current);
 	    j.setLocation((int) Component.RIGHT_ALIGNMENT, (int) Component.TOP_ALIGNMENT );
 	}

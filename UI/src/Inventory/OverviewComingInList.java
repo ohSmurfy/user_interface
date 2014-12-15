@@ -39,7 +39,7 @@ public class OverviewComingInList extends JPanel{
 		JPanel description = new JPanel();
 		description.setBackground(new Color(162,181,205));
 		description.setLayout(new GridLayout(1,2));
-		JLabel emailColumn = new JLabel("Student Email");
+		JLabel emailColumn = new JLabel("Email");
 		JLabel timeColumn = new JLabel("Time");
 		description.add(emailColumn);
 		description.add(timeColumn);

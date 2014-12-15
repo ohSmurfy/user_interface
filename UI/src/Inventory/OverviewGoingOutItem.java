@@ -25,7 +25,7 @@ public class OverviewGoingOutItem extends JPanel {
 	ExpandedGoingOut goingOutPopup;
 	Dimension maxSize = new Dimension(2000,25);
 	Color defaultColor;
-	Color borderColor = new Color(75,15,111);
+	Color borderColor = new Color(165,101,186);
 	GridLayout panelLayout = new GridLayout(1,2);
   
 	public OverviewGoingOutItem(Reservation aRes) {

@@ -23,7 +23,7 @@ public class ExpandedComingInView extends JFrame{
 
     JPanel studentIDPanel = new JPanel();
     studentIDPanel.setLayout(new GridLayout(1,2));
-    studentIDPanel.add(new JLabel("Student Id :"));
+    studentIDPanel.add(new JLabel("Student Username :"));
     studentIDPanel.add(new JLabel(firstItem.getStudentId()));
     studentIDPanel.setMaximumSize(maxSize);
     

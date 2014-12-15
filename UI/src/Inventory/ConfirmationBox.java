@@ -62,7 +62,7 @@ public class ConfirmationBox extends JFrame{
         
 		JPanel studentId = new JPanel();
 		studentId.setLayout(new GridLayout(1,2));
-		studentId.add(new JLabel("Student Id"));
+		studentId.add(new JLabel("Student Username"));
 		studentId.add(new JLabel(currentReservation.getStudentId()));
 		summaryPanel.add(studentId);
 		
@@ -83,7 +83,7 @@ public class ConfirmationBox extends JFrame{
         
 		JPanel employeeIDPanel = new JPanel();
 		employeeIDPanel.setLayout(new GridLayout(1,2));
-		employeeIDPanel.add(new JLabel("Enter Employee ID:"));
+		employeeIDPanel.add(new JLabel("Enter Employee Name:"));
 		employeeIDPanel.add(employeeId);
 		summaryPanel.add(employeeIDPanel);
 		
@@ -98,7 +98,7 @@ public class ConfirmationBox extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				String eId = employeeId.getText();
 		        if (eId.equals(null) || eId.equals("")) 
-		        	JOptionPane.showMessageDialog(cframe,"please enter employee id before continuing");
+		        	JOptionPane.showMessageDialog(cframe,"please enter employee name before continuing");
 		        else {
 		        	panel.refreshCheckouttab();
 		        	try {

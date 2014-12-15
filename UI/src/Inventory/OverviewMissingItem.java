@@ -46,7 +46,7 @@ public class OverviewMissingItem extends JPanel {
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-	  panel.setBackground(new Color(75,17,111));
+	  panel.setBackground(new Color(165,101,186));
 	  expanded = new ExpandedMissingItemView(current);
 	  expanded.setLocation((int) Component.RIGHT_ALIGNMENT, (int) Component.TOP_ALIGNMENT);
 	}

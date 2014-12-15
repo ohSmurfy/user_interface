@@ -23,7 +23,7 @@ public class ExpandedGoingOut extends JFrame{
 
     JPanel studentIDPanel = new JPanel();
     studentIDPanel.setLayout(panelLayout);
-    studentIDPanel.add(new JLabel("Student Id :"));
+    studentIDPanel.add(new JLabel("Student Username :"));
     studentIDPanel.add(new JLabel(res.studentId));
     studentIDPanel.setMaximumSize(maxSize);
     
